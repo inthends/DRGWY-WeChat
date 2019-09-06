@@ -1,4 +1,4 @@
-# estates
+# DRGWY-WeChat
 
 ## Project setup
 ```
