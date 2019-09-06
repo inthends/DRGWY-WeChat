@@ -1,0 +1,147 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+* {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Arial;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+p, h1, h2, h3, h4 {
+    margin: 0;
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    background-color: #f7f7f7;
+    background-size: 100%;
+    color: #22242A;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    -moz-text-size-adjust: 100% !important;
+}
+
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.van-dialog__confirm, .van-dialog__confirm:active {
+    color: #5C87E5;
+}
+
+.van-cell {
+    padding: 0.3rem 0.1rem;
+}
+
+.modification-cont [class*=van-hairline]::after {
+    border: 0;
+}
+
+.van-cell {
+
+}
+
+.list-title .van-cell__title span {
+    color: #8D92A3;
+}
+
+.list-value span {
+    color: #8D92A3;
+}
+
+.btn .van-button--default {
+    background: #5C87E5;
+    color: #fff;
+    border-radius: 0.1rem;
+}
+
+/*权益和保障列表加载颜色改动*/
+.list_loading .van-loading {
+    color: #C8D8FB !important;
+}
+
+.list_loading .van-list__loading-text {
+    color: #C8D8FB !important;
+}
+
+.btn2 .van-button--default {
+    background: #5C87E5;
+    color: #fff;
+    border-radius: 0.1rem;
+}
+
+.btn3 .van-button--default {
+    background: #fff;
+    color: #5C87E5;
+    border-radius: 0.1rem;
+}
+
+.modification-cont .van-field__control {
+    text-align: right;
+}
+
+.modification-cont .van-password-input {
+    margin: 0;
+}
+
+.modification-cont .van-hairline {
+    border-bottom: 1px solid #f1f1f1;
+    margin-right: 0.2rem;
+}
+
+.modification-cont .van-hairline:last-child {
+    margin-right: 0;
+}
+
+.modification-cont .van-password-input .van-password-input__security .van-hairline {
+    text-align: center;
+}
+
+.modification-cont .van-password-input .van-password-input__security .van-hairline span {
+    position: relative;
+    top: 0.3rem;
+    color: #666;
+}
+
+.list .van-radio .van-icon-checked {
+    color: #5C87E5;
+}
+
+.list .van-radio .van-icon-check {
+    color: #fff;
+}
+
+.list .van-cell:active {
+    background: #fff;
+}
+
+.list .van-icon-checked::before {
+    content: "\F05C";
+}
+
+.van-toast--default {
+    z-index: 9999999 !important;
+}
+
+.qrcode-img div img {
+    width: 3.36rem !important;
+    height: 3.36rem !important;
+    border-style: none;
+    margin: 0.1rem;
+}
+
+.code-qr div img {
+    width: 5.16rem !important;
+    height: 5.16rem !important;
+    border-style: none;
+    margin: 0.3rem;
+}
+
+.van-modal {
+    background-color: rgba(0, 0, 0, 0);
+}
