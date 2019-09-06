@@ -35,7 +35,7 @@ class Carou extends BasePage {
                                 style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
                             >
                                 <img
-                                    src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                                    src={`http://zos.alipayobjects.com/rmsportal/${val}.png`}
                                     alt=""
                                     style={{width: '100%', verticalAlign: 'top'}}
                                     onLoad={() => {

@@ -217,3 +217,7 @@
 .home .am-wingblank.am-wingblank-lg{
     margin: 0!important;
 }
+
+.home .am-carousel-wrap{
+    display: none;
+}
