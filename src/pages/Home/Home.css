@@ -1,0 +1,219 @@
+.header {
+    background: #05ba8b;
+    width: 100%;
+    height: 4.5rem;
+    padding-top: 0.7rem;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 99;
+}
+
+.header-img {
+    width: 100%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.header-img img {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+}
+
+.name {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+
+.balance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+}
+
+.balance span {
+    color: #fff;
+    font-size: 0.3rem;
+    margin-left: 0.1rem;
+    position: relative;
+    top: 0.01rem;
+}
+
+.balance img{
+    width: 0.4rem;
+    height: 0.4rem;
+}
+
+.qr {
+    text-align: center;
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #05ba8b;
+    margin: auto;
+    padding-top: 0.15rem;
+    box-sizing: border-box;
+}
+
+.qr p {
+    font-size: 0.24rem;
+    color: #fff;
+}
+
+.qr img{
+    width: 0.4rem;
+    height: 0.4rem;
+}
+
+.img-list {
+    padding-top: 0.7rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    position: relative;
+    z-index: 9;
+    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    padding-left: 0.6rem;
+}
+
+.img-list-flex {
+    width: 20%;
+    text-align: center;
+    padding-right: 0.6rem;
+    display: inline-block;
+}
+
+.img-list-flex img {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.img-list-flex p {
+    font-size: 0.24rem;
+    color: #333;
+    width: 1.2rem;
+}
+
+.swipe {
+    margin-top: 0.2rem;
+
+    background: #fff;
+}
+
+.swipe img {
+    width: 100%;
+    height: 2rem;
+}
+
+.shequ {
+    margin-top: 0.2rem;
+    background: #fff;
+}
+
+.shequ-title {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 0.2rem;
+}
+
+.shequ-title span {
+    width: 0.1rem;
+    height: 0.3rem;
+    display: inline-block;
+    background: #05ba8b;
+    margin-right: 0.1rem;
+}
+
+.list-shequ-cont1 {
+    display: flex;
+    margin-bottom: 0.2rem;
+    justify-content: space-between;
+}
+
+.list-shequ-cont1 p:last-child {
+    color: #ba1914;
+}
+
+.list-shequ-cont {
+    width: 40%;
+    padding: 0.3rem 0.2rem;
+    border-radius: 0.1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.19);
+    margin: 0.2rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.list-shequ-cont p {
+    font-size: 0.24rem;
+    color: #333;
+}
+
+.list-shequ {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-xiangmu-cont {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    border-bottom: 1px solid #f1f1f1;
+    margin: 0 0.2rem;
+}
+.shequ-title-c11 {
+    justify-content: space-between;
+}
+
+.shequ-title-1 {
+    display: flex;
+    align-items: center;
+
+}
+
+.list-xiangmu-cont:last-child {
+    border-bottom: 0;
+}
+
+.list-xiangmu-cont .list-xiangmu-cont1 img {
+    width: 2rem;
+    height: 1rem;
+}
+
+.list-xiangmu-cont .list-xiangmu-cont1 {
+    margin-right: 0.2rem;
+}
+
+.gengduo {
+    color: #999;
+}
+
+.list-xiangmu-cont2 p:first-child{
+    color: #333;
+    font-size: 0.3rem;
+}
+.list-xiangmu-cont2 p:last-child{
+    color: #999;
+    font-size: 0.24rem;
+    width: 100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    word-wrap: break-word;
+}
+.home{
+    padding-bottom: 1.5rem;
+}
+
+.home .am-wingblank.am-wingblank-lg{
+    margin: 0!important;
+}
