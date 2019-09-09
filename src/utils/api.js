@@ -14,12 +14,13 @@ export default {
             if (!a.startsWith('/')) {
                 a = '/' + url;
             }
-            let {host} = 'http://badu';
+            let host = 'http://hf.jslesoft.com:8018';
             let complete = host + a;
             if (Object.keys(params).length > 0) {
                 console.log('url', complete);
                 console.log('参数', params);
             }
+            console.log(complete)
             if (method === 'GET') {
                 axios.get(complete, {
                     params: params,

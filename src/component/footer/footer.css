@@ -6,6 +6,7 @@
     padding: 0.2rem 0;
     background: #ffffff;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.19);
+    z-index: 9999!important;
 }
 .footer .color {
     color: #05ba8b;

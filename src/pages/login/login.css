@@ -1,0 +1,133 @@
+.login {
+    padding-top: 2rem;
+    background: #fff;
+    height: 100vh;
+}
+
+.login-content {
+    width: 90%;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(24, 147, 207, 0.5);
+    padding: 0 0.6rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+
+.login-content .img {
+    text-align: center;
+    position: relative;
+    top: -0.6rem;
+}
+
+.login-content img {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    margin-bottom: 0.4rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.login-content .login-title {
+    position: relative;
+    top: -0.6rem;
+}
+
+.login-content .login-title p {
+    color: #8D92A3;
+    font-size: 0.22rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+.login-content .img p {
+    font-size: .32rem;
+    color: #22242A;
+}
+
+.login-content .img p:last-child {
+    font-size: 0.26rem;
+    color: #22242A;
+    padding-top: 0.1rem;
+}
+
+.login-content .img span {
+    font-size: 0.26rem;
+    color: #5C87E5;
+}
+
+.login-title input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    color: #22242A;
+}
+
+.login-title input:last-child {
+    margin-top: 0.4rem;
+}
+
+.login-title .code {
+    margin-top: 0.4rem;
+    position: relative;
+}
+
+.login-title .code input {
+    margin-top: 0 !important;
+}
+
+.login-title input:first-child {
+    margin-top: 0.4rem;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ddd;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ddd;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ddd;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ddd;
+}
+
+.btn {
+    background: #5C87E5;
+    color: #fff;
+    width: 100%;
+    height: 0.8rem;
+    border: 0;
+    border-radius: 0.1rem;
+    box-shadow: 0 3px 6px #5C87E5;
+}
+
+.codeBtn {
+    position: absolute;
+    right: 0;
+    bottom: 0.2rem;
+    padding-left: 0.1rem;
+    color: #666;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #ddd;
+}
+
+.codeDisable {
+    color: #8D92A3;
+}

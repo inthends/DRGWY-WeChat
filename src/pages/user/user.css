@@ -1,0 +1,162 @@
+.user {
+    padding-bottom: 1.2rem;
+}
+
+.user .swipe {
+    margin-top: 0.2rem;
+    background: #fff;
+}
+
+.user .swipe img {
+    width: 100%;
+    height: 2rem;
+}
+
+.user .img-list {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 0.2rem;
+}
+
+.user .img-list-flex {
+    width: 25%;
+    text-align: center;
+}
+
+.user .img-list-flex img {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.user .img-list-flex p {
+    font-size: 0.28rem;
+    color: #333;
+}
+
+.user .img-list-flex p:last-child{
+    font-size: 0.24rem;
+    color: #666;
+    margin-top: 0.1rem;
+}
+
+.user .header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem 0.4rem;
+    background: #fff;
+}
+
+.user .header-left {
+    display: flex;
+    align-items: center;
+}
+
+.user .header-left img {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
+.user .header-left-cont-p-cont {
+    display: flex;
+    align-items: center;
+}
+
+.user .header-left-cont-p-cont img {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-right: 0.05rem;
+}
+
+.user .shequ {
+    margin-top: 0.2rem;
+    background: #fff;
+}
+
+.user .shequ-title {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 0.2rem;
+}
+
+.user .shequ-title span {
+    width: 0.1rem;
+    height: 0.3rem;
+    display: inline-block;
+    background: #05ba8b;
+    margin-right: 0.1rem;
+}
+
+.user .list-shequ-cont1 {
+    display: flex;
+    margin-bottom: 0.2rem;
+    justify-content: space-between;
+}
+
+.user .list-shequ-cont1 p:last-child {
+    color: #ba1914;
+}
+
+.user .list-shequ-cont {
+    width: 40%;
+    padding: 0.3rem 0.2rem;
+    border-radius: 0.1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.19);
+    margin: 0.2rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.user .list-shequ-cont p {
+    font-size: 0.24rem;
+    color: #333;
+}
+
+.user .list-shequ {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user .list-xiangmu-cont {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    border-bottom: 1px solid #f1f1f1;
+    margin: 0 0.2rem;
+}
+.user .shequ-title-c11 {
+    justify-content: space-between;
+}
+
+.user .shequ-title-1 {
+    display: flex;
+    align-items: center;
+
+}
+
+.user .header-left-cont-p-cont p{
+    color: #666;
+    font-size: 0.24rem;
+}
+
+.user .header-left-cont {
+
+}
+
+.user .header-left-cont-p {
+    margin-bottom: 0.1rem;
+    color: #333;
+    font-size: 0.3rem;
+}
+
+.user .am-wingblank.am-wingblank-lg{
+    margin: 0!important;
+}
