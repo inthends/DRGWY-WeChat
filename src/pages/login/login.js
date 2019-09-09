@@ -18,7 +18,20 @@ class Login extends React.Component {
     }
 
     login = () => {
-
+        if (!this.state.mobile) {
+            UDToat.showError('请输入手机号！');
+            return false;
+        }
+        if (!this.state.code) {
+            UDToat.showError('验证码！');
+            return false;
+        }
+        api.getData('/api/WeChat/CheckCaptcha', {
+            mobile: this.state.mobile,
+            captcha: this.state.code
+        }, false).then(res => {
+            console.log(res)
+        });
     };
 
     changeValue = (e) => {
@@ -43,7 +56,7 @@ class Login extends React.Component {
             UDToat.showError('请输入手机号！');
             return false;
         }
-        this.state.codeActive = true;
+        // this.state.codeActive = true;
         api.getData('/api/WeChat/SendSMS', {
             mobile: this.state.mobile
         }, false).then(res => {

@@ -1,11 +1,11 @@
 const initialState = {
-    jwt: null,
+    openid: null,
 };
 
 const loggedUserReducer = (state = initialState, action) => {
     if (action.type === 'CLEAR') {
         return {
-            jwt: state.jwt,
+            openid: state.openid,
         };
     }
     return state;

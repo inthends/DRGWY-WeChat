@@ -6,7 +6,7 @@ class ImgList extends BasePage {
     render() {
         return (
             <div className="img-list">
-                <div className="img-list-flex" onClick="payFees()">
+                <div className="img-list-flex" onClick={() => this.props.history.push('/pay')}>
                     <img src={require('../../../static/images/home/jiaofei.png')} alt=""/>
                     <p>查询缴费</p>
                 </div>
