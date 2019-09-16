@@ -1,26 +1,33 @@
 import React from 'react';
 import BasePage from '../../../utils/base-page';
-import { Icon, Grid } from 'antd-mobile';
+import {Icon, Grid} from 'antd-mobile';
+import api from "../../../utils/api";
+import {
+    loggedUserReducer,
+} from '../../../store/actions';
 
 class Header extends BasePage {
+    componentDidMount() {
+
+    }
 
     render() {
         return (
             <div className="header">
                 <div className="header-img">
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
+                    <img src={loggedUserReducer().imgurl} alt=""/>
                 </div>
                 <div className="name">
-                    <p>郭斌</p>
+                    <p>{(loggedUserReducer().name?loggedUserReducer().name:loggedUserReducer().nickName)}</p>
                 </div>
                 <div className="balance">
                     <img src={require('../../../static/images/home/jifen2.png')} alt=""/>
-                    <span>0.00</span>
+                    <span>{(loggedUserReducer().scores)}</span>
                 </div>
                 <div className="qr">
                     <img src={require('../../../static/images/home/qr.png')} alt=""/>
                     <p>兑换码</p>
-                    <Icon type={'down'} color={'#fff'} />
+                    <Icon type={'down'} color={'#fff'}/>
                 </div>
             </div>
 

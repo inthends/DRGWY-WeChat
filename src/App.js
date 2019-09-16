@@ -13,7 +13,7 @@ class App extends React.Component {
                     sessionStorage.setItem('redirect', item.path)
                 }
                 document.title = item.title;
-                return ((!openid || item.path === '/auth') ? <item.component {...props} /> : <Redirect to='/auth'/>);
+                return ((openid || item.path === '/auth') ? <item.component {...props} /> : <Redirect to='/auth'/>);
             }}/>;
         });
         return (

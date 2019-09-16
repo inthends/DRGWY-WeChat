@@ -1,5 +1,6 @@
 import UDToast from './ud-toast';
 import axios from 'axios';
+import {getToken} from '../store/actions';
 
 export default {
     network(request) {
@@ -14,6 +15,7 @@ export default {
             if (!a.startsWith('/')) {
                 a = '/' + url;
             }
+            axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
             let host = 'http://hf.jslesoft.com:8018';
             let complete = host + a;
             if (Object.keys(params).length > 0) {
@@ -44,15 +46,7 @@ export default {
     success(showLoading, res, resolve, reject) {
         showLoading && UDToast.hiddenLoading();
         const data = res.data;
-        if (data.errno !== '0') {
-            if (data.error !== '2001' || data.err !== '2002') {
-                showLoading && UDToast.showError(data.error);
-            }
-            reject(data);
-        } else {
-            resolve(data.data);
-            console.log('response', data.data);
-        }
+        resolve(data);
     },
     fail(showLoading, error, reject) {
         showLoading && UDToast.hiddenLoading();

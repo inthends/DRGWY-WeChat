@@ -2,6 +2,12 @@ import React from 'react';
 import './login.css';
 import UDToat from '../../utils/ud-toast';
 import api from '../../utils/api';
+import common from "../../utils/common";
+import {
+    getImgurl,
+    getOpenid, saveLogin, saveLogin2
+} from '../../store/actions';
+import {connect} from "react-redux";
 
 class Login extends React.Component {
     constructor(props) {
@@ -13,8 +19,31 @@ class Login extends React.Component {
             second: 60,
             tid: 0,
             codeMsg: '获取验证码',
-            headimgurl: ''
+            headimgurl: '',
+            paramsCode: '',
+            openid: ''
         };
+    }
+
+    //获取code
+    componentDidMount() {
+        let params = common.urlSearch(decodeURI(window.location.href));
+        const code = params.code;
+        if (code === undefined) {
+            const redirectUri = 'http://wechat.jslesoft.com/auth';
+            const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
+                'wxa3cbf60affa3a702' +
+                '&redirect_uri=' +
+                redirectUri +
+                '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+            window.location.href = weiXinUrl;
+        } else {
+            this.setState({
+                paramsCode: code,
+                headimgurl: getImgurl(),
+                openid: getOpenid()
+            })
+        }
     }
 
     login = () => {
@@ -28,9 +57,16 @@ class Login extends React.Component {
         }
         api.getData('/api/WeChat/CheckCaptcha', {
             mobile: this.state.mobile,
-            captcha: this.state.code
-        }, false).then(res => {
-            console.log(res)
+            captcha: this.state.code,
+            code: this.state.paramsCode,
+            openid: this.state.openid
+        }, true).then(res => {
+            if(res.success){
+                this.props.saveLoginInfo2(res.data);
+                this.props.history.push('/home')
+            }else {
+                UDToat.showError(res.msg);
+            }
         });
     };
 
@@ -38,14 +74,6 @@ class Login extends React.Component {
         this.setState({
             [e.target.name]: e.target.value,
         });
-    };
-
-    mobileBlur = () => {
-        window.scroll(0, 0);
-    };
-
-    codeBlur = () => {
-        window.scroll(0, 0);
     };
 
     sms = () => {
@@ -56,11 +84,26 @@ class Login extends React.Component {
             UDToat.showError('请输入手机号！');
             return false;
         }
-        // this.state.codeActive = true;
+        this.state.codeActive = true;
         api.getData('/api/WeChat/SendSMS', {
             mobile: this.state.mobile
-        }, false).then(res => {
-            console.log(res)
+        }, true).then(res => {
+            this.state.tid = setInterval(() => {
+                if (this.state.second !== 0) {
+                    this.setState({
+                        second: this.state.second - 1,
+                        codeMsg: '已发送(' + this.state.second + 's)'
+                    })
+                } else {
+                    clearInterval(this.state.tid);
+                    this.setState({
+                        tid: 0,
+                        second: 60,
+                        codeMsg: '获取验证码',
+                        codeActive: false
+                    })
+                }
+            }, 1000);
         });
     };
 
@@ -70,7 +113,7 @@ class Login extends React.Component {
             <div className="login">
                 <div className="login-content">
                     <div className="img">
-                        <img src={require('../../static/images/home/1.jpg')} alt=""/>
+                        <img src={headimgurl} alt=""/>
                         <p>您好</p>
                         <p>欢迎来到</p>
                     </div>
@@ -94,4 +137,15 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const kk = (dispatch, ownProps) => {
+    return {
+        saveLoginInfo: (info) => {
+            dispatch(saveLogin(info));
+        },
+
+        saveLoginInfo2: (info) => {
+            dispatch(saveLogin2(info));
+        },
+    };
+};
+export default connect(null, kk)(Login);
