@@ -1,0 +1,39 @@
+.bind {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #fff;
+    padding: 0.4rem;
+    box-sizing: border-box;
+}
+
+.bind input {
+    width: 100%;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+    color: #333;
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+}
+
+.bind button{
+    width: 100%;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+    color: #333;
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+    background: #fff;
+}
+
+.bind .bind-btn {
+    border: 1px solid #e58f22;
+    background: #e58f22;
+    color: #fff;
+}

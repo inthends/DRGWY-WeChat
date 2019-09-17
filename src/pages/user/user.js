@@ -5,6 +5,9 @@ import { Icon, Grid } from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
 
 class User extends React.Component {
+    house = ()=>{
+        this.props.history.push('/house')
+    };
     render() {
         const footer = <Footer {...this.props}/>;
         const carou = <Carou {...this.props}/>;
@@ -55,6 +58,21 @@ class User extends React.Component {
                             <div className="img-list-flex">
                                 <p>发票</p>
                                 <p>131231</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="shequ">
+                        <div className="shequ-title shequ-title-c11">
+                            <div className="shequ-title-1">
+                                <span></span>
+                                <p>我的房产</p>
+                            </div>
+                        </div>
+
+                        <div className="img-list" onClick={this.house}>
+                            <div className="img-list-flex img-list-flex1">
+                                <p>设置默认房产</p>
                             </div>
                         </div>
                     </div>

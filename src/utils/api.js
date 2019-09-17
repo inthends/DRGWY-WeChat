@@ -1,6 +1,8 @@
 import UDToast from './ud-toast';
 import axios from 'axios';
-import {getToken} from '../store/actions';
+import {getToken, saveLogin2, loseLogin} from '../store/actions';
+import store from '../store/store';
+import qs from 'qs';
 
 export default {
     network(request) {
@@ -18,11 +20,6 @@ export default {
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
             let host = 'http://hf.jslesoft.com:8018';
             let complete = host + a;
-            if (Object.keys(params).length > 0) {
-                console.log('url', complete);
-                console.log('参数', params);
-            }
-            console.log(complete)
             if (method === 'GET') {
                 axios.get(complete, {
                     params: params,
@@ -50,8 +47,7 @@ export default {
     },
     fail(showLoading, error, reject) {
         showLoading && UDToast.hiddenLoading();
-        showLoading && UDToast.showError('当前网络不佳');
-        console.log('error11', error);
+        // store.dispatch(loseLogin());
         reject(error);
     },
 
@@ -65,6 +61,7 @@ export default {
         });
     },
     postData(url, params = {}, showLoading = true) {
+        params = qs.stringify(params);
         return this.network({
             url: url,
             params: params,
@@ -95,11 +92,10 @@ export default {
             UDToast.hiddenLoading();
             return res;
         }).catch(error => {
+            console.log(error)
             const err = error.error ? error.error : '当前网络不佳';
             UDToast.hiddenLoading();
-            UDToast.showError(err);
             return [];
-
         });
     },
 };

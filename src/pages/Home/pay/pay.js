@@ -2,6 +2,10 @@ import React from 'react';
 import './pay.css';
 
 class Login extends React.Component {
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <div className='img-list1'>

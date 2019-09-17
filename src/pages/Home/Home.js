@@ -6,8 +6,37 @@ import ImgList from '../../component/home/img-list/imgList';
 import Carou from '../../component/home/carousel/carousel';
 import Shequ from '../../component/home/shequ/shequ';
 import Xiangmu from '../../component/home/xiangmu/xiangmu';
+import UDToat from "../../utils/ud-toast";
+import api from "../../utils/api";
+import {
+    loggedUserReducer,
+    rooms, saveLogin, saveLogin2
+} from '../../store/actions';
+import {connect} from "react-redux";
+
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount() {
+        api.getData('/api/WeChat/GetCustomerRooms', {
+            mobile: loggedUserReducer().mobile,
+        }, true).then(res => {
+            if (res.success) {
+                if (res.data.length > 0) {
+                    this.props.rooms('1')
+                } else {
+                    this.props.rooms('0')
+                }
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
+    }
+
     render() {
         const footer = <Footer {...this.props}/>;
         const header = <Header {...this.props}/>;
@@ -30,4 +59,12 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+const kk = (dispatch, ownProps) => {
+    return {
+        rooms: (info) => {
+            dispatch(rooms(info));
+        },
+    };
+};
+
+export default connect(null, kk)(Home);

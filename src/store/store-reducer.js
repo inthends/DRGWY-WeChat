@@ -6,7 +6,10 @@ const initialState = {
     name: null,
     nickName: "",
     scores: null,
-    token: null
+    token: null,
+    rooms: null,
+    customerId: null,
+    defaultUnitId: null,
 };
 
 const loggedUserReducer = (state = initialState, action) => {
@@ -18,6 +21,7 @@ const loggedUserReducer = (state = initialState, action) => {
         };
     }
     if (action.type === 'LOGIN2') {
+        console.log(action.info)
         return {
             ...state,
             openid: action.info.member.openId,
@@ -27,7 +31,31 @@ const loggedUserReducer = (state = initialState, action) => {
             name: action.info.member.name,
             nickName: action.info.member.nickName,
             scores: action.info.member.scores,
+            customerId: action.info.member.customerId,
+            defaultUnitId: action.info.member.defaultUnitId,
             token: action.info.token,
+        };
+    }
+    if (action.type === 'LOSE') {
+        return {
+            ...state,
+            openid: '',
+            imgurl: '',
+            id: '',
+            mobile: '',
+            name: '',
+            nickName: '',
+            scores: '',
+            customerId: '',
+            defaultUnitId: '',
+            token: '',
+        };
+    }
+
+    if (action.type === 'ROOM') {
+        return {
+            ...state,
+            rooms: action.info,
         };
     }
     return state;

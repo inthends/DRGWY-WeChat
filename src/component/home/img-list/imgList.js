@@ -1,12 +1,28 @@
 import React from 'react';
 import BasePage from '../../../utils/base-page';
+import {
+    loggedUserReducer,
+} from '../../../store/actions';
 
 class ImgList extends BasePage {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    pay = () => {
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/pay')
+        } else {
+            this.props.history.push('/binding')
+        }
+    };
 
     render() {
         return (
             <div className="img-list">
-                <div className="img-list-flex" onClick={() => this.props.history.push('/pay')}>
+                <div className="img-list-flex" onClick={this.pay}>
                     <img src={require('../../../static/images/home/jiaofei.png')} alt=""/>
                     <p>查询缴费</p>
                 </div>

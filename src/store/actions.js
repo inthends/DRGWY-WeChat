@@ -8,6 +8,14 @@ export function saveLogin2(info) {
     return {type: 'LOGIN2', info: info};
 }
 
+export function loseLogin() {
+    return {type: 'LOSE', info: ''};
+}
+
+export function rooms(info) {
+    return {type: 'ROOM', info: info};
+}
+
 export function getOpenid() {
     return store.getState().loggedUserReducer.openid;
 }
@@ -23,3 +31,4 @@ export function getToken() {
 export function loggedUserReducer() {
     return store.getState().loggedUserReducer;
 }
+

@@ -139,10 +139,6 @@ class Login extends React.Component {
 
 const kk = (dispatch, ownProps) => {
     return {
-        saveLoginInfo: (info) => {
-            dispatch(saveLogin(info));
-        },
-
         saveLoginInfo2: (info) => {
             dispatch(saveLogin2(info));
         },
