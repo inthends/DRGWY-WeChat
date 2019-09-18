@@ -35,7 +35,7 @@
 }
 
 .img-list1 .cont-list-cont-felx:last-child p:last-child {
-    background: #1989fa;
+    background: #e58f22;
     color: #fff;
     padding: 0.1rem 0.2rem;
     border-radius: 0.1rem;
@@ -49,7 +49,7 @@
 .img-list1 .btn1 button {
     width: 80%;
     text-align: center;
-    background: #1989fa;
+    background: #e58f22;
     border: none;
     color: #fff;
     padding: 0.15rem 0;
