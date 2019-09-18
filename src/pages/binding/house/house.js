@@ -4,9 +4,10 @@ import {Icon, Grid} from 'antd-mobile';
 import api from "../../../utils/api";
 import UDToat from "../../../utils/ud-toast";
 import {
-    loggedUserReducer,
+    loggedUserReducer, saveLogin2,
 } from '../../../store/actions';
 import {List, Radio, Flex, WhiteSpace} from 'antd-mobile';
+import {connect} from "react-redux";
 
 const RadioItem = Radio.RadioItem;
 
@@ -27,7 +28,8 @@ class House extends React.Component {
         }, true).then(res => {
             if (res.success) {
                 this.setState({
-                    data: res.data
+                    data: res.data,
+                    value: res.data[0].id
                 })
             } else {
                 UDToat.showError(res.msg);
@@ -36,7 +38,28 @@ class House extends React.Component {
     }
 
     go = () => {
-        window.history.back(-1)
+        api.getData('/api/WeChat/GetCustomerRooms', {
+            unitId: this.state.value,
+        }, true).then(res => {
+            if (res.success) {
+                this.openId();
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
+    };
+
+    openId = () =>{
+        api.getData('/api/WeChat/GetUserInfo', {
+            openid: loggedUserReducer().openid,
+        }, true).then(res => {
+            if (res.success) {
+                this.props.saveLoginInfo2(res.data);
+                window.history.back(-1)
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
     };
 
     render() {
@@ -47,8 +70,8 @@ class House extends React.Component {
             <div className='house'>
                 <List>
                     {data.map(i => (
-                        <RadioItem key={i.telPhoneNum} checked={value === i.telPhoneNum} onChange={() => this.onChange(i.telPhoneNum)}>
-                            {i.telPhoneNum}
+                        <RadioItem key={i.id} checked={value === i.id} onChange={() => this.onChange(i.id)}>
+                            {i.allName}
                         </RadioItem>
                     ))}
                 </List>
@@ -59,4 +82,11 @@ class House extends React.Component {
     }
 }
 
-export default House;
+const kk = (dispatch, ownProps) => {
+    return {
+        saveLoginInfo2: (info) => {
+            dispatch(saveLogin2(info));
+        },
+    };
+};
+export default connect(null, kk)(House);

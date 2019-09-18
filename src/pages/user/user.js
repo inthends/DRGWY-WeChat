@@ -1,14 +1,43 @@
 import React from 'react';
 import './user.css';
 import Footer from '../../component/footer/footer';
-import { Icon, Grid } from 'antd-mobile';
+import {Icon, Grid} from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
+import {loggedUserReducer} from "../../store/actions";
 
 class User extends React.Component {
-    house = ()=>{
+    house = () => {
         this.props.history.push('/house')
     };
+
+    componentDidMount() {
+
+    }
+
     render() {
+
+        let fang = '';
+
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            fang = <div className="shequ">
+                <div className="shequ-title shequ-title-c11">
+                    <div className="shequ-title-1">
+                        <span></span>
+                        <p>我的房产</p>
+                    </div>
+                </div>
+
+                <div className="img-list" onClick={this.house}>
+                    <div className="img-list-flex img-list-flex1">
+                        <p>设置默认房产</p>
+                    </div>
+                </div>
+            </div>;
+        } else {
+            fang = '';
+        }
+
         const footer = <Footer {...this.props}/>;
         const carou = <Carou {...this.props}/>;
         return (
@@ -61,21 +90,8 @@ class User extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {fang}
 
-                    <div className="shequ">
-                        <div className="shequ-title shequ-title-c11">
-                            <div className="shequ-title-1">
-                                <span></span>
-                                <p>我的房产</p>
-                            </div>
-                        </div>
-
-                        <div className="img-list" onClick={this.house}>
-                            <div className="img-list-flex img-list-flex1">
-                                <p>设置默认房产</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {footer}
             </div>
