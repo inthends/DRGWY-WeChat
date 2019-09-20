@@ -1,8 +1,6 @@
 import {Modal} from 'antd-mobile';
 import UDToast from './ud-toast';
 import React from 'react';
-import AlertTitle from '../component/alert-component/alert-title/alert-title';
-import AlertMessage from '../component/alert-component/alert-message/alert-message';
 import common from './common';
 
 
@@ -21,20 +19,18 @@ export default {
         }]);
      */
     showAlert(title, message, actions) {
-        var act = actions;
+        let act = actions;
         if (!act || act.length === 0) {
             UDToast.showError('actions数量必须大于0');
             return null;
         }
         if (act.length === 1) {
-            var aa = [{text: '取消', onPress: () => console.log('cancel')}];
+            let aa = [{text: '取消', onPress: () => console.log('cancel')}];
             aa.push(act[0]);
             act = aa;
 
         }
         console.log(act);
-
-
         return Modal.alert(title, message, act);
     },
     hiddenAlert(alert) {
@@ -42,20 +38,5 @@ export default {
     },
     showOneButton(title, message, comfirmTitle, completeBlock) {
         return Modal.alert(title, message, [{text: comfirmTitle, onPress: () => completeBlock()}]);
-    },
-    showSpecialButton(title, message, completeBlock, cancelBlock) {
-        return Modal.alert(<AlertTitle text={title}/>, <AlertMessage text={message}/>, [{
-            text: '重新选择', onPress: () => {
-                if (cancelBlock) {
-                    cancelBlock();
-                }
-            },
-        }, {
-            text: '确认支付', onPress: () => {
-                if (completeBlock) {
-                    completeBlock();
-                }
-            },
-        }]);
     },
 };

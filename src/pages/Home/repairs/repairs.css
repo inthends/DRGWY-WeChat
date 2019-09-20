@@ -1,0 +1,98 @@
+.repairs {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
+}
+
+.repairs .am-list-body {
+}
+
+.repairs .am-list-line {
+    border-bottom: 0 !important;
+}
+
+.repairs .am-list-item-active {
+    background: transparent;
+}
+
+.repairs .am-checkbox-inner {
+    border-radius: 0;
+}
+
+.repairs .am-list-item {
+    width: 2rem;
+    display: inline-block;
+}
+.repairs .am-list .am-list-item.am-checkbox-item .am-list-thumb{
+    display: inline-block;
+}
+
+.repairs .am-list-item.am-list-item-middle .am-list-line{
+    display: inline-block;
+    position: relative;
+    top: 0.13rem;
+}
+
+.repairs .am-list-item .am-list-line .am-list-content {
+    overflow: unset;
+    text-overflow: unset;
+}
+
+.repairs .am-list-item.am-list-item-middle .am-list-line{
+    padding-left: 0;
+}
+
+.repairs .am-image-picker-list {
+    padding: 0;
+}
+
+.repairs .am-list-item .am-list-line .am-list-content{
+    font-size: 0.24rem;
+}
+
+.repairs .list{
+    margin-bottom: 0.2rem;
+}
+
+.repairs .TextareaItem .am-textarea-has-count{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #f1f1f1;
+    border-radius: 0.05rem;
+}
+
+.repairs .am-textarea-control textarea{
+    color: #666;
+}
+
+.TextareaItem {
+    padding: 0.3rem;
+    padding-top: 0;
+}
+
+.btn-repa-cint{
+    text-align: center;
+}
+
+.btn-repa{
+    width: 90%;
+    text-align: center;
+    padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+    border: 1px solid #e58f22;
+    background: #e58f22;
+    color: #fff;
+    margin-top: 0.5rem;
+}
+
+.repairs .am-checkbox.am-checkbox-checked .am-checkbox-inner{
+    border-color: #e58f22;
+    background: #e58f22;
+}

@@ -19,6 +19,15 @@ class ImgList extends BasePage {
         }
     };
 
+    repairs = () => {
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/repairs')
+        } else {
+            this.props.history.push('/binding')
+        }
+    };
+
     render() {
         return (
             <div className="img-list">
@@ -27,7 +36,7 @@ class ImgList extends BasePage {
                     <p>查询缴费</p>
                 </div>
 
-                <div className="img-list-flex">
+                <div className="img-list-flex" onClick={this.repairs}>
                     <img src={require('../../../static/images/home/xiu.png')} alt=""/>
                     <p>报事报修</p>
                 </div>

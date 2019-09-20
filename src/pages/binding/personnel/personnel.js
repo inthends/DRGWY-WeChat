@@ -58,7 +58,7 @@ class Personnel extends React.Component {
         }, true).then(res => {
             if (res.success) {
                 this.props.saveLoginInfo2(res.data);
-                this.props.history.replace('/pay')
+                this.props.history.replace('/home')
             } else {
                 UDToat.showError(res.msg);
             }

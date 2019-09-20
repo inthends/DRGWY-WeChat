@@ -44,11 +44,14 @@ export default {
         showLoading && UDToast.hiddenLoading();
         const data = res.data;
         resolve(data);
+
     },
     fail(showLoading, error, reject) {
         showLoading && UDToast.hiddenLoading();
-        // store.dispatch(loseLogin());
+        store.dispatch(loseLogin());
         reject(error);
+
+
     },
 
 
