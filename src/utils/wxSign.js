@@ -2,9 +2,11 @@ import wx from 'weixin-js-sdk';
 import api from './api';
 
 export default {
-    getWXSign(showLoading = true) {
+    getWXSign(billId, showLoading = true) {
         return new Promise((resolve, reject) => {
-            api.postData('/api/WeChat/GetWeChatSign', {}, showLoading).then(data => {
+            api.postData('/api/WeChat/GetWeChatSign', {
+                billId: billId
+            }, showLoading).then(data => {
                 console.log(data.data.signature)
                 wx.config({
                     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

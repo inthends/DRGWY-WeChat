@@ -29,14 +29,14 @@ class PayDetail extends React.Component {
 
     callWXPay = () => {
         UDToast.showLoading();
-        wxSign.getWXSign().then(jssdk => {
-            api.postData('/api/WeChat/WeChatPay', {
+        wxSign.getWXSign(this.props.location.state.billId).then(jssdk => {
+            api.postData('/api/WeChat/GetWeChatSign', {
                 billId: this.props.location.state.billId
             }).then(res => {
-                const configData = res.body;
+                const configData = res.data;
                 jssdk.chooseWXPay({
                     appId: 'wxa3cbf60affa3a702',
-                    timestamp: configData.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                    timestamp: configData.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
                     nonceStr: configData.nonceStr, // 支付签名随机串，不长于 32 位
                     package: configData.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
                     signType: configData.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
