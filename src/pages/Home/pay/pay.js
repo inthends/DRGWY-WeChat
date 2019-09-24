@@ -12,12 +12,12 @@ import PayDetail from "./pay-detail/pay-detail";
 
 class Pay extends React.Component {
     state = {
-        data: [],
+        data: '',
         order: null,
         canSubmit: true,
     };
 
-    showModal =  () => {
+    showModal = () => {
         UDAlert.showAlert('确认支付？', '', [{
             text: '确定',
             onPress: () => {
@@ -38,8 +38,11 @@ class Pay extends React.Component {
                     package: configData.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
                     signType: configData.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                     paySign: configData.paySign, // 支付签名
-                    success: function (res) {
+                    success: (res) => {
                         UDToast.hiddenLoading();
+                        this.props.history.replace({
+                            pathname: '/home',
+                        })
                     },
                     cancel: function (res) {
                         UDToast.hiddenLoading();
@@ -52,8 +55,7 @@ class Pay extends React.Component {
         });
     };
 
-    detail = (i) =>{
-        console.log(i)
+    detail = (i) => {
         this.props.history.push({
             pathname: '/payDetail',
             state: {
@@ -76,11 +78,14 @@ class Pay extends React.Component {
 
     render() {
         const data = this.state.data;
-        return (
-            <div className='img-list1'>
+        let view = '';
+        if (data === '') {
+            view = '';
+        } else if (data.length > 0) {
+            view = <div>
                 {data.map(i => (
                     <div className="cont-list">
-                        <div className="cont-list-cont" onClick={()=>this.detail(i)}>
+                        <div className="cont-list-cont" onClick={() => this.detail(i)}>
                             <div className="cont-list-cont-felx">
                                 <p>{i.belongDate}</p>
                                 <p><span>合计：</span>{i.allAmount}</p>
@@ -103,6 +108,17 @@ class Pay extends React.Component {
                 <div className="btn1">
                     <button onClick={this.showModal}>全部交清</button>
                 </div>
+            </div>
+        }else {
+          view =   <div className='kong'>
+                <img src={require('../../../static/images/kong.png')} alt=""/>
+                <p>暂无数据！</p>
+            </div>
+        }
+
+        return (
+            <div className='img-list1'>
+                {view}
             </div>
         );
     }

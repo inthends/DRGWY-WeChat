@@ -22,6 +22,9 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        if (loggedUserReducer().rooms === '1') {
+            return false;
+        }
         api.getData('/api/WeChat/GetCustomerRooms', {
             mobile: loggedUserReducer().mobile,
         }, true).then(res => {

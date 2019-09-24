@@ -27,10 +27,12 @@ class PayDetail extends React.Component {
         }]);
     };
 
-    callWXPay = (orderNo) => {
+    callWXPay = () => {
         UDToast.showLoading();
         wxSign.getWXSign().then(jssdk => {
-            api.postData('/api/order/createPay', {orderNo: orderNo}).then(res => {
+            api.postData('/api/WeChat/WeChatPay', {
+                billId: this.props.location.state.billId
+            }).then(res => {
                 const configData = res.body;
                 jssdk.chooseWXPay({
                     appId: 'wxa3cbf60affa3a702',
@@ -39,8 +41,11 @@ class PayDetail extends React.Component {
                     package: configData.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
                     signType: configData.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                     paySign: configData.paySign, // 支付签名
-                    success: function (res) {
+                    success: (res) => {
                         UDToast.hiddenLoading();
+                        this.props.history.replace({
+                            pathname: '/pay',
+                        })
                     },
                     cancel: function (res) {
                         UDToast.hiddenLoading();
@@ -68,7 +73,7 @@ class PayDetail extends React.Component {
     }
 
     render() {
-        const {data} =  this.state;
+        const {data} = this.state;
         const list = data.detail;
         return (
             <div className='img-list2'>
@@ -83,7 +88,7 @@ class PayDetail extends React.Component {
                                 <p className='img-list1font'>送达日：{data.sendTime}</p>
                             </div>
                             {/*<div>*/}
-                                {/*<p className='img-list1font'>查阅日：2019-07-30 09:30</p>*/}
+                            {/*<p className='img-list1font'>查阅日：2019-07-30 09:30</p>*/}
                             {/*</div>*/}
                         </div>
 
@@ -92,14 +97,14 @@ class PayDetail extends React.Component {
                         {list.map(i => (
                             <div className='img-list1-detail'>
                                 <div>
-                                    <p className='img-list1fang'>万达茂\C座\903室</p>
+                                    <p className='img-list1fang'>{i.allName}</p>
                                 </div>
                                 <div>
                                     <p>{i.feeName}</p>
                                     <p className='img-list1red'>{i.feeAmount}</p>
                                 </div>
                                 <div>
-                                    <p className='img-list1font'>2018-01-01至2018-12-31</p>
+                                    <p className='img-list1font'>{i.billPeriod}</p>
                                 </div>
                             </div>
                         ))}

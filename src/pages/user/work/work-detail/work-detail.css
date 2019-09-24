@@ -1,6 +1,9 @@
 .work-title {
     padding: 0.2rem 0.3rem;
     border-bottom: 1px solid #f1f1f1;
+    font-size: 0.3rem;
+    color: #333;
+    font-weight: bold;
 }
 
 .work-p {
@@ -52,4 +55,14 @@
     margin-left: 0.2rem;
     position: relative;
     top: -0.1rem;
+}
+
+.gradeText {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gradeText span:last-child{
+    color: #e4393c;
 }

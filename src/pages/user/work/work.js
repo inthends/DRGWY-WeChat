@@ -15,19 +15,20 @@ class Work extends React.Component {
             status: 2,
             customerId: loggedUserReducer().customerId,
         },
-        data: [],
+        data: '',
         selectedIndex: 0,
         hasMore: false
     };
 
     componentDidMount() {
-        this.info(2);
+        this.info(this.state.param.status);
     }
 
     onChange = (e) => {
         console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
         this.setState({
-            selectedIndex: e.nativeEvent.selectedSegmentIndex
+            selectedIndex: e.nativeEvent.selectedSegmentIndex,
+            data: ''
         })
     };
 
@@ -39,7 +40,7 @@ class Work extends React.Component {
                 status: index,
                 customerId: loggedUserReducer().customerId,
             }
-        },()=>{
+        }, () => {
             api.postData('/api/WeChat/GetServiceDeskPageList', this.state.param, true)
                 .then(res => {
                     if (res.success) {
@@ -67,7 +68,6 @@ class Work extends React.Component {
         } else if (value === '已评价') {
             this.info(4)
         }
-
     };
 
     getMore = () => {
@@ -78,12 +78,12 @@ class Work extends React.Component {
                 status: this.state.param.status,
                 customerId: loggedUserReducer().customerId,
             }
-        },()=>{
+        }, () => {
             api.postData('/api/WeChat/GetServiceDeskPageList', this.state.param, true)
                 .then(res => {
                     if (res.success) {
                         this.setState({
-                            data: res.data.data,
+                            data: this.state.data.concat(res.data.data),
                         });
 
                         if (res.data.data.length === 0) {
@@ -109,6 +109,37 @@ class Work extends React.Component {
     };
 
     render() {
+        let view = '';
+        if (this.state.data === '') {
+            view = '';
+        } else if (this.state.data.length > 0) {
+            view = <InfiniteScroll
+                className="list-contents"
+                initialLoad={false}
+                pageStart={0}
+                loadMore={() => this.getMore()}
+                hasMore={this.state.hasMore}
+            >
+                <div className='work-cont'>
+                    {this.state.data.map(i => (
+                        <div className='work-cont-list' onClick={() => this.work1(i)}>
+                            <div className='work-cont-list-1'>
+                                <p>{i.billCode}</p>
+                                <button>{i.billType}</button>
+                            </div>
+                            <div className='work-cont-list-2'>
+                                <p>{i.contents}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </InfiniteScroll>
+        } else {
+            view = <div className='kong'>
+                <img src={require('../../../static/images/kong.png')} alt=""/>
+                <p>暂无数据！</p>
+            </div>
+        }
         return (
             <div className='work'>
                 <div className='work-work'>
@@ -119,28 +150,7 @@ class Work extends React.Component {
                         onValueChange={this.onValueChange}
                     />
                 </div>
-
-                <InfiniteScroll
-                    className="list-contents"
-                    initialLoad={false}
-                    pageStart={0}
-                    loadMore={() => this.getMore()}
-                    hasMore={this.state.hasMore}
-                >
-                    <div className='work-cont'>
-                        {this.state.data.map(i => (
-                            <div className='work-cont-list' onClick={() => this.work1(i)}>
-                                <div className='work-cont-list-1'>
-                                    <p>{i.billCode}</p>
-                                    <button>{i.billType}</button>
-                                </div>
-                                <div className='work-cont-list-2'>
-                                    <p>{i.contents}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </InfiniteScroll>
+                {view}
             </div>
         );
     }

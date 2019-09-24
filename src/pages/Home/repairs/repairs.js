@@ -37,6 +37,7 @@ class Repairs extends React.Component {
             mobile: loggedUserReducer().mobile,
         }, true).then(res => {
             if (res.success) {
+                let label = '';
                 res.data.forEach((item, index) => {
                     res.data[index].value = item.id;
                     res.data[index].label = item.allName;
@@ -126,9 +127,10 @@ class Repairs extends React.Component {
             { value: '咨询', label: '咨询' },
             { value: '建议', label: '建议' },
         ];
+
         return (
             <div className='repairs'>
-                <Picker data={this.state.district} cols={1} onChange={this.onChange4} onOk={this.ok}>
+                <Picker data={this.state.district} cols={1} onOk={this.ok}>
                     <div className='title'>
                         {this.state.label}
                         <Icon type='right'/>

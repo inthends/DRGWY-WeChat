@@ -18,7 +18,6 @@ class WorkDetail extends React.Component {
         };
     }
 
-
     componentDidMount() {
         api.getData('/api/WeChat/GetServicedeskEntity', {
             keyValue: this.props.location.state.id
@@ -35,7 +34,6 @@ class WorkDetail extends React.Component {
     }
 
     onChange3 = (val) => {
-        console.log(val)
         this.setState({
             Content: val
         })
@@ -129,7 +127,6 @@ class WorkDetail extends React.Component {
         } else if (rating === 5) {
             ping = '非常满意';
         }
-        console.log(rating)
         if (this.props.location.state.start === 3) {
             status3 = <div className='pingjia'>
                 <p>评价本次服务</p>
@@ -169,8 +166,23 @@ class WorkDetail extends React.Component {
         if (this.props.location.state.start === 3) {
             data1 = <p>完成时间: {this.state.data.finishDate}</p>
         }
+        let gradeText = '';
+        if (this.state.data.grade === 1) {
+            gradeText = '非常不满意';
+        } else if (this.state.data.grade === 2) {
+            gradeText = '不满意';
+        } else if (this.state.data.grade === 3) {
+            gradeText = '一般';
+        } else if (this.state.data.grade === 4) {
+            gradeText = '满意';
+        } else if (this.state.data.grade === 5) {
+            gradeText = '非常满意';
+        }
         if (this.props.location.state.start === 4) {
-            data2 = <p>评价时间: {this.state.data.appraiseDate}</p>
+            data2 = <p className='gradeText'>
+                <span>评价时间: {this.state.data.appraiseDate}</span>
+                <span>{gradeText}</span>
+            </p>
         }
 
         return (
