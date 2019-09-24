@@ -18,6 +18,7 @@ export default {
                 a = '/' + url;
             }
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
+            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
             let host = 'http://hf.jslesoft.com:8018';
             let complete = host + a;
             if (method === 'GET') {
@@ -48,10 +49,8 @@ export default {
     },
     fail(showLoading, error, reject) {
         showLoading && UDToast.hiddenLoading();
-        store.dispatch(loseLogin());
+        // store.dispatch(loseLogin());
         reject(error);
-
-
     },
 
 

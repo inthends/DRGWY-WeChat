@@ -1,0 +1,36 @@
+.work-work {
+    padding: 0.3rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.work {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #fff;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.work-cont-list {
+    margin: 0.2rem 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #f1f1f1;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.19);
+}
+
+.work-cont-list-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 0.2rem 0.2rem;
+}
+
+.work-cont-list-2 {
+    padding: 0.2rem;
+}

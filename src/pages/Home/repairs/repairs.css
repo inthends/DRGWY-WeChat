@@ -7,6 +7,7 @@
     background: #fff;
     padding: 0.2rem;
     box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 .repairs .am-list-body {
@@ -32,12 +33,6 @@
     display: inline-block;
 }
 
-.repairs .am-list-item.am-list-item-middle .am-list-line{
-    display: inline-block;
-    position: relative;
-    top: 0.13rem;
-}
-
 .repairs .am-list-item .am-list-line .am-list-content {
     overflow: unset;
     text-overflow: unset;
@@ -47,8 +42,27 @@
     padding-left: 0;
 }
 
+.repairs .am-radio-inner {
+    left: 0.2rem;
+}
+
+
+.repairs .am-list-content {
+    padding-left: 0.69rem;
+    position: relative;
+    top: 0.1rem;
+}
+
+
 .repairs .am-image-picker-list {
     padding: 0;
+}
+
+.repairs .am-list .am-list-item.am-radio-item .am-list-line .am-list-extra .am-radio-inner{
+    border: 1px solid #DDD;
+    width: 20px;
+    height: 20px;
+    top: 0.2rem;
 }
 
 .repairs .am-list-item .am-list-line .am-list-content{
@@ -75,11 +89,11 @@
     padding-top: 0;
 }
 
-.btn-repa-cint{
+.repairs .btn-repa-cint{
     text-align: center;
 }
 
-.btn-repa{
+.repairs .btn-repa{
     width: 90%;
     text-align: center;
     padding: 0.2rem 0.3rem;
@@ -95,4 +109,8 @@
 .repairs .am-checkbox.am-checkbox-checked .am-checkbox-inner{
     border-color: #e58f22;
     background: #e58f22;
+}
+
+.repairs .am-radio-wrapper {
+    width: 2rem;
 }

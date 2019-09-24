@@ -1,0 +1,75 @@
+.stall{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+
+.stall .TextareaItem .am-textarea-has-count{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #f1f1f1;
+    border-radius: 0.05rem;
+}
+
+.stall .am-textarea-control textarea{
+    color: #666;
+}
+
+.TextareaItem {
+    padding: 0.3rem;
+    padding-top: 0;
+    margin-top: 0.2rem;
+}
+
+.stall .am-list-item .am-list-line .am-list-content{
+    color: #666;
+}
+
+.stall .am-list-extra{
+    display: none;
+}
+
+.date-p{
+    display: flex;
+
+}
+.p-stall{
+    padding-top: 0.2rem;
+}
+
+.p-stall p{
+    padding: 0.2rem 0.3rem;
+}
+
+.input-stall {
+    padding: 0 0.2rem;
+    border-radius: 0.05rem;
+    border: 1px solid #333;
+    margin: 0 0.2rem;
+    color: #666;
+}
+
+.btn-repa-cint{
+    text-align: center;
+}
+
+.btn-repa{
+    width: 90%;
+    text-align: center;
+    padding: 0.2rem 0.3rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+    border: 1px solid #e58f22;
+    background: #e58f22;
+    color: #fff;
+    margin-top: 0.5rem;
+}
+

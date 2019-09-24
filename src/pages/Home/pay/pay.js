@@ -8,8 +8,9 @@ import common from '../../../utils/common';
 import UDToast from '../../../utils/ud-toast';
 import wxSign from '../../../utils/wxSign';
 import UDAlert from '../../../utils/ud-alert';
+import PayDetail from "./pay-detail/pay-detail";
 
-class Login extends React.Component {
+class Pay extends React.Component {
     state = {
         data: [],
         order: null,
@@ -51,6 +52,16 @@ class Login extends React.Component {
         });
     };
 
+    detail = (i) =>{
+        console.log(i)
+        this.props.history.push({
+            pathname: '/payDetail',
+            state: {
+                billId: i.billId,
+            },
+        })
+    };
+
     componentDidMount() {
         api.postData('/api/WeChat/GetBillList', {}, true).then(res => {
             if (res.success) {
@@ -69,7 +80,7 @@ class Login extends React.Component {
             <div className='img-list1'>
                 {data.map(i => (
                     <div className="cont-list">
-                        <div className="cont-list-cont" onClick="detail()">
+                        <div className="cont-list-cont" onClick={()=>this.detail(i)}>
                             <div className="cont-list-cont-felx">
                                 <p>{i.belongDate}</p>
                                 <p><span>合计：</span>{i.allAmount}</p>
@@ -97,4 +108,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Pay;

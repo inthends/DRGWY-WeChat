@@ -28,6 +28,34 @@ class ImgList extends BasePage {
         }
     };
 
+
+    steward = () => {
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/steward')
+        } else {
+            this.props.history.push('/binding')
+        }
+    };
+
+    stall = () => {
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/stall')
+        } else {
+            this.props.history.push('/binding')
+        }
+    };
+
+    about = () => {
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/about')
+        } else {
+            this.props.history.push('/binding')
+        }
+    };
+
     render() {
         return (
             <div className="img-list">
@@ -41,27 +69,17 @@ class ImgList extends BasePage {
                     <p>报事报修</p>
                 </div>
 
-                <div className="img-list-flex">
+                <div className="img-list-flex" onClick={this.steward}>
                     <img src={require('../../../static/images/home/guanjia.png')} alt=""/>
                     <p>在线管家</p>
                 </div>
 
-                <div className="img-list-flex">
+                <div className="img-list-flex" onClick={this.stall}>
                     <img src={require('../../../static/images/home/guan.png')} alt=""/>
-                    <p>关于我们</p>
+                    <p>车位续租</p>
                 </div>
 
-                <div className="img-list-flex">
-                    <img src={require('../../../static/images/home/guan.png')} alt=""/>
-                    <p>关于我们</p>
-                </div>
-
-                <div className="img-list-flex">
-                    <img src={require('../../../static/images/home/guan.png')} alt=""/>
-                    <p>关于我们</p>
-                </div>
-
-                <div className="img-list-flex">
+                <div className="img-list-flex" onClick={this.about}>
                     <img src={require('../../../static/images/home/guan.png')} alt=""/>
                     <p>关于我们</p>
                 </div>

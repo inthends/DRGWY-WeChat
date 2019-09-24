@@ -1,3 +1,14 @@
+.img-list2 {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #fff;
+    padding: 0.3rem;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
 .img-list1 .cont-list {
     margin-bottom: 0.2rem;
 }
@@ -53,4 +64,34 @@
     color: #fff;
     padding: 0.15rem 0;
     border-radius: 0.1rem;
+}
+
+.img-list1-border {
+    border-bottom: 1px solid #f1f1f1;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.img-list1-detail div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0.2rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    box-sizing: border-box;
+}
+
+.img-list1font {
+    font-size: 0.24rem;
+}
+
+.img-list1red {
+    color: #e4393c;
+}
+
+.img-list1fang {
+    font-size: 0.3rem;
+    color: #e58f22;
 }

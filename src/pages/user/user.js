@@ -4,20 +4,53 @@ import Footer from '../../component/footer/footer';
 import {Icon, Grid} from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
 import {loggedUserReducer} from "../../store/actions";
+import api from "../../utils/api";
+import UDToat from "../../utils/ud-toast";
 
 class User extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            workSheet: '',
+            billNumber: '',
+            invoiceNumber: '',
+        };
+    }
+
     house = () => {
         this.props.history.push('/house')
     };
 
     componentDidMount() {
-
+        api.getData('/api/WeChat/GetUserInfo', {
+            openid: loggedUserReducer().openid,
+        }, true).then(res => {
+            if (res.success) {
+                this.setState({
+                    billNumber: res.data.billNumber,
+                    invoiceNumber: res.data.invoiceNumber,
+                    workSheet: res.data.workSheet
+                })
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
     }
 
+    work = () => {
+        this.props.history.push('/work');
+    };
+
+    bill = () => {
+        this.props.history.push('/pay');
+    };
+
+    userDetail = () => {
+        this.props.history.push('/userDetail');
+    };
+
     render() {
-
         let fang = '';
-
         // 判断是否绑定房屋信息
         if (loggedUserReducer().rooms === '1') {
             fang = <div className="shequ">
@@ -43,14 +76,14 @@ class User extends React.Component {
         return (
             <div>
                 <div className="user">
-                    <div className="header1">
+                    <div className="header1" onClick={this.userDetail}>
                         <div className="header-left">
-                            <img src={require('../../static/images/home/1.jpg')} alt=""/>
+                            <img src={loggedUserReducer().imgurl} alt=""/>
                             <div className="header-left-cont">
-                                <p className="header-left-cont-p">1123213131312</p>
+                                <p className="header-left-cont-p">{loggedUserReducer().mobile}</p>
                                 <div className="header-left-cont-p-cont">
                                     <img src={require('../../static/images/user/zuanshi.png')} alt=""/>
-                                    <p>0.11</p>
+                                    <p>{loggedUserReducer().scores}</p>
                                 </div>
                             </div>
                         </div>
@@ -69,25 +102,25 @@ class User extends React.Component {
                         </div>
 
                         <div className="img-list">
-                            <div className="img-list-flex">
-                                <p>积分</p>
-                                <p>10</p>
-                            </div>
+                            {/*<div className="img-list-flex">*/}
+                            {/*<p>积分</p>*/}
+                            {/*<p>10</p>*/}
+                            {/*</div>*/}
 
-                            <div className="img-list-flex">
+                            <div className="img-list-flex" onClick={this.work}>
                                 <p>工单</p>
-                                <p>12312</p>
+                                <p>{this.state.workSheet}</p>
                             </div>
 
-                            <div className="img-list-flex">
+                            <div className="img-list-flex" onClick={this.bill}>
                                 <p>账单</p>
-                                <p>1</p>
+                                <p>{this.state.billNumber}</p>
                             </div>
 
-                            <div className="img-list-flex">
-                                <p>发票</p>
-                                <p>131231</p>
-                            </div>
+                            {/*<div className="img-list-flex">*/}
+                            {/*<p>发票</p>*/}
+                            {/*<p>131231</p>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                     {fang}

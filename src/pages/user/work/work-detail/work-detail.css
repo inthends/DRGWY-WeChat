@@ -1,0 +1,55 @@
+.work-title {
+    padding: 0.2rem 0.3rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.work-p {
+    padding: 0.2rem 0.3rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.work-p p {
+    padding-bottom: 0.2rem;
+}
+
+.TextareaItem2 {
+    padding: 0.3rem;
+}
+
+.TextareaItem2 .am-list-item {
+    border: 1px solid #f1f1f1;
+    border-radius: 0.1rem;
+}
+
+.pingjia {
+    padding: 0.2rem 0.3rem;
+}
+
+.pingjia p{
+    padding-bottom: 0.2rem;
+}
+
+.pingjia p:last-child input{
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+    display: inline-block;
+    width: 80%;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+}
+.pingjia p:last-child span{
+    display: inline-block;
+    width:15%;
+}
+
+.dv-star-rating-star i{
+    font-size: 0.4rem;
+}
+
+.ping{
+    font-size: 0.3rem;
+    color: #666;
+    margin-left: 0.2rem;
+    position: relative;
+    top: -0.1rem;
+}
