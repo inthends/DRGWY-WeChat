@@ -2,10 +2,9 @@ import wx from 'weixin-js-sdk';
 import api from './api';
 
 export default {
-    getWXSign(billId, showLoading = true) {
+    getWXSign(showLoading = true) {
         return new Promise((resolve, reject) => {
             api.postData('/api/WeChat/GetWeChatSign', {
-                billId: billId
             }, showLoading).then(data => {
                 console.log(data.data.signature)
                 wx.config({

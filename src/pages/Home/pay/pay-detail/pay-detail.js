@@ -30,7 +30,7 @@ class PayDetail extends React.Component {
     callWXPay = () => {
         UDToast.showLoading();
         wxSign.getWXSign(this.props.location.state.billId).then(jssdk => {
-            api.postData('/api/WeChat/GetWeChatSign', {
+            api.postData('/api/WeChat/GetWeChatPaySign', {
                 billId: this.props.location.state.billId
             }).then(res => {
                 const configData = res.data;
