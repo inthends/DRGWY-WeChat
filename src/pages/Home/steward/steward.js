@@ -70,6 +70,10 @@ class Steward extends React.Component {
             UDToat.showError('请输入留言！');
             return false;
         }
+        if (!this.state.value) {
+            UDToat.showError('请选择！');
+            return false;
+        }
         api.postData('/api/WeChat/SaveServiceDeskForm', {
             keyValue: this.state.guid,
             RoomId: this.state.value,
