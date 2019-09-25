@@ -30,7 +30,7 @@ class Login extends React.Component {
         let params = common.urlSearch(decodeURI(window.location.href));
         const code = params.code;
         if (code === undefined) {
-            const redirectUri = 'http://wechat.jslesoft.com/auth';
+            const redirectUri = 'http://wechat.jslesoft.com/login';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                 'wxa3cbf60affa3a702' +
                 '&redirect_uri=' +

@@ -6,14 +6,16 @@ import {connect} from 'react-redux';
 
 class App extends React.Component {
     render() {
-        const {openid} = this.props;
+        const {token} = this.props;
         const routers = Routers.map((item, index) => {
             return <Route key={index} path={item.path} exact render={props => {
                 if (item.path !== '/auth') {
                     sessionStorage.setItem('redirect', item.path)
                 }
                 document.title = item.title;
-                return ((openid || item.path === '/auth') ? <item.component {...props} /> : <Redirect to='/auth'/>);
+                return ((token || item.path === '/auth' || item.path === '/login') ?
+                    <item.component {...props} /> :
+                    <Redirect to='/auth'/>);
             }}/>;
         });
         return (
@@ -30,8 +32,8 @@ class App extends React.Component {
 
 const stateToProps = state => {
     const {loggedUserReducer} = state;
-    const openid = loggedUserReducer.openid;
-    return {openid};
+    const token = loggedUserReducer.token;
+    return {token};
 };
 
 export default connect(stateToProps)(App);
