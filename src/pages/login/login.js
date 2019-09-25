@@ -63,7 +63,11 @@ class Login extends React.Component {
         }, true).then(res => {
             if(res.success){
                 this.props.saveLoginInfo2(res.data);
-                this.props.history.push('/home')
+                if(sessionStorage.getItem('redirect')){
+                    this.props.history.replace(sessionStorage.getItem('redirect'))
+                }else {
+                    this.props.history.replace('/home')
+                }
             }else {
                 UDToat.showError(res.msg);
             }

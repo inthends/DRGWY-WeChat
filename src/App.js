@@ -9,7 +9,7 @@ class App extends React.Component {
         const {token} = this.props;
         const routers = Routers.map((item, index) => {
             return <Route key={index} path={item.path} exact render={props => {
-                if (item.path !== '/auth') {
+                if (item.path !== '/auth' && item.path !== '/login') {
                     sessionStorage.setItem('redirect', item.path)
                 }
                 document.title = item.title;
