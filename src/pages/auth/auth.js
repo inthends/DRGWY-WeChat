@@ -22,25 +22,25 @@ class Auth extends React.Component {
                 '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
         } else {
-            // api.getData('/api/WeChat/GetWeChatInfo', {
-            //     code: code
-            // }, false).then(res => {
-            //     this.props.saveLoginInfo(res.data);
-            //     api.getData('/api/WeChat/GetUserInfo', {
-            //         openid: res.data.openid
-            //     }, false).then(res2 => {
-            //         if (res2.success) {
-            //             this.props.saveLoginInfo2(res2.data);
-            //             if (sessionStorage.getItem('redirect')) {
-            //                 this.props.history.replace(sessionStorage.getItem('redirect'))
-            //             } else {
-            //                 this.props.history.replace('/home')
-            //             }
-            //         } else {
-            //             this.props.history.replace('/login')
-            //         }
-            //     });
-            // });
+            api.getData('/api/WeChat/GetWeChatInfo', {
+                code: code
+            }, false).then(res => {
+                this.props.saveLoginInfo(res.data);
+                api.getData('/api/WeChat/GetUserInfo', {
+                    openid: res.data.openid
+                }, false).then(res2 => {
+                    if (res2.success) {
+                        this.props.saveLoginInfo2(res2.data);
+                        if (sessionStorage.getItem('redirect')) {
+                            this.props.history.replace(sessionStorage.getItem('redirect'))
+                        } else {
+                            this.props.history.replace('/home')
+                        }
+                    } else {
+                        this.props.history.replace('/login')
+                    }
+                });
+            });
         }
     }
 
