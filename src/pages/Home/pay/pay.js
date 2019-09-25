@@ -16,45 +16,6 @@ class Pay extends React.Component {
         order: null,
         canSubmit: true,
     };
-
-    showModal = () => {
-        UDAlert.showAlert('确认支付？', '', [{
-            text: '确定',
-            onPress: () => {
-                this.callWXPay()
-            },
-        }]);
-    };
-
-    callWXPay = (orderNo) => {
-        UDToast.showLoading();
-        wxSign.getWXSign().then(jssdk => {
-            api.postData('/api/order/createPay', {orderNo: orderNo}).then(res => {
-                const configData = res.body;
-                jssdk.chooseWXPay({
-                    appId: configData.appId,
-                    timestamp: configData.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                    nonceStr: configData.nonceStr, // 支付签名随机串，不长于 32 位
-                    package: configData.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
-                    signType: configData.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                    paySign: configData.paySign, // 支付签名
-                    success: (res) => {
-                        UDToast.hiddenLoading();
-                        this.props.history.replace({
-                            pathname: '/home',
-                        })
-                    },
-                    cancel: function (res) {
-                        UDToast.hiddenLoading();
-                        UDToast.showError('支付取消');
-                    },
-                });
-            }).catch(e => {
-                UDToast.hiddenLoading();
-            });
-        });
-    };
-
     detail = (i) => {
         this.props.history.push({
             pathname: '/payDetail',
@@ -104,13 +65,9 @@ class Pay extends React.Component {
                         </div>
                     </div>
                 ))}
-
-                <div className="btn1">
-                    <button onClick={this.showModal}>全部交清</button>
-                </div>
             </div>
-        }else {
-          view =   <div className='kong'>
+        } else {
+            view = <div className='kong'>
                 <img src={require('../../../static/images/kong.png')} alt=""/>
                 <p>暂无数据！</p>
             </div>

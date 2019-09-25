@@ -37,4 +37,6 @@
 
 .work-cont-list-1 button {
     color: #e58f22;
+    border: none;
+    background: transparent;
 }
