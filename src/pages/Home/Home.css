@@ -236,3 +236,27 @@
     border-bottom: 1px solid #f1f1f1;
     margin-bottom: 0.2rem;
 }
+
+.qr-flex {
+    position: fixed;
+    left: 0;
+    z-index: 999999;
+    background: #fff;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-flex div{
+    width: 4rem;
+    height: 4rem;
+    background: #fff;
+}
+
+.qr-flex div img{
+    width: 100%;
+    height: 100%;
+}
