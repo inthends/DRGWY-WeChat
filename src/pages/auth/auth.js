@@ -24,12 +24,12 @@ class Auth extends React.Component {
         } else {
             api.getData('/api/WeChat/GetWeChatInfo', {
                 code: code
-            }, false).then(res => {
+            }, true).then(res => {
                 this.props.saveLoginInfo(res.data);
                 api.getData('/api/WeChat/GetUserInfo', {
                     openid: res.data.openid
-                }, false).then(res2 => {
-                    if (res2.success) {
+                }, true).then(res2 => {
+                    if (res2.data != 'false') {
                         this.props.saveLoginInfo2(res2.data);
                         if (sessionStorage.getItem('redirect')) {
                             this.props.history.replace(sessionStorage.getItem('redirect'))
