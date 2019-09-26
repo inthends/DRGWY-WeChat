@@ -64,7 +64,7 @@ class Repairs extends React.Component {
             fd.append('file', files[files.length - 1].file);
             axios.defaults.headers['Content-Type'] = 'multipart/form-data';
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-            axios.post('http://hf.jslesoft.com:8018/api/WeChat/UploadServiceDesk', fd).then(res => {
+            axios.post('http://hf.jslesoft.com/api/WeChat/UploadServiceDesk', fd).then(res => {
                 if (res.success) {
                 }
             });
