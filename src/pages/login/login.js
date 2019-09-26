@@ -118,8 +118,8 @@ class Login extends React.Component {
                 <div className="login-content">
                     <div className="img">
                         <img src={headimgurl} alt=""/>
-                        <p>您好</p>
-                        <p>欢迎来到</p>
+                        {/*<p>您好</p>*/}
+                        {/*<p>欢迎来到</p>*/}
                     </div>
                     <div className="login-title">
                         <input type="tel" value={mobile} name='mobile' placeholder="请输入您的手机号"
@@ -132,7 +132,7 @@ class Login extends React.Component {
                                 {codeMsg}
                             </button>
                         </div>
-                        <p>如果您还没有用这个手机号登录过，我们将为您帐号</p>
+                        <p>如果您还没有用这个手机号登录过，我们将为您注册</p>
                         <button className="btn" onClick={this.login}>登录</button>
                     </div>
                 </div>
