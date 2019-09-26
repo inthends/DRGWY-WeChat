@@ -48,12 +48,7 @@ class ImgList extends BasePage {
     };
 
     about = () => {
-        // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
-            this.props.history.push('/about')
-        } else {
-            this.props.history.push('/binding')
-        }
+        this.props.history.push('/about')
     };
 
     render() {
