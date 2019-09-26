@@ -38,11 +38,21 @@ class User extends React.Component {
     }
 
     work = () => {
-        this.props.history.push('/work');
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/work');
+        } else {
+            this.props.history.push('/binding')
+        }
     };
 
     bill = () => {
-        this.props.history.push('/pay');
+        // 判断是否绑定房屋信息
+        if (loggedUserReducer().rooms === '1') {
+            this.props.history.push('/pay');
+        } else {
+            this.props.history.push('/binding')
+        }
     };
 
     userDetail = () => {
