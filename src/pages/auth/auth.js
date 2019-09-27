@@ -22,6 +22,7 @@ class Auth extends React.Component {
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
         } else {
+            // 修改
             api.postData('/api/WeChat/GetWeChatInfo', {
                 code: code
             }, true).then(res => {
