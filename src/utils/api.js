@@ -19,7 +19,7 @@ export default {
             }
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
             axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            let host = 'http://hf.jslesoft.com';
+            let host = 'http://hf.jslesoft.com:8018';
             let complete = host + a;
             if (method === 'GET') {
                 axios.get(complete, {
