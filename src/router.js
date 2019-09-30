@@ -15,7 +15,6 @@ import Work from './pages/user/work/work';
 import WorkDetail from './pages/user/work/work-detail/work-detail';
 import UserDetail from './pages/user/user-detail/user-detail';
 
-
 const Routers = [
     {path: '/auth', title: '登录', component: Auth},
     {path: '/home', title: '物业', component: Home},

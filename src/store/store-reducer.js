@@ -10,6 +10,7 @@ const initialState = {
     rooms: null,
     customerId: null,
     defaultUnitId: null,
+    defaultUnitName: null,
 };
 
 const loggedUserReducer = (state = initialState, action) => {
@@ -34,6 +35,7 @@ const loggedUserReducer = (state = initialState, action) => {
             customerId: action.info.member.customerId,
             defaultUnitId: action.info.member.defaultUnitId,
             token: action.info.token,
+            defaultUnitName: action.info.defaultUnitName,
         };
     }
     if (action.type === 'LOSE') {
@@ -49,6 +51,7 @@ const loggedUserReducer = (state = initialState, action) => {
             customerId: '',
             defaultUnitId: '',
             token: '',
+            defaultUnitName: ''
         };
     }
 

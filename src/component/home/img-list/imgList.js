@@ -69,10 +69,10 @@ class ImgList extends BasePage {
                     <p>在线管家</p>
                 </div>
 
-                <div className="img-list-flex" onClick={this.stall}>
-                    <img src={require('../../../static/images/home/guan.png')} alt=""/>
-                    <p>车位续租</p>
-                </div>
+                {/*<div className="img-list-flex" onClick={this.stall}>*/}
+                    {/*<img src={require('../../../static/images/home/guan.png')} alt=""/>*/}
+                    {/*<p>车位续租</p>*/}
+                {/*</div>*/}
 
                 <div className="img-list-flex" onClick={this.about}>
                     <img src={require('../../../static/images/home/guan.png')} alt=""/>

@@ -55,7 +55,7 @@ class House extends React.Component {
         }, true).then(res => {
             if (res.success) {
                 this.props.saveLoginInfo2(res.data);
-                window.history.back(-1)
+                this.props.history.replace('/home')
             } else {
                 UDToat.showError(res.msg);
             }

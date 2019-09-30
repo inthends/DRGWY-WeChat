@@ -19,8 +19,8 @@ class Steward extends React.Component {
         textarea: '',
         guid: null,
         district: [],
-        label: '请选择',
-        value: '',
+        label: loggedUserReducer().defaultUnitName,
+        value: loggedUserReducer().defaultUnitId,
 
     };
 

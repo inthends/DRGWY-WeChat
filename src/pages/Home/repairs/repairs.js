@@ -26,8 +26,8 @@ class Repairs extends React.Component {
         multiple: false,
         guid: null,
         district: [],
-        label: '请选择',
-        value: '',
+        label: loggedUserReducer().defaultUnitName,
+        value: loggedUserReducer().defaultUnitId,
         value1: '报修',
         textarea: ''
     };
