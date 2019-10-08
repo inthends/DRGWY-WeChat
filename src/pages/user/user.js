@@ -40,6 +40,7 @@ class User extends React.Component {
                 UDToat.showError(res.msg);
             }
         });
+
         api.getData('/api/WeChat/GetUserInfo', {
             openid: loggedUserReducer().openid,
         }, true).then(res => {
