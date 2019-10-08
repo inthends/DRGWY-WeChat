@@ -3,9 +3,10 @@ import './user.css';
 import Footer from '../../component/footer/footer';
 import {Icon, Grid} from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
-import {loggedUserReducer} from "../../store/actions";
+import {loggedUserReducer, loseLogin} from "../../store/actions";
 import api from "../../utils/api";
 import UDToat from "../../utils/ud-toast";
+import store from "../../store/store";
 
 class User extends React.Component {
     constructor(props) {
@@ -22,17 +23,30 @@ class User extends React.Component {
     };
 
     componentDidMount() {
+        api.getData('/api/WeChat/GetCustomerRooms', {
+            mobile: loggedUserReducer().mobile,
+        }, false).then(res => {
+            if (res.success) {
+                if (res.data.length > 0) {
+                    this.props.rooms('1')
+                } else {
+                    this.props.rooms('0')
+                }
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
         api.getData('/api/WeChat/GetUserInfo', {
             openid: loggedUserReducer().openid,
         }, true).then(res => {
-            if (res.success) {
+            if (res.data == 'false') {
+                store.dispatch(loseLogin());
+            }else {
                 this.setState({
                     billNumber: res.data.billNumber,
                     invoiceNumber: res.data.invoiceNumber,
                     workSheet: res.data.workSheet
                 })
-            } else {
-                UDToat.showError(res.msg);
             }
         });
     }

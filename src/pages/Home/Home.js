@@ -8,9 +8,10 @@ import Shequ from '../../component/home/shequ/shequ';
 import Xiangmu from '../../component/home/xiangmu/xiangmu';
 import UDToat from "../../utils/ud-toast";
 import api from "../../utils/api";
+import store from '../../store/store';
 import {
     loggedUserReducer,
-    rooms, saveLogin, saveLogin2
+    rooms, saveLogin, saveLogin2, loseLogin
 } from '../../store/actions';
 import {connect} from "react-redux";
 
@@ -22,12 +23,9 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        if (loggedUserReducer().rooms === '1') {
-            return false;
-        }
         api.getData('/api/WeChat/GetCustomerRooms', {
             mobile: loggedUserReducer().mobile,
-        }, true).then(res => {
+        }, false).then(res => {
             if (res.success) {
                 if (res.data.length > 0) {
                     this.props.rooms('1')
@@ -36,6 +34,14 @@ class Home extends React.Component {
                 }
             } else {
                 UDToat.showError(res.msg);
+            }
+        });
+
+        api.getData('/api/WeChat/GetUserInfo', {
+            openid: loggedUserReducer().openid,
+        }, true).then(res => {
+            if (res.data == 'false') {
+                store.dispatch(loseLogin());
             }
         });
     }
