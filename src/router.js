@@ -22,13 +22,8 @@ const Routers = [
     {path: '/login', title: '登录', component: Login},
     {path: '/pay', title: '查询缴费', component: Pay},
     {path: '/payDetail', title: '查询缴费', component: PayDetail},
-<<<<<<< HEAD
     {path: '/binding', title: '绑定客户', component: Binding},
     {path: '/house', title: '默认房产', component: House},
-=======
-    {path: '/binding', title: '绑定房屋', component: Binding},
-    {path: '/house', title: '绑定房产', component: House},
->>>>>>> 1bff8f46607f11a75829c75d122e4e52e361bf55
     {path: '/personnel', title: '绑定客户', component: Personnel},
     {path: '/repairs', title: '报事报修', component: Repairs},
     {path: '/steward', title: '在线管家', component: Steward},
