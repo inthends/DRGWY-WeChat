@@ -78,8 +78,7 @@ class Personnel extends React.Component {
                         </RadioItem>
                     ))}
                 </List>
-
-                <button className='bind-btn' onClick={this.go}>设为默认</button>
+                <button className='bind-btn' onClick={this.go}>绑定</button>
             </div>
         );
     }
