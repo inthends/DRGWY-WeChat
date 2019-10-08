@@ -3,10 +3,14 @@ import './user.css';
 import Footer from '../../component/footer/footer';
 import {Icon, Grid} from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
-import {loggedUserReducer, loseLogin} from "../../store/actions";
+import {
+    loggedUserReducer,
+    rooms, saveLogin, saveLogin2, loseLogin
+} from '../../store/actions';
 import api from "../../utils/api";
 import UDToat from "../../utils/ud-toast";
 import store from "../../store/store";
+import {connect} from "react-redux";
 
 class User extends React.Component {
     constructor(props) {
@@ -36,6 +40,7 @@ class User extends React.Component {
                 UDToat.showError(res.msg);
             }
         });
+
         api.getData('/api/WeChat/GetUserInfo', {
             openid: loggedUserReducer().openid,
         }, true).then(res => {
@@ -157,4 +162,12 @@ class User extends React.Component {
     }
 }
 
-export default User;
+const kk = (dispatch, ownProps) => {
+    return {
+        rooms: (info) => {
+            dispatch(rooms(info));
+        },
+    };
+};
+
+export default connect(null, kk)(User);
