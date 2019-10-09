@@ -13,7 +13,7 @@ const RadioItem = Radio.RadioItem;
 
 class House extends React.Component {
     state = {
-        value: 0,
+        value: loggedUserReducer().defaultUnitId,
         data: []
     };
     onChange = (value) => {
@@ -29,7 +29,6 @@ class House extends React.Component {
             if (res.success) {
                 this.setState({
                     data: res.data,
-                    value: res.data[0].id
                 })
             } else {
                 UDToat.showError(res.msg);
@@ -38,6 +37,10 @@ class House extends React.Component {
     }
 
     go = () => {
+        if (!this.state.value) {
+            UDToat.showError('请选择房产！');
+            return false;
+        }
         api.postData('/api/WeChat/SetDefaultRoom', {
             unitId: this.state.value,
         }, true).then(res => {

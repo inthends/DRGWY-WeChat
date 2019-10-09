@@ -28,11 +28,11 @@
     padding: 0.2rem 0.3rem;
 }
 
-.pingjia p{
+.pingjia p {
     padding-bottom: 0.2rem;
 }
 
-.pingjia p:last-child input{
+.pingjia p:last-child input {
     border: none;
     border-bottom: 1px solid #f1f1f1;
     display: inline-block;
@@ -40,16 +40,17 @@
     padding: 0 0.2rem;
     box-sizing: border-box;
 }
-.pingjia p:last-child span{
+
+.pingjia p:last-child span {
     display: inline-block;
-    width:15%;
+    width: 15%;
 }
 
-.dv-star-rating-star i{
+.dv-star-rating-star i {
     font-size: 0.4rem;
 }
 
-.ping{
+.ping {
     font-size: 0.3rem;
     color: #666;
     margin-left: 0.2rem;
@@ -63,6 +64,49 @@
     justify-content: space-between;
 }
 
-.gradeText span:last-child{
+.gradeText span:last-child {
     color: #e4393c;
+}
+
+.work-jilu {
+    display: flex;
+    align-items: center;
+    margin: 0 0.3rem;
+    padding: 0.2rem;
+    border-bottom: 1px dashed #f1f1f1;
+}
+
+.work-jilu img {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
+.work-jilu .work-right {
+    width: 90%;
+}
+
+.work-jilu .work-right .work-right-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.2rem;
+}
+
+.work-jilu .work-right .work-right-1 p {
+    color: #333;
+}
+
+.work-jilu .work-right .work-right-1 p:last-child {
+    color: #999;
+}
+
+.work-jilu-title {
+    padding: 0.2rem 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.work-title1 {
+    padding-bottom: 0.3rem;
 }

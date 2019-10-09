@@ -14,7 +14,8 @@ class WorkDetail extends React.Component {
             data: {},
             Content: '',
             Content1: '',
-            rating: 3
+            rating: 3,
+            GetCommunicates: []
         };
     }
 
@@ -26,6 +27,19 @@ class WorkDetail extends React.Component {
                 if (res.success) {
                     this.setState({
                         data: res.data.data,
+                    });
+                } else {
+                    UDToat.showError(res.msg);
+                }
+            });
+
+        api.getData('/api/WeChat/GetCommunicates', {
+            keyValue: this.props.location.state.id
+        }, false)
+            .then(res => {
+                if (res.success) {
+                    this.setState({
+                        GetCommunicates: res.data,
                     });
                 } else {
                     UDToat.showError(res.msg);
@@ -101,7 +115,7 @@ class WorkDetail extends React.Component {
     }
 
     render() {
-        const {Content1, rating} = this.state;
+        const {Content1, rating, GetCommunicates} = this.state;
         let status3 = '';
         let status4 = '';
         let status2 = '';
@@ -207,6 +221,25 @@ class WorkDetail extends React.Component {
                 {status3}
                 {status4}
                 {status2}
+                <div className='work-title1'>
+                    <div className='work-jilu-title'>
+                        <p>沟通记录</p>
+                    </div>
+                    {GetCommunicates.map(i => (
+                        <div className='work-jilu'>
+                            <img src={i.avatar} alt=""/>
+                            <div className='work-right'>
+                                <div className='work-right-1'>
+                                    <p>{i.author}</p>
+                                    <p>{i.datetime}</p>
+                                </div>
+                                <div className='work-right-2'>
+                                    <p>{i.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
     }
