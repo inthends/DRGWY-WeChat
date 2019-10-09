@@ -107,8 +107,8 @@ class Repairs extends React.Component {
         api.postData('/api/WeChat/SaveServiceDeskForm', {
             keyValue: this.state.guid,
             RoomId: this.state.value,
-            Content: this.state.textarea,
             BillType: this.state.value1,
+            Content: this.state.textarea, 
         }, true).then(res => {
             if (res.success) {
                 this.props.history.push('/home');
