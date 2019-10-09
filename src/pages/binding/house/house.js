@@ -38,7 +38,7 @@ class House extends React.Component {
     }
 
     go = () => {
-        api.getData('/api/WeChat/GetCustomerRooms', {
+        api.getData('/api/WeChat/SetDefaultRoom', {
             unitId: this.state.value,
         }, true).then(res => {
             if (res.success) {
