@@ -78,6 +78,7 @@ class Steward extends React.Component {
             keyValue: this.state.guid,
             RoomId: this.state.value,
             Content: this.state.textarea,
+            BillType: '咨询',
         }, true).then(res => {
             if (res.success) {
                 this.props.history.push('/home');
