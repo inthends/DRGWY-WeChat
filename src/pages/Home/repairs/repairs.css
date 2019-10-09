@@ -26,8 +26,9 @@
 }
 
 .repairs .am-list-item {
-    width: 2rem;
+    width: 25%;
     display: inline-block;
+    box-sizing: border-box;
 }
 .repairs .am-list .am-list-item.am-checkbox-item .am-list-thumb{
     display: inline-block;
@@ -113,4 +114,13 @@
 
 .repairs .am-radio-wrapper {
     width: 2rem;
+}
+
+
+.repairs .am-list-item.am-list-item-middle .am-list-line{
+    margin-right: 0;
+}
+
+.repairs .am-list-item .am-list-line .am-list-content{
+
 }
