@@ -53,7 +53,7 @@ class Repairs extends React.Component {
     }
 
     onChange = (files, type, index) => {
-        console.log(files, type, index);
+        //console.log(files, type, index);
         this.setState({
             files,
         });
@@ -72,14 +72,14 @@ class Repairs extends React.Component {
     };
 
     onChange2 = (value) => {
-        console.log('checkbox');
+        //console.log('checkbox');
         this.setState({
             value1: value,
         });
     };
 
     onChange3 = (val) => {
-        console.log(val);
+        //console.log(val);
         this.setState({
             textarea: val,
         });
