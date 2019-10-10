@@ -16,6 +16,7 @@ class PayDetail extends React.Component {
         },
         order: null,
         canSubmit: false,
+        type: ''
     };
 
     showModal = () => {
@@ -73,12 +74,14 @@ class PayDetail extends React.Component {
     };
 
     componentDidMount() {
+        console.log(this.props.location.state.type)
         api.getData('/api/WeChat/GetBillById', {
             billId: this.props.location.state.billId
         }, true).then(res => {
             if (res.success) {
                 this.setState({
                     data: res.data,
+                    type: this.props.location.state.type
                 })
             } else {
                 UDToat.showError(res.msg);
@@ -89,6 +92,15 @@ class PayDetail extends React.Component {
     render() {
         const {data} = this.state;
         const list = data.detail;
+        let btn = '';
+
+        if (this.state.type == 0) {
+            btn = <div className="btn1">
+                <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button>
+            </div>
+        } else {
+            btn = '';
+        }
         return (
             <div className='img-list2'>
                 <div className='img-list1'>
@@ -124,9 +136,7 @@ class PayDetail extends React.Component {
                         ))}
 
                     </div>
-                    <div className="btn1">
-                        <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button>
-                    </div>
+
                 </div>
             </div>
         );
