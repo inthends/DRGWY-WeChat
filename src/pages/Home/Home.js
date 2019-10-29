@@ -19,7 +19,9 @@ import {connect} from "react-redux";
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            rooms: null
+        };
     }
 
     componentDidMount() {
@@ -28,9 +30,15 @@ class Home extends React.Component {
         }, false).then(res => {
             if (res.success) {
                 if (res.data.length > 0) {
-                    this.props.rooms('1')
+                    this.props.rooms('1');
+                    this.setState({
+                        rooms: '1'
+                    })
                 } else {
-                    this.props.rooms('0')
+                    this.props.rooms('0');
+                    this.setState({
+                        rooms: '0'
+                    })
                 }
             } else {
                 UDToat.showError(res.msg);
@@ -55,7 +63,7 @@ class Home extends React.Component {
         let shequ;
         let xiangmu;
 
-        if (loggedUserReducer().rooms === '1') {
+        if (this.state.rooms === '1') {
             shequ = <Shequ {...this.props}/>;
             xiangmu = <Xiangmu {...this.props}/>;
         } else {

@@ -9,7 +9,12 @@ class Shequ extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: {
+                ggcounts: 0,
+                hdcounts: 0,
+                tzcounts: 0,
+                zxcounts: 0,
+            }
         };
     }
 
@@ -17,7 +22,7 @@ class Shequ extends BasePage {
         api.postData('/api/WeChat/GetNewsStatics', {}, false).then(res => {
             if (res.success) {
                 this.setState({
-                    data: res.data
+                    data: res.data[0]
                 })
             } else {
                 UDToat.showError(res.msg);
@@ -37,17 +42,45 @@ class Shequ extends BasePage {
                     <p>社区动态</p>
                 </div>
                 <div className="list-shequ">
-                    {this.state.data.map(i => (
-                        <div className="list-shequ-cont" onClick={this.news}>
-                            <div className="list-shequ-cont1">
-                                <p>{i.type}</p>
-                                <p>{i.counts}条</p>
-                            </div>
-                            <div className="list-shequ-cont2">
-                                <p>{i.description}</p>
-                            </div>
+                    <div className="list-shequ-cont" onClick={this.news}>
+                        <div className="list-shequ-cont1">
+                            <p>通知</p>
+                            <p>{this.state.data.tzcounts}条</p>
                         </div>
-                    ))}
+                        <div className="list-shequ-cont2">
+                            <p>紧急事项</p>
+                        </div>
+                    </div>
+
+                    <div className="list-shequ-cont" onClick={this.news}>
+                        <div className="list-shequ-cont1">
+                            <p>公告</p>
+                            <p>{this.state.data.ggcounts}条</p>
+                        </div>
+                        <div className="list-shequ-cont2">
+                            <p>事项公布</p>
+                        </div>
+                    </div>
+
+                    <div className="list-shequ-cont" onClick={this.news}>
+                        <div className="list-shequ-cont1">
+                            <p>资讯</p>
+                            <p>{this.state.data.zxcounts}条</p>
+                        </div>
+                        <div className="list-shequ-cont2">
+                            <p>社区最新动态</p>
+                        </div>
+                    </div>
+
+                    <div className="list-shequ-cont" onClick={this.news}>
+                        <div className="list-shequ-cont1">
+                            <p>活动</p>
+                            <p>{this.state.data.hdcounts}条</p>
+                        </div>
+                        <div className="list-shequ-cont2">
+                            <p>报名有礼</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
