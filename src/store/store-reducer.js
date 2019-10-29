@@ -11,6 +11,8 @@ const initialState = {
     customerId: null,
     defaultUnitId: null,
     defaultUnitName: null,
+    housekeeperTel: null,
+    serviceTel: null,
 };
 
 const loggedUserReducer = (state = initialState, action) => {
@@ -36,6 +38,8 @@ const loggedUserReducer = (state = initialState, action) => {
             defaultUnitId: action.info.member.defaultUnitId,
             token: action.info.token,
             defaultUnitName: action.info.defaultUnitName,
+            housekeeperTel: action.info.housekeeperTel,
+            serviceTel: action.info.serviceTel,
         };
     }
     if (action.type === 'LOSE') {
@@ -51,7 +55,9 @@ const loggedUserReducer = (state = initialState, action) => {
             customerId: '',
             defaultUnitId: '',
             token: '',
-            defaultUnitName: ''
+            defaultUnitName: '',
+            housekeeperTel: '',
+            serviceTel: '',
         };
     }
 

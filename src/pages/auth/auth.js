@@ -32,7 +32,7 @@ class Auth extends React.Component {
                 }, true).then(res2 => {
                     if (res2.data != 'false') {
                         this.props.saveLoginInfo2(res2.data);
-                        if (sessionStorage.getItem('redirect')) {
+                        if (sessionStorage.getItem('redirect') || sessionStorage.getItem('redirect') != null || sessionStorage.getItem('redirect') != undefined) {
                             this.props.history.replace(sessionStorage.getItem('redirect'))
                         } else {
                             this.props.history.replace('/home')

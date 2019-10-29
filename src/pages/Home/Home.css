@@ -141,13 +141,14 @@
 }
 
 .list-shequ-cont {
-    width: 40%;
+    width: 44%;
     padding: 0.3rem 0.2rem;
     border-radius: 0.1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.19);
     margin: 0.2rem;
     background: #fff;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 .list-shequ-cont p {
@@ -156,9 +157,7 @@
 }
 
 .list-shequ {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .list-xiangmu-cont {

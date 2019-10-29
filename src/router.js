@@ -14,6 +14,8 @@ import About from './pages/Home/about/about';
 import Work from './pages/user/work/work';
 import WorkDetail from './pages/user/work/work-detail/work-detail';
 import UserDetail from './pages/user/user-detail/user-detail';
+import GetNewsPageList from './pages/Home/GetNewsPageList/getNewsPageList';
+import newDetail from './pages/Home/GetNewsPageList/newDetail/newDetil';
 
 const Routers = [
     {path: '/auth', title: '登录', component: Auth},
@@ -32,6 +34,8 @@ const Routers = [
     {path: '/work', title: '工单', component: Work},
     {path: '/workDetail', title: '工单', component: WorkDetail},
     {path: '/userDetail', title: '我的设置', component: UserDetail},
+    {path: '/getNewsPageList', title: '社区通知', component: GetNewsPageList},
+    {path: '/newDetail', title: '通知详情', component: newDetail},
     {title: '404', auth: false},
 ];
 export default Routers;
