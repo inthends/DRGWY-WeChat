@@ -98,15 +98,15 @@ class Steward extends React.Component {
                     </div>
                 </Picker>
                 <div className='mobile'>
-                    <a href="">
+                    <a href={'tel:' + loggedUserReducer().serviceTel}>
                         <div className='mobile-list'>
-                            <p>服务热线：400-888-6666</p>
+                            <p>服务热线：{loggedUserReducer().serviceTel}</p>
                             <img src={require('../../../static/images/home/mobile.png')} alt=""/>
                         </div>
                     </a>
-                    <a href="">
+                    <a href={'tel:' + loggedUserReducer().housekeeperTel}>
                         <div className='mobile-list'>
-                            <p>管家电话：400-888-6666</p>
+                            <p>管家电话：{loggedUserReducer().housekeeperTel}</p>
                             <img src={require('../../../static/images/home/mobile.png')} alt=""/>
                         </div>
                     </a>

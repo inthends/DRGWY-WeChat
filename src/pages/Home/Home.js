@@ -51,8 +51,17 @@ class Home extends React.Component {
         const header = <Header {...this.props}/>;
         const imgList = <ImgList {...this.props}/>;
         const carou = <Carou {...this.props}/>;
-        const shequ = <Shequ {...this.props}/>;
-        const xiangmu = <Xiangmu {...this.props}/>;
+
+        let shequ;
+        let xiangmu;
+
+        if (loggedUserReducer().rooms === '1') {
+            shequ = <Shequ {...this.props}/>;
+            xiangmu = <Xiangmu {...this.props}/>;
+        } else {
+            shequ = '';
+            xiangmu = '';
+        }
         return (
             <div>
                 <div className="home">
