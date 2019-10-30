@@ -6,64 +6,46 @@ import UDToat from "../../../utils/ud-toast";
 
 class About extends React.Component {
     state = {
-
+        data: []
     };
     componentDidMount() {
-
+        api.postData('/api/WeChat/GetNewsPageList', {
+            propertyType:'',
+            pageIndex: 1,
+            pageSize: 100,
+        }, false).then(res => {
+            if (res.success) {
+                this.setState({
+                    data: res.data.data
+                })
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
     }
+
+    news = (id, type) => {
+        this.props.history.push({
+            pathname: '/newDetail',
+            state: {
+                id: id,
+                type: type
+            },
+        })
+    };
 
     render() {
         return (
             <div className='about'>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
+                {this.state.data.map(i => (
+                    <div className='about-list' onClick={()=>this.news(i.id, i.type)}>
+                        <img src={i.mainpic} alt=""/>
+                        <div>
+                            <h3>{i.title}</h3>
+                            <p>{i.memo}</p>
+                        </div>
                     </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
-                <div className='about-list'>
-                    <img src={require('../../../static/images/home/1.jpg')} alt=""/>
-                    <div>
-                        <h3>企业简介</h3>
-                        <p>企业简介</p>
-                    </div>
-                </div>
+                ))}
             </div>
         );
     }
