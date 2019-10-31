@@ -49,7 +49,7 @@ export default {
     },
     fail(showLoading, error, reject) {
         showLoading && UDToast.hiddenLoading();
-        // store.dispatch(loseLogin());
+        store.dispatch(loseLogin());
         reject(error);
     },
 

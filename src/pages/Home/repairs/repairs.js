@@ -19,7 +19,6 @@ const guid = () => {
         return v.toString(16);
     });
 };
-
 class Repairs extends React.Component {
     state = {
         files: data,
@@ -31,7 +30,6 @@ class Repairs extends React.Component {
         value1: '报修',
         textarea: ''
     };
-
     componentDidMount() {
         api.getData('/api/WeChat/GetCustomerRooms', {
             mobile: loggedUserReducer().mobile,
