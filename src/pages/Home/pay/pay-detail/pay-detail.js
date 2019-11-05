@@ -101,6 +101,7 @@ class PayDetail extends React.Component {
         } else {
             btn = '';
         }
+
         return (
             <div className='img-list2'>
                 <div className='img-list1'>
@@ -136,7 +137,7 @@ class PayDetail extends React.Component {
                         ))}
 
                     </div>
-
+                    {btn}
                 </div>
             </div>
         );
