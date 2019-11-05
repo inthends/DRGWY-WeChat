@@ -93,7 +93,6 @@ class PayDetail extends React.Component {
         const {data} = this.state;
         const list = data.detail;
         let btn = '';
-
         if (this.state.type == 0) {
             btn = <div className="btn1">
                 <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button>
@@ -101,7 +100,6 @@ class PayDetail extends React.Component {
         } else {
             btn = '';
         }
-
         return (
             <div className='img-list2'>
                 <div className='img-list1'>
