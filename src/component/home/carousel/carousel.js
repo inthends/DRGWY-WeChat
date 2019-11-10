@@ -41,11 +41,11 @@ class Carou extends BasePage {
                         {this.state.data.map(val => (
                             <a
                                 key={val}
-                                href={this.state.data.url}
+                                href={val.url}
                                 style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
                             >
                                 <img
-                                    src={this.state.data.mainPic}
+                                    src={val.mainPic}
                                     alt=""
                                     style={{width: '100%', verticalAlign: 'top'}}
                                     onLoad={() => {
