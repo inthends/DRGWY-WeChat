@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.newDetail .titleNew{
+.newDetail .titleNew {
     color: #333;
     font-size: 0.4rem;
     margin-bottom: 0.3rem;
@@ -21,7 +21,6 @@
     font-size: 0.26rem;
     margin-bottom: 0.3rem;
 }
-
 
 .pNew1x {
     border-bottom: 1px solid #f1f1f1;
@@ -34,7 +33,7 @@
     justify-content: center;
 }
 
-.newDetail-btn .p1new{
+.newDetail-btn .p1new {
     width: 2.5rem;
     background: #ddd;
     height: 0.8rem;
@@ -45,7 +44,7 @@
     border-radius: 0.2rem;
 }
 
-.newDetail-btn .p2new{
+.newDetail-btn .p2new {
     width: 2.5rem;
     background: #e58f22;
     height: 0.8rem;
@@ -64,4 +63,8 @@
 .titleNew2 {
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 0.2rem;
+}
+
+.html img {
+    width: 100% !important;
 }

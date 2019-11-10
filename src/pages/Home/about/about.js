@@ -10,7 +10,7 @@ class About extends React.Component {
     };
     componentDidMount() {
         api.postData('/api/WeChat/GetNewsPageList', {
-            propertyType:'',
+            type:'关于我们',
             pageIndex: 1,
             pageSize: 100,
         }, false).then(res => {

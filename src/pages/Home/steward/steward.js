@@ -115,7 +115,7 @@ class Steward extends React.Component {
                     <TextareaItem
                         placeholder='请输入'
                         rows={5}
-                        count={100}
+                        count={1000}
                         onChange={this.onChange3}
                     />
                 </div>

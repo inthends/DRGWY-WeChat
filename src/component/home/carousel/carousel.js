@@ -2,20 +2,30 @@ import React from 'react';
 import BasePage from '../../../utils/base-page';
 import {Icon, Grid} from 'antd-mobile';
 import {Carousel, WingBlank} from 'antd-mobile';
+import UDToat from "../../../utils/ud-toast";
+import api from "../../../utils/api";
 
 class Carou extends BasePage {
     state = {
-        data: ['1', '2', '3'],
+        data: [],
         imgHeight: 176,
-    }
+    };
 
     componentDidMount() {
         // simulate img loading
-        setTimeout(() => {
-            this.setState({
-                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            });
-        }, 100);
+        api.postData('/api/WeChat/GetNewsPageList', {
+            type: '广告',
+            pageIndex: 1,
+            pageSize: 100,
+        }, false).then(res => {
+            if (res.success) {
+                this.setState({
+                    data: res.data.data
+                })
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
     }
 
     render() {
@@ -31,11 +41,11 @@ class Carou extends BasePage {
                         {this.state.data.map(val => (
                             <a
                                 key={val}
-                                href="http://www.alipay.com"
+                                href={this.state.data.url}
                                 style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
                             >
                                 <img
-                                    src={`http://zos.alipayobjects.com/rmsportal/${val}.png`}
+                                    src={this.state.data.mainPic}
                                     alt=""
                                     style={{width: '100%', verticalAlign: 'top'}}
                                     onLoad={() => {

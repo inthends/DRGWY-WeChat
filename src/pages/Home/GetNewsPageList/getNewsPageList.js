@@ -24,7 +24,8 @@ class GetNewsPageList extends React.Component {
         api.postData('/api/WeChat/GetNewsPageList', {
             pageIndex: this.state.pageIndex,
             pageSize: 10,
-            desc: 'CreateDate'
+            desc: 'CreateDate',
+            type: this.props.location.state.type,
         }, false).then(res => {
             if (res.success) {
                 this.setState({
@@ -77,7 +78,7 @@ class GetNewsPageList extends React.Component {
                     hasMore={this.state.hasMore}
                 >
                     {this.state.data.map(i => (
-                        <div className='new-listcont' onClick={()=>this.news(i.id, i.type)}>
+                        <div className='new-listcont' onClick={() => this.news(i.id, i.type)}>
                             <img src={i.mainPic} alt=""/>
                             <div className={`new-listcont-p ${i.IsRead ? "active" : ''}`}>
                                 <p>{i.title}</p>

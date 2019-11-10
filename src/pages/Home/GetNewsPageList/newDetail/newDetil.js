@@ -20,6 +20,7 @@ class NewDetil extends React.Component {
     }
 
     componentDidMount() {
+        document.title = this.props.location.state.type;
         if (this.props.location.state.type === '活动') {
             this.info('/api/WeChat/GetActivityEntity')
         } else {
@@ -70,8 +71,8 @@ class NewDetil extends React.Component {
 
         let date = '';
 
-        if (this.state.allparticipants != this.state.data.participants ) {
-            btn =  <p className='p2new' onClick={this.Activity}>我要报名</p>
+        if (this.state.allparticipants != this.state.data.participants) {
+            btn = <p className='p2new' onClick={this.Activity}>我要报名</p>
         }
 
         if (this.props.location.state.type === '活动') {

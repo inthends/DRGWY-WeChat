@@ -30,8 +30,13 @@ class Shequ extends BasePage {
         });
     }
 
-    news = () => {
-        this.props.history.push('/getNewsPageList')
+    news = (type) => {
+        this.props.history.push({
+            pathname: '/getNewsPageList',
+            state: {
+                type: type
+            },
+        })
     };
 
     render() {
@@ -42,7 +47,7 @@ class Shequ extends BasePage {
                     <p>社区动态</p>
                 </div>
                 <div className="list-shequ">
-                    <div className="list-shequ-cont" onClick={this.news}>
+                    <div className="list-shequ-cont" onClick={() => this.news('通知')}>
                         <div className="list-shequ-cont1">
                             <p>通知</p>
                             <p>{this.state.data.tzcounts}条</p>
@@ -52,7 +57,7 @@ class Shequ extends BasePage {
                         </div>
                     </div>
 
-                    <div className="list-shequ-cont" onClick={this.news}>
+                    <div className="list-shequ-cont" onClick={() => this.news('公告')}>
                         <div className="list-shequ-cont1">
                             <p>公告</p>
                             <p>{this.state.data.ggcounts}条</p>
@@ -62,7 +67,7 @@ class Shequ extends BasePage {
                         </div>
                     </div>
 
-                    <div className="list-shequ-cont" onClick={this.news}>
+                    <div className="list-shequ-cont" onClick={() => this.news('资讯')}>
                         <div className="list-shequ-cont1">
                             <p>资讯</p>
                             <p>{this.state.data.zxcounts}条</p>
@@ -72,7 +77,7 @@ class Shequ extends BasePage {
                         </div>
                     </div>
 
-                    <div className="list-shequ-cont" onClick={this.news}>
+                    <div className="list-shequ-cont" onClick={() => this.news('活动')}>
                         <div className="list-shequ-cont1">
                             <p>活动</p>
                             <p>{this.state.data.hdcounts}条</p>
