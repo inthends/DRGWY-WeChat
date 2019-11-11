@@ -29,7 +29,7 @@ class Auth extends React.Component {
         if (code === undefined) {
             const redirectUri = 'http://' + host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                this.state.loggedUserReducer().appid +
+                loggedUserReducer().appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
