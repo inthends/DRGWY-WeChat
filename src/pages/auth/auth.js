@@ -20,7 +20,7 @@ class Auth extends React.Component {
         }
         if (!loggedUserReducer().appid) {
             api.getData('/api/WeChat/GetSystemInfo', {
-                url: host
+                url: 'http://' + host
             }, true).then(res => {
                 this.props.saveAppid(res.data.appid)
             });
