@@ -41,7 +41,7 @@ class Login extends React.Component {
             });
         }
         if (code === undefined) {
-            const redirectUri = 'http://wechat.jslesoft.com/login';
+            const redirectUri = 'http://' + host + '/login';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                 loggedUserReducer().appid +
                 '&redirect_uri=' +
