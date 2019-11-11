@@ -8,6 +8,10 @@ export function saveLogin2(info) {
     return {type: 'LOGIN2', info: info};
 }
 
+export function saveAppid(info) {
+    return {type: 'APPID', info: info};
+}
+
 export function loseLogin() {
     return {type: 'LOSE', info: ''};
 }

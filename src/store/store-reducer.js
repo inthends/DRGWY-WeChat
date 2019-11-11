@@ -13,6 +13,7 @@ const initialState = {
     defaultUnitName: null,
     housekeeperTel: null,
     serviceTel: null,
+    appid: null
 };
 
 const loggedUserReducer = (state = initialState, action) => {
@@ -58,6 +59,7 @@ const loggedUserReducer = (state = initialState, action) => {
             defaultUnitName: '',
             housekeeperTel: '',
             serviceTel: '',
+            appid: ''
         };
     }
 
@@ -65,6 +67,13 @@ const loggedUserReducer = (state = initialState, action) => {
         return {
             ...state,
             rooms: action.info,
+        };
+    }
+
+    if (action.type === 'APPID') {
+        return {
+            ...state,
+            appid: action.info,
         };
     }
     return state;

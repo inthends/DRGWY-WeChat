@@ -5,24 +5,36 @@ import api from "../../utils/api";
 import {connect} from 'react-redux';
 import {
     saveLogin,
-    saveLogin2
+    saveLogin2,
+    saveAppid,
+    loggedUserReducer
 } from '../../store/actions';
 
 class Auth extends React.Component {
     componentDidMount() {
         let params = common.urlSearch(decodeURI(window.location.href));
+        let host = window.location.host;
         const code = params.code;
-        console.log(code)
+        if (window.location.host === 'localhost:3000') {
+            host = 'http://wechat.jslesoft.com'
+        }
+        if (!loggedUserReducer().appid) {
+            api.getData('/api/WeChat/GetSystemInfo', {
+                url: host
+            }, true).then(res => {
+                this.props.saveAppid(res.data.appid)
+            });
+        }
+
         if (code === undefined) {
-            const redirectUri = 'http://wechat.jslesoft.com/auth';
+            const redirectUri = host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                'wxa3cbf60affa3a702' +
+                this.state.loggedUserReducer().appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
         } else {
-            // 修改
             api.postData('/api/WeChat/GetWeChatInfo', {
                 code: code
             }, true).then(res => {
@@ -61,6 +73,10 @@ const kk = (dispatch, ownProps) => {
 
         saveLoginInfo2: (info) => {
             dispatch(saveLogin2(info));
+        },
+
+        saveAppid: (info) => {
+            dispatch(saveAppid(info));
         },
     };
 };

@@ -5,7 +5,7 @@ import api from '../../utils/api';
 import common from "../../utils/common";
 import {
     getImgurl,
-    getOpenid, saveLogin, saveLogin2
+    getOpenid, saveLogin, saveLogin2, loggedUserReducer
 } from '../../store/actions';
 import {connect} from "react-redux";
 
@@ -29,10 +29,21 @@ class Login extends React.Component {
     componentDidMount() {
         let params = common.urlSearch(decodeURI(window.location.href));
         const code = params.code;
+        let host = window.location.host;
+        if (window.location.host === 'localhost:3000') {
+            host = 'http://wechat.jslesoft.com'
+        }
+        if (!loggedUserReducer().appid) {
+            api.getData('/api/WeChat/GetSystemInfo', {
+                url: host
+            }, true).then(res => {
+                this.props.saveAppid(res.data.appid)
+            });
+        }
         if (code === undefined) {
             const redirectUri = 'http://wechat.jslesoft.com/login';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                'wxa3cbf60affa3a702' +
+                loggedUserReducer().appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
@@ -61,14 +72,14 @@ class Login extends React.Component {
             code: this.state.paramsCode,
             openid: this.state.openid
         }, true).then(res => {
-            if(res.success){
+            if (res.success) {
                 this.props.saveLoginInfo2(res.data);
-                if(sessionStorage.getItem('redirect')){
+                if (sessionStorage.getItem('redirect')) {
                     this.props.history.replace(sessionStorage.getItem('redirect'))
-                }else {
+                } else {
                     this.props.history.replace('/home')
                 }
-            }else {
+            } else {
                 UDToat.showError(res.msg);
             }
         });
