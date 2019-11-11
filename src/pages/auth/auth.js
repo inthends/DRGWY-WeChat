@@ -22,7 +22,7 @@ class Auth extends React.Component {
             api.getData('/api/WeChat/GetSystemInfo', {
                 url: 'http://' + host
             }, true).then(res => {
-                this.props.saveAppid(res.data.appid)
+                this.props.saveAppid(res.data)
             });
         }
 
