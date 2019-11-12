@@ -2,7 +2,7 @@ import React from 'react';
 import common from '../../utils/common';
 import api from "../../utils/api";
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
     saveLogin,
     saveLogin2,
@@ -18,23 +18,27 @@ class Auth extends React.Component {
         if (window.location.host === 'localhost:3000') {
             host = 'http://wechat.jslesoft.com'
         }
-        if (!loggedUserReducer().appid) {
-            api.getData('/api/WeChat/GetSystemInfo', {
+
+        var appid = loggedUserReducer().appid;  
+        if (appid == null || appid == '') {
+            api.getData('/api/WeChat/GetAppId', {
                 url: 'http://' + host
             }, true).then(res => {
-                this.props.saveAppid(res.data)
+
+                this.props.saveAppid(res.data); 
             });
         }
-
+ 
         if (code === undefined) {
             const redirectUri = 'http://' + host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                loggedUserReducer().appid +
+                appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
-        } else {
+        } 
+        else {
             api.postData('/api/WeChat/GetWeChatInfo', {
                 code: code
             }, true).then(res => {
@@ -55,6 +59,7 @@ class Auth extends React.Component {
                 });
             });
         }
+
     }
 
     render() {
