@@ -19,7 +19,7 @@ class Auth extends React.Component {
             host = 'http://wechat.jslesoft.com'
         }
         console.log(loggedUserReducer().appid)
-        if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null) {
+        if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
             api.getData('/api/WeChat/GetAppId', {
                 url: 'http://' + host
             }, true).then(res => {
