@@ -22,10 +22,20 @@ class Auth extends React.Component {
             api.getData('/api/WeChat/GetSystemInfo', {
                 url: 'http://' + host
             }, true).then(res => {
-                this.props.saveAppid(res.data)
+                this.props.saveAppid(res.data);
+                setTimeout(() => {
+                    this.auth()
+                }, 100)
             });
+        } else {
+            this.auth()
         }
+    }
 
+    auth() {
+        let params = common.urlSearch(decodeURI(window.location.href));
+        let host = window.location.host;
+        const code = params.code;
         if (code === undefined) {
             const redirectUri = 'http://' + host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
