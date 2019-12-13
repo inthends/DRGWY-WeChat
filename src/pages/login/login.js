@@ -7,7 +7,7 @@ import {
     getImgurl,
     getOpenid, saveLogin, saveLogin2, loggedUserReducer
 } from '../../store/actions';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 class Login extends React.Component {
     constructor(props) {
@@ -33,17 +33,21 @@ class Login extends React.Component {
         if (window.location.host === 'localhost:3000') {
             host = 'http://wechat.jslesoft.com'
         }
-        if (!loggedUserReducer().appid) {
-            api.getData('/api/WeChat/GetSystemInfo', {
+
+        var appid = loggedUserReducer().appid;  
+        //if (!loggedUserReducer().appid) {
+        if (appid == null || appid == '') {
+            api.getData('/api/WeChat/GetAppId', {
                 url: 'http://' + host
             }, true).then(res => {
                 this.props.saveAppid(res.data)
             });
         }
+
         if (code === undefined) {
             const redirectUri = 'http://' + host + '/login';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                loggedUserReducer().appid +
+                 appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
@@ -123,22 +127,22 @@ class Login extends React.Component {
     };
 
     render() {
-        const {mobile, code, codeActive, second, tid, codeMsg, headimgurl} = this.state;
+        const { mobile, code, codeActive, second, tid, codeMsg, headimgurl } = this.state;
         return (
             <div className="login">
                 <div className="login-content">
                     <div className="img">
-                        <img src={headimgurl} alt=""/>
+                        <img src={headimgurl} alt="" />
                         {/*<p>您好</p>*/}
                         {/*<p>欢迎来到</p>*/}
                     </div>
                     <div className="login-title">
                         <input type="tel" value={mobile} name='mobile' placeholder="请输入您的手机号"
-                               onChange={this.changeValue}
-                               maxlength="11"/>
+                            onChange={this.changeValue}
+                            maxlength="11" />
                         <div className="code">
                             <input type="tel" maxlength="6" name='code' onChange={this.changeValue} value={code}
-                                   placeholder="验证码"/>
+                                placeholder="验证码" />
                             <button className="codeBtn" onClick={this.sms}>
                                 {codeMsg}
                             </button>
