@@ -2,7 +2,7 @@ import React from 'react';
 import common from '../../utils/common';
 import api from "../../utils/api";
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
     saveLogin,
     saveLogin2,
@@ -18,7 +18,8 @@ class Auth extends React.Component {
         if (window.location.host === 'localhost:3000') {
             host = 'http://wechat.jslesoft.com'
         }
-        if (loggedUserReducer().appid) {
+        console.log(loggedUserReducer().appid)
+        if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null) {
             api.getData('/api/WeChat/GetAppId', {
                 url: 'http://' + host
             }, true).then(res => {
@@ -45,7 +46,7 @@ class Auth extends React.Component {
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
-        } 
+        }
         else {
             api.postData('/api/WeChat/GetWeChatInfo', {
                 code: code
