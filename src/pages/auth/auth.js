@@ -14,7 +14,7 @@ class Auth extends React.Component {
     componentDidMount() {
         let params = common.urlSearch(decodeURI(window.location.href));
         let host = window.location.host;
-        const code = params.code;
+        //const code = params.code;
         // if (window.location.host === 'localhost:3000') {
         //     host = 'http://wechat.jslesoft.com'
         // }
