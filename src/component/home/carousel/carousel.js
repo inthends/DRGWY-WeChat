@@ -46,7 +46,7 @@ class Carou extends BasePage {
                             >
                                 <img
                                     src={val.mainPic}
-                                    alt=""
+                                    alt={val.title}
                                     style={{width: '100%', verticalAlign: 'top'}}
                                     onLoad={() => {
                                         // fire window resize event to change height
