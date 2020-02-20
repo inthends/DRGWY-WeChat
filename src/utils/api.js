@@ -6,56 +6,51 @@ import qs from 'qs';
 
 export default {
     network(request) {
-        axios.defaults.withCredentials = true;
-        let url = request.url;
-        let params = request.params;
-        let showLoading = request.showLoading;
-        let method = request.method ? request.method : 'GET';
-        showLoading && UDToast.showLoading();
-
         return new Promise((resolve, reject) => {
 
-            //根据微信url获取接口host neo add
-            let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
-            let host = '';
-            axios.get(oneurl, {
-                params: {url: 'http://' + window.location.host},
-            }, false).then(result => {
+            axios.defaults.withCredentials = true;
+            let url = request.url;
+            let params = request.params;
+            let showLoading = request.showLoading;
+            let method = request.method ? request.method : 'GET';
+            showLoading && UDToast.showLoading();
 
-                host = result.data.data;
-                let a = url;
-                if (!a.startsWith('/')) {
-                    a = '/' + url;
-                }
 
-                axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            let a = url;
+            if (!a.startsWith('/')) {
+                a = '/' + url;
+            }
 
-                let complete = host + a;
+            axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
+            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
-                console.log('complete=' + complete);
+            let complete;
 
-                if (method === 'GET') {
-                    axios.get(complete, {
-                        params: params,
-                    }).then(res => {
-                        this.success(showLoading, res, resolve, reject);
-                    }).catch(error => {
-                        this.fail(showLoading, error, reject);
-                    });
-                } else {
-                    axios.post(complete, params).then(res => {
-                        console.log(res);
-                        this.success(showLoading, res, resolve, reject);
-                    }).catch(error => {
-                        console.log(error);
-                        this.fail(showLoading, error, reject);
-                    });
-                }
+            if (a.includes('http')) {
+                complete = a;
+            } else {
+                complete = sessionStorage.getItem('host') + a;
+            }
 
-            }).catch(error => {
-                this.fail(showLoading, error, reject);
-            });
+            console.log('complete=' + complete);
+
+            if (method === 'GET') {
+                axios.get(complete, {
+                    params: params,
+                }).then(res => {
+                    this.success(showLoading, res, resolve, reject);
+                }).catch(error => {
+                    this.fail(showLoading, error, reject);
+                });
+            } else {
+                axios.post(complete, params).then(res => {
+                    console.log(res);
+                    this.success(showLoading, res, resolve, reject);
+                }).catch(error => {
+                    console.log(error);
+                    this.fail(showLoading, error, reject);
+                });
+            }
 
         });
     },
@@ -117,6 +112,25 @@ export default {
             const err = error.error ? error.error : '当前网络不佳';
             UDToast.hiddenLoading();
             return [];
+        });
+    },
+
+    getHost() {
+        return new Promise((resolve, reject) => {
+            let host = sessionStorage.getItem('host') || '';
+            if (host && host.length > 0 && host !== 'undefined') {
+                resolve();
+            } else {
+                let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
+                this.getData(oneurl, {url: 'http://' + window.location.host}, false).then(result => {
+                    let host = result.data.data;
+                    sessionStorage.setItem('host', host);
+                    resolve();
+                }).catch(() => {
+                    reject();
+                });
+            }
+
         });
     },
 };

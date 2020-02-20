@@ -1,13 +1,13 @@
 import React from 'react';
 import common from '../../utils/common';
-import api from "../../utils/api";
+import api from '../../utils/api';
 
 import {connect} from 'react-redux';
 import {
     saveLogin,
     saveLogin2,
     saveAppid,
-    loggedUserReducer
+    loggedUserReducer,
 } from '../../store/actions';
 
 class Auth extends React.Component {
@@ -19,19 +19,22 @@ class Auth extends React.Component {
         //     host = 'http://wechat.jslesoft.com'
         // }
         // console.log(loggedUserReducer().appid)
-        if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
-            api.getData('/api/WeChat/GetAppId', {
-                url: 'http://' + host
-            }, true).then(res => {
-                this.props.saveAppid(res.data);
-                setTimeout(() => {
-                    this.auth()
-                }, 1000)
+        api.getHost().then(res => {
+            if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
+                api.getData('/api/WeChat/GetAppId', {
+                    url: 'http://' + host,
+                }, true).then(res => {
+                    this.props.saveAppid(res.data);
+                    setTimeout(() => {
+                        this.auth();
+                    }, 1000);
 
-            });
-        } else {
-            this.auth()
-        }
+                });
+            } else {
+                this.auth();
+            }
+        });
+
     }
 
     auth() {
@@ -46,24 +49,23 @@ class Auth extends React.Component {
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
-        }
-        else {
+        } else {
             api.postData('/api/WeChat/GetWeChatInfo', {
-                code: code
+                code: code,
             }, true).then(res => {
                 this.props.saveLoginInfo(res.data);
                 api.getData('/api/WeChat/GetUserInfo', {
-                    openid: res.data.openid
+                    openid: res.data.openid,
                 }, true).then(res2 => {
                     if (res2.data != 'false') {
                         this.props.saveLoginInfo2(res2.data);
                         if (sessionStorage.getItem('redirect') || sessionStorage.getItem('redirect') != null || sessionStorage.getItem('redirect') != undefined) {
-                            this.props.history.replace(sessionStorage.getItem('redirect'))
+                            this.props.history.replace(sessionStorage.getItem('redirect'));
                         } else {
-                            this.props.history.replace('/home')
+                            this.props.history.replace('/home');
                         }
                     } else {
-                        this.props.history.replace('/login')
+                        this.props.history.replace('/login');
                     }
                 });
             });
