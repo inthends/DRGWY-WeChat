@@ -1,6 +1,6 @@
 import UDToast from './ud-toast';
 import axios from 'axios';
-import { getToken, saveLogin2, loseLogin } from '../store/actions';
+import {getToken, saveLogin2, loseLogin} from '../store/actions';
 import store from '../store/store';
 import qs from 'qs';
 
@@ -16,11 +16,11 @@ export default {
         return new Promise((resolve, reject) => {
 
             //根据微信url获取接口host neo add
-            let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心   
+            let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
             let host = '';
             axios.get(oneurl, {
-                params: { url: 'http://' + window.location.host }
-            }).then(result => {
+                params: {url: 'http://' + window.location.host},
+            }, false).then(result => {
 
                 host = result.data.data;
                 let a = url;
@@ -33,7 +33,7 @@ export default {
 
                 let complete = host + a;
 
-                console.log("complete=" + complete);
+                console.log('complete=' + complete);
 
                 if (method === 'GET') {
                     axios.get(complete, {
@@ -59,7 +59,7 @@ export default {
 
         });
     },
-    success(showLoading, res, resolve, reject) { 
+    success(showLoading, res, resolve, reject) {
 
         showLoading && UDToast.hiddenLoading();
         const data = res.data;
@@ -113,7 +113,7 @@ export default {
             UDToast.hiddenLoading();
             return res;
         }).catch(error => {
-            console.log(error)
+            console.log(error);
             const err = error.error ? error.error : '当前网络不佳';
             UDToast.hiddenLoading();
             return [];
