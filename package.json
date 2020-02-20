@@ -45,6 +45,7 @@
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
     "prop-types": "^15.7.2",
+    "qrcode.react": "^1.0.0",
     "react": "^16.8.6",
     "react-amap": "^1.2.8",
     "react-amap-plugin-geolocation": "0.0.2",
@@ -81,7 +82,8 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "push": "npm run build && git add . && git commit -m 编辑 && git push"
   },
   "eslintConfig": {
     "extends": "react-app",
