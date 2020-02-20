@@ -18,17 +18,15 @@ class Header extends BasePage {
 
     componentDidMount() {
         this.viewFn();
-        if (this.state.qrCode) {
-            api.getData('/api/WeChat/CreateQrCodeFrom').then(res => {
-                if (res.success) {
-                    this.setState({
-                        qrCode: res.data,
-                    });
-                } else {
-                    UDToast.showError(res.msg);
-                }
-            });
-        }
+        api.getData('/api/WeChat/CreateQrCodeFrom', {}, false).then(res => {
+            if (res.success) {
+                this.setState({
+                    qrCode: res.data,
+                });
+            } else {
+                UDToast.showError(res.msg);
+            }
+        });
 
 
     }

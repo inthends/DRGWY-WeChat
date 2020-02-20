@@ -17,20 +17,18 @@ export default {
 
 
             let a = url;
-            if (!a.startsWith('/')) {
-                a = '/' + url;
-            }
+
 
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
             axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
             let complete;
-
-            if (a.includes('http')) {
+            if (url.includes('http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl')) {
                 complete = a;
-            } else {
+            }else {
                 complete = sessionStorage.getItem('host') + a;
             }
+
 
             console.log('complete=' + complete);
 
@@ -121,9 +119,13 @@ export default {
             if (host && host.length > 0 && host !== 'undefined') {
                 resolve();
             } else {
+                let h = window.location.host;
+                if (h.includes('localhost')) {
+                    h = 'a6testwechat.jslesoft.com';
+                }
                 let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
-                this.getData(oneurl, {url: 'http://' + window.location.host}, false).then(result => {
-                    let host = result.data.data;
+                this.getData(oneurl, {url: 'http://' + h}, false).then(result => {
+                    let host = result.data;
                     sessionStorage.setItem('host', host);
                     resolve();
                 }).catch(() => {
