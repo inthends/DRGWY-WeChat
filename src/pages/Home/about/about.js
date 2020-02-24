@@ -39,7 +39,7 @@ class About extends React.Component {
             <div className='about'>
                 {this.state.data.map(i => (
                     <div className='about-list' onClick={()=>this.news(i.id, i.type)}>
-                        <img src={i.mainpic} alt=""/>
+                        <img src={i.mainPic} alt=""/>
                         <div>
                             <h3>{i.title}</h3>
                             <p>{i.memo}</p>
