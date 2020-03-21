@@ -4,6 +4,7 @@ import Login from './pages/login/login';
 import Pay from './pages/Home/pay/pay';
 import PayDetail from './pages/Home/pay/pay-detail/pay-detail';
 import Auth from './pages/auth/auth';
+import Code from './pages/auth/code';
 import Binding from './pages/binding/binding';
 import House from './pages/binding/house/house';
 import Personnel from './pages/binding/personnel/personnel';
@@ -18,9 +19,12 @@ import UserDetail from './pages/user/user-detail/user-detail';
 import GetNewsPageList from './pages/Home/GetNewsPageList/getNewsPageList';
 import newDetail from './pages/Home/GetNewsPageList/newDetail/newDetil';
 import newDetail2 from './pages/Home/newDetail2/newDetil2';
+import NewsDetail from './pages/GetNewsPageList/news-detail';
+import FeeDetail from './pages/GetNewsPageList/fee-detail';
 
 const Routers = [
     {path: '/auth', title: '登录', component: Auth},
+    {path: '/code', title: '获取code', component: Code},
     {path: '/home', title: '物业', component: Home},
     {path: '/user', title: '我的', component: User},
     {path: '/login', title: '登录', component: Login},
@@ -40,6 +44,8 @@ const Routers = [
     {path: '/getNewsPageList', title: '社区通知', component: GetNewsPageList},
     {path: '/newDetail', title: '通知详情', component: newDetail},
     {path: '/newDetail2', title: '项目详情', component: newDetail2},
+    {path: '/newsDetail', title: '', component: NewsDetail},
+    {path: '/feeDetail', title: '', component: FeeDetail},
     {title: '404', auth: false},
 ];
 export default Routers;

@@ -18,4 +18,7 @@ export default {
         }
         return params;
     },
+    getCurrentUrlParams() {
+        return this.urlSearch(decodeURI(window.location.href));
+    },
 };
