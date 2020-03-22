@@ -13,29 +13,29 @@ import {
 class Auth extends React.Component {
     componentDidMount() {
         let params = common.urlSearch(decodeURI(window.location.href));
-        let host = window.location.host;
+        let host = 'http://' + window.location.host;
         const code = params.code;
-        // if (window.location.host === 'localhost:3000') {
-        //     host = 'http://wechat.jslesoft.com'
-        // }
-        console.log(loggedUserReducer().appid)
+        if (window.location.host.includes('localhost:3000')) {
+            host = 'http://a6testwechat.jslesoft.com';
+        }
+        console.log(loggedUserReducer().appid);
         if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
             api.getData('/api/WeChat/GetAppId', {
-                url: 'http://' + host
+                url: host,
             }, true).then(res => {
+                console.log(333,res);
                 this.props.saveAppid(res.data);
                 setTimeout(() => {
-                    this.auth()
-                }, 100)
+                    this.auth();
+                }, 100);
 
             });
         } else {
-            this.auth()
+            this.auth();
         }
     }
 
     auth() {
-
         if (window.location.href.includes('localhost')) {
             let res = {
                 data: {

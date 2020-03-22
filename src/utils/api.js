@@ -6,73 +6,67 @@ import qs from 'qs';
 
 export default {
     network(request) {
+        axios.defaults.withCredentials = true;
+        let url = request.url;
+        let params = request.params;
+        let showLoading = request.showLoading;
+        let method = request.method ? request.method : 'GET';
+        showLoading && UDToast.showLoading();
+
+
         return new Promise((resolve, reject) => {
 
-            axios.defaults.withCredentials = true;
-            let url = request.url;
-            let params = request.params;
-            let showLoading = request.showLoading;
-            let method = request.method ? request.method : 'GET';
-            showLoading && UDToast.showLoading();
+            //根据微信url获取接口host neo add
+            let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
+            let host = window.location.host;
+            if (window.location.host.includes('localhost:3000')) {
+                host = 'wechat.jslesoft.com'
+            }
+            axios.get(oneurl, {
+                params: {url: 'http://' + host},
+            }).then(result => {
 
+                host = result.data.data;
+                let a = url;
+                if (!a.startsWith('/')) {
+                    a = '/' + url;
+                }
 
-            return new Promise((resolve, reject) => {
+                axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
+                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
-                //根据微信url获取接口host neo add
-                let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
-                let host = '';
-                axios.get(oneurl, {
-                    params: {url: 'http://' + window.location.host},
-                }).then(result => {
+                let complete = host + a;
 
-                    host = result.data.data;
-                    let a = url;
-                    if (!a.startsWith('/')) {
-                        a = '/' + url;
-                    }
+                console.log('complete=' + complete);
 
-                    axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-                    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                if (method === 'GET') {
+                    axios.get(complete, {
+                        params: params,
+                    }).then(res => {
+                        this.success(showLoading, res, resolve, reject);
+                    }).catch(error => {
+                        this.fail(showLoading, error, reject);
+                    });
+                } else {
+                    axios.post(complete, params).then(res => {
+                        console.log(res);
+                        this.success(showLoading, res, resolve, reject);
+                    }).catch(error => {
+                        console.log(error);
+                        this.fail(showLoading, error, reject);
+                    });
+                }
 
-                    let complete = host + a;
-
-                    console.log('complete=' + complete);
-
-                    if (method === 'GET') {
-                        axios.get(complete, {
-                            params: params,
-                        }).then(res => {
-                            this.success(showLoading, res, resolve, reject);
-                        }).catch(error => {
-                            this.fail(showLoading, error, reject);
-                        });
-                    } else {
-                        axios.post(complete, params).then(res => {
-                            console.log(res);
-                            this.success(showLoading, res, resolve, reject);
-                        }).catch(error => {
-                            console.log(error);
-                            this.fail(showLoading, error, reject);
-                        });
-                    }
-
-                }).catch(error => {
-                    this.fail(showLoading, error, reject);
-                });
-
+            }).catch(error => {
+                this.fail(showLoading, error, reject);
             });
+
         });
     },
     success(showLoading, res, resolve, reject) {
-
         showLoading && UDToast.hiddenLoading();
-        if (res.success === true) {
-            const data = res.data;
-            resolve(data);
-        } else {
-            showLoading && UDToast.showError(res.msg);
-            reject();
-        }
+        const data = res.data;
+        resolve(data);
 
 
     },
