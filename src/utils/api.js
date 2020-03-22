@@ -14,36 +14,53 @@ export default {
             let showLoading = request.showLoading;
             let method = request.method ? request.method : 'GET';
             showLoading && UDToast.showLoading();
-            let a = url;
-            axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            let complete;
-            if (url.includes('http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl')) {
-                complete = a;
-            } else {
-                complete = sessionStorage.getItem('host') + a;
-            }
 
 
-            console.log('complete=' + complete);
+            return new Promise((resolve, reject) => {
 
-            if (method === 'GET') {
-                axios.get(complete, {
-                    params: params,
-                }).then(res => {
-                    this.success(showLoading, res, resolve, reject);
+                //根据微信url获取接口host neo add
+                let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
+                let host = '';
+                axios.get(oneurl, {
+                    params: {url: 'http://' + window.location.host},
+                }).then(result => {
+
+                    host = result.data.data;
+                    let a = url;
+                    if (!a.startsWith('/')) {
+                        a = '/' + url;
+                    }
+
+                    axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
+                    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+
+                    let complete = host + a;
+
+                    console.log('complete=' + complete);
+
+                    if (method === 'GET') {
+                        axios.get(complete, {
+                            params: params,
+                        }).then(res => {
+                            this.success(showLoading, res, resolve, reject);
+                        }).catch(error => {
+                            this.fail(showLoading, error, reject);
+                        });
+                    } else {
+                        axios.post(complete, params).then(res => {
+                            console.log(res);
+                            this.success(showLoading, res, resolve, reject);
+                        }).catch(error => {
+                            console.log(error);
+                            this.fail(showLoading, error, reject);
+                        });
+                    }
+
                 }).catch(error => {
                     this.fail(showLoading, error, reject);
                 });
-            } else {
-                axios.post(complete, params).then(res => {
-                    console.log(res);
-                    this.success(showLoading, res, resolve, reject);
-                }).catch(error => {
-                    console.log(error);
-                    this.fail(showLoading, error, reject);
-                });
-            }
+
+            });
 
         });
     },
