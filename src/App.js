@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
 import Routers from './router';
 import {connect} from 'react-redux';
 
@@ -10,7 +10,9 @@ class App extends React.Component {
         const routers = Routers.map((item, index) => {
             return <Route key={index} path={item.path} exact render={props => {
                 if (item.path !== '/auth' && item.path !== '/login') {
-                    sessionStorage.setItem('redirect', item.path)
+                    // alert(JSON.stringify(item))
+                    console.log(12,item);
+                    sessionStorage.setItem('redirect', item.path);
                 }
                 document.title = item.title;
                 return ((token || item.path === '/auth' || item.path === '/login') ?

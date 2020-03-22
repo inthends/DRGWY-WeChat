@@ -22,9 +22,6 @@ class NewsDetail extends React.Component {
         this.state = {
             contents: '',
             ...urlParams,
-            ...{
-                // id: '6c7bea1a-5692-4e2e-bd41-96160b5b5edf',
-            },
             data: {},
             files: [],
             communicates: [],
