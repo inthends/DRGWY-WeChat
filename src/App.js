@@ -13,9 +13,14 @@ class App extends React.Component {
                     // alert(JSON.stringify(item))
                     console.log(12, item);
                     console.log(333, window.location);
-                    sessionStorage.setItem('redirect', item.path);
+                    sessionStorage.setItem('redirect', item.path + window.location.search);
+                    // if (window.location.search && window.location.search.length > 0) {
+                    //     sessionStorage.setItem('lastHref', window.location.href);
+                    // }
+
                 }
                 document.title = item.title;
+                // return <item.component {...props} />;
                 return ((token || item.path === '/auth' || item.path === '/login') ?
                     <item.component {...props} /> :
                     <Redirect to='/auth'/>);

@@ -17,7 +17,8 @@ import StarRatingComponent from 'react-star-rating-component';
 class NewsDetail extends React.Component {
     constructor(props) {
         super(props);
-        const urlParams = common.getCurrentUrlParams() || {};
+        console.log(112, this.props);
+        let urlParams = common.getCurrentUrlParams() || {};
         console.log('urlParams', urlParams);
         this.state = {
             contents: '',
