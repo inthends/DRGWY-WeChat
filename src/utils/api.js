@@ -61,14 +61,19 @@ export default {
                 });
 
             });
-
         });
     },
     success(showLoading, res, resolve, reject) {
 
         showLoading && UDToast.hiddenLoading();
-        const data = res.data;
-        resolve(data);
+        if (res.success === true) {
+            const data = res.data;
+            resolve(data);
+        } else {
+            showLoading && UDToast.showError(res.msg);
+            reject();
+        }
+
 
     },
     fail(showLoading, error, reject) {
