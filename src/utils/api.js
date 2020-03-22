@@ -13,14 +13,14 @@ export default {
             let params = request.params;
             let showLoading = request.showLoading;
             let method = request.method ? request.method : 'GET';
-            showLoading && UDToast.showLoading();  
-            let a = url; 
+            showLoading && UDToast.showLoading();
+            let a = url;
             axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'; 
+            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
             let complete;
             if (url.includes('http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl')) {
                 complete = a;
-            }else {
+            } else {
                 complete = sessionStorage.getItem('host') + a;
             }
 
@@ -122,6 +122,8 @@ export default {
                 this.getData(oneurl, {url: 'http://' + h}, false).then(result => {
                     let host = result.data;
                     sessionStorage.setItem('host', host);
+                    localStorage.setItem('host', host);
+                    console.log('gethost', host);
                     resolve();
                 }).catch(() => {
                     reject();
