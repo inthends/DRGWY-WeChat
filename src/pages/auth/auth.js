@@ -14,27 +14,24 @@ class Auth extends React.Component {
     componentDidMount() {
         let params = common.urlSearch(decodeURI(window.location.href));
         let host = window.location.host;
-        //const code = params.code;
+        const code = params.code;
         // if (window.location.host === 'localhost:3000') {
         //     host = 'http://wechat.jslesoft.com'
         // }
-        // console.log(loggedUserReducer().appid)
-        api.getHost().then(res => {
-            if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
-                api.getData('/api/WeChat/GetAppId', {
-                    url: 'http://' + host,
-                }, true).then(res => {
-                    this.props.saveAppid(res.data);
-                    setTimeout(() => {
-                        this.auth();
-                    }, 1000);
+        console.log(loggedUserReducer().appid)
+        if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
+            api.getData('/api/WeChat/GetAppId', {
+                url: 'http://' + host
+            }, true).then(res => {
+                this.props.saveAppid(res.data);
+                setTimeout(() => {
+                    this.auth()
+                }, 100)
 
-                });
-            } else {
-                this.auth();
-            }
-        });
-
+            });
+        } else {
+            this.auth()
+        }
     }
 
     auth() {
