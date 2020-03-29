@@ -80,15 +80,19 @@ class FeeDetail extends React.Component {
     };
 
     componentDidMount() {
+
         const {id, type} = this.state;
         let url;
         if (type === '0') {
+            document.title = '电子账单';
             url = '/api/WeChat/GetBillById';
         } else {
+            document.title = '缴费成功';
             url = '/api/WeChat/GetClearBillById';
         }
         api.getData(url, {
-            billId: this.state.id,
+            billId: id,
+            type,
         }, true).then(res => {
             if (res.success) {
                 this.setState({
@@ -105,31 +109,43 @@ class FeeDetail extends React.Component {
         const {data, type} = this.state;
         const list = data.detail;
         let btn = '';
+        let top;
         if (type === '0') {
             btn = <div className="btn1">
                 <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button>
             </div>;
+
+            top = (
+                <div className='img-list1-border'>
+                    <div className='img-list1-detail'>
+                        <div>
+                            <p>{data.belongDate}</p>
+                            <p className='img-list1red'>合计：{data.allAmount}</p>
+                        </div>
+                        <div>
+                            <p className='img-list1font'>送达日：{data.sendTime}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            );
+
         } else {
-            btn = '';
+            btn = (
+                <div className='orgName111'>{data.orgName}</div>
+            );
+            top = (
+                <div className='aavv123'>
+                    <div className={'payDate111'}>支付日期：{data.payDate}</div>
+                    <div className='payType111'>{data.payType}</div>
+                </div>
+            );
         }
         return (
             <div className='img-list2'>
                 <div className='img-list1'>
-                    <div className='img-list1-border'>
-                        <div className='img-list1-detail'>
-                            <div>
-                                <p>{data.belongDate}</p>
-                                <p className='img-list1red'>合计：{data.allAmount}</p>
-                            </div>
-                            <div>
-                                <p className='img-list1font'>送达日：{data.sendTime}</p>
-                            </div>
-                            {/*<div>*/}
-                            {/*<p className='img-list1font'>查阅日：2019-07-30 09:30</p>*/}
-                            {/*</div>*/}
-                        </div>
-
-                    </div>
+                    {top}
                     <div className='img-list1-border'>
                         {list.map(i => (
                             <div className='img-list1-detail'>

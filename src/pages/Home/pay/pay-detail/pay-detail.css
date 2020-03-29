@@ -95,3 +95,28 @@
     font-size: 0.3rem;
     color: #e58f22;
 }
+
+.payDate111 {
+    font-size: 0.36rem;
+    padding-bottom: 0.1rem;
+}
+.payType111 {
+    font-size: 0.32rem;
+    color: #666;
+    padding-bottom: 0.4rem;
+    padding-top: 0.2rem;
+}
+
+.orgName111 {
+    font-size: 0.3rem;
+    padding-top: 0.15rem;
+
+}
+.aavv123 {
+    border-bottom: #eee dashed 1px;
+    margin-bottom: 0.4rem;
+}
+
+.aabcx {
+    border-bottom: #eee solid 1px;
+}

@@ -209,6 +209,9 @@ class NewsDetail extends React.Component {
                 }
             });
     };
+    lookImages = (index, images) => {
+
+    };
 
     render() {
 
@@ -227,6 +230,7 @@ class NewsDetail extends React.Component {
                                 files={files}
                                 selectable={false}
                                 disableDelete
+                                onImageClick={this.lookImages}
                                 style={{marginTop: '0.2rem'}}
                             />
 
