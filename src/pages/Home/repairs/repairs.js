@@ -1,13 +1,13 @@
 import React from 'react';
 import './repairs.css';
-import {ImagePicker, WingBlank, SegmentedControl, List, Checkbox, Flex, TextareaItem, Radio} from 'antd-mobile';
+import { ImagePicker, WingBlank, SegmentedControl, List, Checkbox, Flex, TextareaItem, Radio } from 'antd-mobile';
 import api from "../../../utils/api";
-import {loggedUserReducer} from "../../../store/actions";
+import { loggedUserReducer } from "../../../store/actions";
 import UDToat from "../../../utils/ud-toast";
-import {getToken, saveLogin2, loseLogin} from '../../../store/actions';
+import { getToken, saveLogin2, loseLogin } from '../../../store/actions';
 import axios from 'axios';
-import {Picker, WhiteSpace} from 'antd-mobile';
-import {Icon, Grid} from 'antd-mobile';
+import { Picker, WhiteSpace } from 'antd-mobile';
+import { Icon, Grid } from 'antd-mobile';
 
 const data = [];
 const CheckboxItem = Checkbox.CheckboxItem;
@@ -55,24 +55,19 @@ class Repairs extends React.Component {
         this.setState({
             files,
         });
-        console.log(files[files.length - 1]);
-        if(type === 'add'){
+
+        // console.log(files[files.length - 1]);
+        if (type === 'add') {
             let fd = new FormData();
             fd.append('keyValue', this.state.guid);
             fd.append('file', files[files.length - 1].file);
             axios.defaults.headers['Content-Type'] = 'multipart/form-data';
-            axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-
-            // axios.post('http://hf.jslesoft.com:8018/api/WeChat/UploadServiceDesk', fd).then(res => {
-            //     if (res.success) {
-            //     }
-            // });
-
-            axios.post(sessionStorage.getItem('host') +'/api/WeChat/UploadServiceDesk', fd).then(res => {
+            axios.defaults.headers['Authorization'] = 'Bearer ' + getToken(); 
+            //图片上传 
+            axios.post(sessionStorage.getItem('host') + '/api/WeChat/UploadServiceDesk', fd).then(res => {
                 if (res.success) {
                 }
             });
-
         }
     };
 
@@ -113,7 +108,7 @@ class Repairs extends React.Component {
             keyValue: this.state.guid,
             RoomId: this.state.value,
             BillType: this.state.value1,
-            Content: this.state.textarea, 
+            Content: this.state.textarea,
         }, true).then(res => {
             if (res.success) {
                 this.props.history.push('/home');
@@ -124,8 +119,8 @@ class Repairs extends React.Component {
     };
 
     render() {
-        const {value1 } = this.state;
-        const {files} = this.state;
+        const { value1 } = this.state;
+        const { files } = this.state;
         const data = [
             { value: '报修', label: '报修' },
             { value: '投诉', label: '投诉' },
@@ -138,7 +133,7 @@ class Repairs extends React.Component {
                 <Picker data={this.state.district} cols={1} onOk={this.ok}>
                     <div className='title'>
                         {this.state.label}
-                        <Icon type='right'/>
+                        <Icon type='right' />
                     </div>
                 </Picker>
                 <List className='list'>
