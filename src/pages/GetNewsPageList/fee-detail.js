@@ -80,7 +80,14 @@ class FeeDetail extends React.Component {
     };
 
     componentDidMount() {
-        api.getData('/api/WeChat/GetBillById', {
+        const {id, type} = this.state;
+        let url;
+        if (type === '0') {
+            url = '/api/WeChat/GetBillById';
+        } else {
+            url = '/api/WeChat/GetClearBillById';
+        }
+        api.getData(url, {
             billId: this.state.id,
         }, true).then(res => {
             if (res.success) {
