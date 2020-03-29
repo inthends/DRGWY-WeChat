@@ -2,7 +2,7 @@ import React from 'react';
 import common from '../../utils/common';
 import api from '../../utils/api';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
     saveLogin,
     saveLogin2,
@@ -12,32 +12,36 @@ import {
 
 class Code extends React.Component {
     componentDidMount() {
-        let params = common.urlSearch(decodeURI(window.location.href));
+        // let params = common.urlSearch(decodeURI(window.location.href));
         let host = window.location.host;
         //const code = params.code;
         // if (window.location.host === 'localhost:3000') {
         //     host = 'http://wechat.jslesoft.com'
         // }
-        // console.log(loggedUserReducer().appid)
+
         api.getHost().then(res => {
-            if (loggedUserReducer().appid == '' || loggedUserReducer().appid == null || loggedUserReducer().appid == undefined) {
+
+            if (loggedUserReducer().appid == ''
+                || loggedUserReducer().appid == null
+                || loggedUserReducer().appid == undefined) {
+
                 api.getData('/api/WeChat/GetAppId', {
                     url: 'http://' + host,
                 }, true).then(res => {
                     this.props.saveAppid(res.data);
                     setTimeout(() => {
-                        this.auth();
+                        this.auth(res.data);//必须传值，state有延迟 neo.li
                     }, 1000);
 
                 });
             } else {
-                this.auth();
+                this.auth(loggedUserReducer().appid);
             }
         });
 
     }
 
-    auth() {
+    auth(appid) {
         /*
         let res = {
             data:{
@@ -61,26 +65,28 @@ class Code extends React.Component {
                     }
                 });
          */
+
         let params = common.urlSearch(decodeURI(window.location.href));
         let host = window.location.host;
         const code = params.code;
         if (code === undefined) {
             const redirectUri = 'http://' + host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                loggedUserReducer().appid +
+                //loggedUserReducer().appid +
+                appid +
                 '&redirect_uri=' +
                 redirectUri +
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
-        } else {
-            console.log('code', code);
         }
-
+        else {
+            console.log('code', code);
+        } 
     }
 
     render() {
         return (
-            <div/>
+            <div />
 
         );
     }

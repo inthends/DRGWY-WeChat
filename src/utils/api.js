@@ -12,8 +12,7 @@ export default {
         let showLoading = request.showLoading;
         let method = request.method ? request.method : 'GET';
         showLoading && UDToast.showLoading();
-
-
+ 
         return new Promise((resolve, reject) => {
 
             //根据微信url获取接口host neo add
@@ -24,21 +23,20 @@ export default {
             }
             axios.get(oneurl, {
                 params: {url: 'http://' + host},
-            }).then(result => {
+            }).then(result => { 
+                host = result.data.data; 
+                //缓存
+                sessionStorage.setItem('host', host);
+                localStorage.setItem('host', host); 
 
-                host = result.data.data;
                 let a = url;
                 if (!a.startsWith('/')) {
                     a = '/' + url;
-                }
-
+                } 
                 axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-
-                let complete = host + a;
-
-                console.log('complete=' + complete);
-
+                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'; 
+                let complete = host + a; 
+                // console.log('complete=' + complete); 
                 if (method === 'GET') {
                     axios.get(complete, {
                         params: params,
@@ -49,10 +47,10 @@ export default {
                     });
                 } else {
                     axios.post(complete, params).then(res => {
-                        console.log(res);
+                        // console.log(res);
                         this.success(showLoading, res, resolve, reject);
                     }).catch(error => {
-                        console.log(error);
+                        // console.log(error);
                         this.fail(showLoading, error, reject);
                     });
                 }
@@ -139,7 +137,7 @@ export default {
                     let host = result.data;
                     sessionStorage.setItem('host', host);
                     localStorage.setItem('host', host);
-                    console.log('gethost', host);
+                    // console.log('gethost', host);
                     resolve();
                 }).catch(() => {
                     reject();
