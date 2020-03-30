@@ -154,7 +154,7 @@ class FeeDetail extends React.Component {
                                 </div>
                                 <div>
                                     <p>{i.feeName}</p>
-                                    <p className='img-list1red'>{i.feeAmount}</p>
+                                    <p className='img-list1red'>{i.payAmount}</p>
                                 </div>
                                 <div>
                                     <p className='img-list1font'>{i.billPeriod}</p>

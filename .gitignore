@@ -1,3 +1,6 @@
 node_modules
 node_modules
 dist
+dist/asset-manifest.json
+dist/asset-manifest.json
+dist/service-worker.js
