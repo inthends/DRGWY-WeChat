@@ -11,8 +11,8 @@ class App extends React.Component {
             return <Route key={index} path={item.path} exact render={props => {
                 if (item.path !== '/auth' && item.path !== '/login') {
                     // alert(JSON.stringify(item))
-                    console.log(12, item);
-                    console.log(333, window.location);
+                    // console.log(12, item);
+                    // console.log(333, window.location);
                     sessionStorage.setItem('redirect', item.path + window.location.search);
                     // if (window.location.search && window.location.search.length > 0) {
                     //     sessionStorage.setItem('lastHref', window.location.href);
