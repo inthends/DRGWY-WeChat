@@ -25,7 +25,7 @@ const loggedUserReducer = (state = initialState, action) => {
         };
     }
     if (action.type === 'LOGIN2') {
-        console.log(action.info)
+        // console.log(action.info)
         return {
             ...state,
             openid: action.info.member.openId,
