@@ -43,14 +43,14 @@ class Building extends React.Component {
     };
 
     render() {
-        const {item,items} = this.state;
+        const {item, items} = this.state;
         return (
             <div className='Building'>
                 <div className='Building_cont'>
                     <p>{item.name}</p>
                     <div className='btn_cont'>
                         {items.map(item => (
-                            <Button className='btn' onClick={()=>this.housePro(item)}>{item.name}</Button>
+                            <Button className='btn123' onClick={() => this.housePro(item)}>{item.name}</Button>
                         ))}
                     </div>
                 </div>
