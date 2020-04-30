@@ -1,17 +1,17 @@
 import React from 'react';
 import './bound.css';
-import {Button} from 'antd-mobile';
+import { Button } from 'antd-mobile';
 import api from '../../../utils/api';
 import UDToat from '../../../utils/ud-toast';
-import {loggedUserReducer, rooms, saveLogin2} from '../../../store/actions';
-import {connect} from 'react-redux';
+import { loggedUserReducer, rooms, saveLogin2 } from '../../../store/actions';
+import { connect } from 'react-redux';
 
 class Bound extends React.Component {
 
 
     constructor(props) {
         super(props);
-        const {room} = this.props.location.state;
+        const { room } = this.props.location.state;
 
 
         this.state = {
@@ -37,7 +37,7 @@ class Bound extends React.Component {
             }
         });
         api.getData('/api/WeChat/GetRoomCellphone', {
-            // keyValue: this.state.room.id,
+            unitId: this.state.room.id,
 
         }, false).then(res => {
             if (res.success) {
@@ -57,8 +57,8 @@ class Bound extends React.Component {
         });
     };
     bindHouse = () => {
-        const {value, phone} = this.state;
-        api.postData('/api/WeChat/BindCustomer', { 
+        const { value, phone } = this.state;
+        api.postData('/api/WeChat/BindCustomer', {
             unitId: this.state.room.id
             // cellphone: (phone || '') + value,
         }).then(res => {
@@ -80,9 +80,9 @@ class Bound extends React.Component {
     };
     submit = () => {
 
-        const {value, phone} = this.state;
-        api.postData('/api/WeChat/BindUserApply', {  
-            unitId: this.state.room.id, 
+        const { value, phone } = this.state;
+        api.postData('/api/WeChat/BindUserApply', {
+            unitId: this.state.room.id,
             cellphone: (phone || '') + value,
         }).then(res => {
             if (res.success) {
@@ -95,7 +95,7 @@ class Bound extends React.Component {
 
 
     render() {
-        const {room, phone, value} = this.state;
+        const { room, phone, value } = this.state;
         return (
             <div className='Bound'>
                 <p className='Bound1'>您选择的房屋是：</p>
@@ -103,7 +103,7 @@ class Bound extends React.Component {
                 <p className='Bound1'>请补全留在物业的手机号码：</p>
                 <div className='input'>
                     <span>{phone}</span>
-                    <input onChange={this.change} value={value} maxLength={4} type={'tel'}/>
+                    <input onChange={this.change} value={value} maxLength={4} type={'tel'} />
                 </div>
                 <div className='Bound_btn'>
                     <Button type="primary" className='primary' onClick={this.bindHouse}>绑定房屋</Button>
