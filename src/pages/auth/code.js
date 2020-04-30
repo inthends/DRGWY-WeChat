@@ -21,9 +21,10 @@ class Code extends React.Component {
 
         api.getHost().then(res => {
 
-            if (loggedUserReducer().appid == ''
-                || loggedUserReducer().appid == null
-                || loggedUserReducer().appid == undefined) {
+            if ( loggedUserReducer().appid == null
+            || loggedUserReducer().appid == ''
+            || loggedUserReducer().appid == undefined
+            || loggedUserReducer().appid == 'false') {
 
                 api.getData('/api/WeChat/GetAppId', {
                     url: 'http://' + host,
@@ -79,9 +80,9 @@ class Code extends React.Component {
                 '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             window.location.href = weiXinUrl;
         }
-        else {
-            console.log('code', code);
-        }
+        // else {
+        //     console.log('code', code);
+        // }
     }
 
     render() {

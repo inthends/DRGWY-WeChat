@@ -34,31 +34,61 @@ class Login extends React.Component {
             host = 'http://a6testwechat.jslesoft.com'
         }
 
-        var appid = loggedUserReducer().appid;
-        //if (!loggedUserReducer().appid) {
-        if (appid == null || appid == '') {
+        // var appid = loggedUserReducer().appid;
+        //if (!loggedUserReducer().appid) { 
+
+        if (  loggedUserReducer().appid == null
+            || loggedUserReducer().appid == ''
+            || loggedUserReducer().appid == undefined
+            || loggedUserReducer().appid == 'false') {
             api.getData('/api/WeChat/GetAppId', {
                 url: 'http://' + host
-            }, true).then(res => {
-                this.props.saveAppid(res.data)
+            }, true).then(res => { 
+                this.props.saveAppid(res.data);
+
+
+                if (code === undefined) {
+                    const redirectUri = 'http://' + host + '/login';
+                    const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
+                        res.data +
+                        '&redirect_uri=' +
+                        redirectUri +
+                        '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+                    window.location.href = weiXinUrl;
+                    
+                } else {
+                    this.setState({
+                        paramsCode: code,
+                        headimgurl: getImgurl(),
+                        openid: getOpenid()
+                    })
+                }
+ 
             });
         }
+         else { 
 
-        if (code === undefined) {
-            const redirectUri = 'http://' + host + '/login';
-            const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-                 appid +
-                '&redirect_uri=' +
-                redirectUri +
-                '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-            window.location.href = weiXinUrl;
-        } else {
-            this.setState({
-                paramsCode: code,
-                headimgurl: getImgurl(),
-                openid: getOpenid()
-            })
+             if (code === undefined) {
+                const redirectUri = 'http://' + host + '/login';
+                const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
+                loggedUserReducer().appid +
+                    '&redirect_uri=' +
+                    redirectUri +
+                    '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+                window.location.href = weiXinUrl;
+
+            } else {
+                this.setState({
+                    paramsCode: code,
+                    headimgurl: getImgurl(),
+                    openid: getOpenid()
+                })
+            }
+
+
         }
+
+       
     }
 
     login = () => {
