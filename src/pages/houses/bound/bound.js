@@ -58,9 +58,9 @@ class Bound extends React.Component {
     };
     bindHouse = () => {
         const { value, phone } = this.state;
-        api.postData('/api/WeChat/BindCustomer', {
-            unitId: this.state.room.id
-            // cellphone: (phone || '') + value,
+        api.postData('/api/WeChat/BindCustomer2', {
+            unitId: this.state.room.id,
+            cellphone: (phone || '') + value,
         }).then(res => {
             if (res.success) {
                 api.getData('/api/WeChat/GetUserInfo', {

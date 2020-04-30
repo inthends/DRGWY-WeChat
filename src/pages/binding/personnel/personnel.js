@@ -22,7 +22,7 @@ class Personnel extends React.Component {
         this.setState({
             value,
         });
-        console.log(value)
+        // console.log(value)
     };
 
     componentDidMount() {
