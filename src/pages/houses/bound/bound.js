@@ -37,7 +37,7 @@ class Bound extends React.Component {
             }
         });
         api.getData('/api/WeChat/GetRoomCellphone', {
-            keyValue: this.state.room.id,
+            // keyValue: this.state.room.id,
 
         }, false).then(res => {
             if (res.success) {
@@ -58,12 +58,9 @@ class Bound extends React.Component {
     };
     bindHouse = () => {
         const {value, phone} = this.state;
-        api.postData('/api/WeChat/BindCustomer', {
-            RoomId: this.state.room.id,
-            roomId: this.state.room.id,
-            unitId: this.state.room.id,
-            UnitId: this.state.room.id,
-            cellphone: (phone || '') + value,
+        api.postData('/api/WeChat/BindCustomer', { 
+            unitId: this.state.room.id
+            // cellphone: (phone || '') + value,
         }).then(res => {
             if (res.success) {
                 api.getData('/api/WeChat/GetUserInfo', {
@@ -84,11 +81,8 @@ class Bound extends React.Component {
     submit = () => {
 
         const {value, phone} = this.state;
-        api.postData('/api/WeChat/BindUserApply', {
-            RoomId: this.state.room.id,
-            roomId: this.state.room.id,
-            unitId: this.state.room.id,
-            UnitId: this.state.room.id,
+        api.postData('/api/WeChat/BindUserApply', {  
+            unitId: this.state.room.id, 
             cellphone: (phone || '') + value,
         }).then(res => {
             if (res.success) {
