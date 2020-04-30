@@ -1,0 +1,26 @@
+.Building {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    overflow: auto;
+
+}
+.Building_cont p{
+    color: #333;
+    font-size: 0.4rem;
+    padding: 0.2rem 0.2rem;
+    padding-top: 0.4rem;
+}
+.btn_cont {
+    overflow: hidden;
+}
+
+.btn {
+    float: left;
+    margin: 0.2rem;
+    width: calc(100%/3 - 0.4rem);
+}

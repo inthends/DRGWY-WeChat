@@ -1,0 +1,58 @@
+.Bound {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    left: 0;
+    top: 0;
+    overflow: auto;
+
+}
+
+.primary {
+    width: 45%;
+    margin-right: 10%;
+}
+
+.primary:last-child{
+    margin-right: 0;
+    position: relative;
+    left: -0.15rem;
+}
+
+.Bound_btn {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.3rem;
+}
+
+.Bound1 {
+    font-size: 0.28rem;
+    color: #333;
+    padding: 0.2rem 0.2rem;
+}
+
+.Bound2 {
+    font-size: 0.4rem;
+    color: #108ee9;
+    padding: 0.2rem 0.2rem;
+}
+
+.input {
+    padding: 0.2rem 0.2rem;
+}
+
+.input span{
+    font-size: 0.4rem;
+    color: #333;
+    margin-right: 0.1rem;
+    width: 40%;
+}
+
+.input input{
+    font-size: 0.35rem;
+    color: #108ee9;
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+    width: 60%;
+}

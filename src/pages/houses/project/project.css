@@ -1,0 +1,33 @@
+.Project {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+.Project_list {
+    display: flex;
+    align-items: center;
+    margin: 0 0.2rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.Project_list img{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.1rem;
+}
+
+.Project_list_text p:first-child{
+    color: #333;
+    font-size: 0.28rem;
+    margin-bottom: 0.2rem;
+}
+
+.Project_list_text p:last-child{
+    color: #666;
+    font-size: 0.24rem;
+}

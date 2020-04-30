@@ -16,7 +16,7 @@ class Code extends React.Component {
         let host = window.location.host;
         //const code = params.code;
         // if (window.location.host === 'localhost:3000') {
-        //     host = 'http://wechat.jslesoft.com'
+        //     host = 'http://a6testwechat.jslesoft.com'
         // }
 
         api.getHost().then(res => {
@@ -81,7 +81,7 @@ class Code extends React.Component {
         }
         else {
             console.log('code', code);
-        } 
+        }
     }
 
     render() {

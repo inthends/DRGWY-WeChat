@@ -12,31 +12,31 @@ export default {
         let showLoading = request.showLoading;
         let method = request.method ? request.method : 'GET';
         showLoading && UDToast.showLoading();
- 
+
         return new Promise((resolve, reject) => {
 
             //根据微信url获取接口host neo add
             let oneurl = 'http://hf.jslesoft.com:8008/api/WeChat/GetServerUrl';//接口统一管理中心
             let host = window.location.host;
             if (window.location.host.includes('localhost:3000')) {
-                host = 'wechat.jslesoft.com'
+                host = 'a6testwechat.jslesoft.com'
             }
             axios.get(oneurl, {
                 params: {url: 'http://' + host},
-            }).then(result => { 
-                host = result.data.data; 
+            }).then(result => {
+                host = result.data.data;
                 //缓存
                 sessionStorage.setItem('host', host);
-                localStorage.setItem('host', host); 
+                localStorage.setItem('host', host);
 
                 let a = url;
                 if (!a.startsWith('/')) {
                     a = '/' + url;
-                } 
+                }
                 axios.defaults.headers['Authorization'] = 'Bearer ' + getToken();
-                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'; 
-                let complete = host + a; 
-                // console.log('complete=' + complete); 
+                axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                let complete = host + a;
+                // console.log('complete=' + complete);
                 if (method === 'GET') {
                     axios.get(complete, {
                         params: params,

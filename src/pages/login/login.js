@@ -31,10 +31,10 @@ class Login extends React.Component {
         const code = params.code;
         let host = window.location.host;
         if (window.location.host === 'localhost:3000') {
-            host = 'http://wechat.jslesoft.com'
+            host = 'http://a6testwechat.jslesoft.com'
         }
 
-        var appid = loggedUserReducer().appid;  
+        var appid = loggedUserReducer().appid;
         //if (!loggedUserReducer().appid) {
         if (appid == null || appid == '') {
             api.getData('/api/WeChat/GetAppId', {
