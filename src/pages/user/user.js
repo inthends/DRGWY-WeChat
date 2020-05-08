@@ -126,7 +126,7 @@ class User extends React.Component {
                         <div className="shequ-title shequ-title-c11">
                             <div className="shequ-title-1">
                                 <span></span>
-                                <p>我的权益</p>
+                                <p>我的单据</p>
                             </div>
                         </div>
 

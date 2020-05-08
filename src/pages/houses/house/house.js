@@ -95,7 +95,7 @@ class House extends React.Component {
                             </div>
                             <div className='btn_cont'>
                                 {item.rooms.map(room => (
-                                    <Button className='btn' onClick={() => this.housePro(room)}>{room.name}</Button>
+                                    <Button className='btn123' onClick={() => this.housePro(room)}>{room.name}</Button>
                                 ))}
 
                             </div>

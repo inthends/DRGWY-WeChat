@@ -14,21 +14,18 @@ const RadioItem = Radio.RadioItem;
 class SelectBinding extends React.Component {
 
 
-    render() {
-
-
+    render() { 
         return (
             <WingBlank>
                 <WhiteSpace/>
-                <WhiteSpace/>
-
-                <Button size={'small'} type={'primary'} onClick={()=>{this.props.history.push('/homebinding')}}>
+                <WhiteSpace/> 
+                <Button size={'large'} type={'primary'} onClick={()=>{this.props.history.push('/homebinding')}}>
                     <span style={{color:'white'}}>输入手机号码验证</span>
                 </Button>
                 <WhiteSpace/>
                 <WhiteSpace/>
 
-                <Button size={'small'} style={{background:'#bbb'}} onClick={()=>{this.props.history.push('/project')}}>
+                <Button size={'large'}  type={'primary'} onClick={()=>{this.props.history.push('/project')}}>
                     <span style={{color:'white'}}>选择房屋验证</span>
                 </Button>
                 <WhiteSpace/>

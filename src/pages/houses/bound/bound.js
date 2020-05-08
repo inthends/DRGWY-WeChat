@@ -78,8 +78,7 @@ class Bound extends React.Component {
             }
         });
     };
-    submit = () => {
-
+    submit = () => { 
         const { value, phone } = this.state;
         api.postData('/api/WeChat/BindUserApply', {
             unitId: this.state.room.id,
