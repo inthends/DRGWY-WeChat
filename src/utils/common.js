@@ -21,4 +21,8 @@ export default {
     getCurrentUrlParams() {
         return this.urlSearch(decodeURI(window.location.href));
     },
+    getHost() {
+        const host = 'http://' + window.location.host;
+        return host.includes('localhost') ? 'http://a6testwechat.jslesoft.com' : host;
+    }
 };
