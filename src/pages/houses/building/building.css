@@ -23,5 +23,5 @@
 .btn123 {
     float: left;
     margin: 0.2rem;
-    width: calc(100%/3 - 0.41rem);
+    width: calc(100%/3 - 0.46rem);
 }
