@@ -76,7 +76,8 @@ class Work extends React.Component {
                 pageIndex: this.state.param.pageIndex + 1,
                 pageSize: 10,
                 status: this.state.param.status,
-                customerId: loggedUserReducer().customerId,
+                // customerId: loggedUserReducer().customerId,
+                memberId : loggedUserReducer().id
             }
         }, () => {
             api.postData('/api/WeChat/GetServiceDeskPageList', this.state.param, true)

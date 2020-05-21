@@ -15,7 +15,6 @@ class House extends React.Component {
     }
 
     /*
-
     DetailBuildingService.getPStructs(id, 4).then(res => {
             const floors = res || [];
             const promises = floors.map(item => {
@@ -37,6 +36,7 @@ class House extends React.Component {
             this.setState({detail});
         })
      */
+    
     componentDidMount() {
         api.getData('/api/WeChat/GetWeChatPStructs', {
             keyValue: this.state.item.id,
@@ -60,8 +60,7 @@ class House extends React.Component {
                         }
                     });
                 });
-                Promise.all(promises).then(res => {
-                    console.log(333, res);
+                Promise.all(promises).then(res => { 
                     this.setState({items: res});
                 });
 

@@ -23,8 +23,8 @@ class House extends React.Component {
     };
 
     componentDidMount() {
-        api.getData('/api/WeChat/GetCustomerRooms', {
-            keyword: loggedUserReducer().mobile,
+        api.getData('/api/WeChat/GetMemberRooms', {
+            // keyword: loggedUserReducer().mobile,
         }, true).then(res => {
             if (res.success) {
                 this.setState({

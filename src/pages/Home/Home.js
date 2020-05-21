@@ -26,7 +26,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         api.getData('/api/WeChat/GetCustomerRooms', {
-            mobile: loggedUserReducer().mobile,
+            // mobile: loggedUserReducer().mobile,
         }, false).then(res => {
             if (res.success) {
                 if (res.data.length > 0) {
@@ -58,11 +58,9 @@ class Home extends React.Component {
         const footer = <Footer {...this.props}/>;
         const header = <Header {...this.props}/>;
         const imgList = <ImgList {...this.props}/>;
-        const carou = <Carou {...this.props}/>;
-
+        const carou = <Carou {...this.props}/>; 
         let shequ;
         let xiangmu;
-
         if (this.state.rooms === '1') {
             shequ = <Shequ {...this.props}/>;
             xiangmu = <Xiangmu {...this.props}/>;

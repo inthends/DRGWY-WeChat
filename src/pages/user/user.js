@@ -27,8 +27,8 @@ class User extends React.Component {
     };
 
     componentDidMount() {
-        api.getData('/api/WeChat/GetCustomerRooms', {
-            mobile: loggedUserReducer().mobile,
+        api.getData('/api/WeChat/GetMemberRooms', {
+            // mobile: loggedUserReducer().mobile,
         }, false).then(res => {
             if (res.success) {
                 if (res.data.length > 0) {

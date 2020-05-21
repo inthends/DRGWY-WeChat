@@ -31,11 +31,11 @@ class Repairs extends React.Component {
         textarea: ''
     };
     componentDidMount() {
-        api.getData('/api/WeChat/GetCustomerRooms', {
-            mobile: loggedUserReducer().mobile,
+        api.getData('/api/WeChat/GetMemberRooms', {
+            // mobile: loggedUserReducer().mobile,
         }, true).then(res => {
             if (res.success) {
-                let label = '';
+                // let label = '';
                 res.data.forEach((item, index) => {
                     res.data[index].value = item.id;
                     res.data[index].label = item.allName;

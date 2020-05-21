@@ -20,13 +20,12 @@ class Steward extends React.Component {
         guid: null,
         district: [],
         label: loggedUserReducer().defaultUnitName,
-        value: loggedUserReducer().defaultUnitId,
-
+        value: loggedUserReducer().defaultUnitId
     };
 
     componentDidMount() {
-        api.getData('/api/WeChat/GetCustomerRooms', {
-            mobile: loggedUserReducer().mobile,
+        api.getData('/api/WeChat/GetMemberRooms', {
+            // mobile: loggedUserReducer().mobile,
         }, true).then(res => {
             if (res.success) {
                 res.data.forEach((item, index) => {
