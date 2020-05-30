@@ -135,7 +135,7 @@ class PayDetail extends React.Component {
                         ))}
 
                     </div>
-                    {btn}
+                    {data.allAmount>0?btn:null}
                 </div>
             </div>
         );

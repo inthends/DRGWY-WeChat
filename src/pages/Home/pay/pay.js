@@ -1,15 +1,15 @@
 import React from 'react';
 import './pay.css';
 import api from "../../../utils/api";
-import {loggedUserReducer} from "../../../store/actions";
+import { loggedUserReducer } from "../../../store/actions";
 import UDToat from "../../../utils/ud-toast";
-import {Modal} from 'antd-mobile';
+import { Modal } from 'antd-mobile';
 import common from '../../../utils/common';
 import UDToast from '../../../utils/ud-toast';
 import wxSign from '../../../utils/wxSign';
 import UDAlert from '../../../utils/ud-alert';
 import PayDetail from "./pay-detail/pay-detail";
-import {SegmentedControl, WingBlank} from 'antd-mobile';
+import { SegmentedControl, WingBlank } from 'antd-mobile';
 
 class Pay extends React.Component {
     state = {
@@ -76,9 +76,9 @@ class Pay extends React.Component {
         const data = this.state.data;
         let view = '';
         let p = '';
-        if(this.state.selectedIndex == 0){
-            p =  <p>立即缴费</p>
-        }else {
+        if (this.state.selectedIndex == 0) {
+            p = <p>立即缴费</p>
+        } else {
             p = '';
         }
         if (data === '') {
@@ -101,7 +101,7 @@ class Pay extends React.Component {
 
                             <div className="cont-list-cont-felx">
                                 <p>{i.sendTime} 送达</p>
-                                {p}
+                                {i.allAmount > 0 ? p : null}
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ class Pay extends React.Component {
             </div>
         } else {
             view = <div className='kong'>
-                <img src={require('../../../static/images/kong.png')} alt=""/>
+                <img src={require('../../../static/images/kong.png')} alt="" />
                 <p>暂无数据！</p>
             </div>
         }

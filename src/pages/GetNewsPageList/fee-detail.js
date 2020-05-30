@@ -1,9 +1,9 @@
 import React from 'react';
 import '../Home/pay/pay-detail/pay-detail.css';
 import api from '../../utils/api';
-import {loggedUserReducer} from '../../store/actions';
+import { loggedUserReducer } from '../../store/actions';
 import UDToat from '../../utils/ud-toast';
-import {Modal} from 'antd-mobile';
+import { Modal } from 'antd-mobile';
 import common from '../../utils/common';
 import UDToast from '../../utils/ud-toast';
 import wxSign from '../../utils/wxSign';
@@ -81,7 +81,7 @@ class FeeDetail extends React.Component {
 
     componentDidMount() {
 
-        const {id, type} = this.state;
+        const { id, type } = this.state;
         let url;
         if (type === '0') {
             document.title = '电子账单';
@@ -106,13 +106,13 @@ class FeeDetail extends React.Component {
     }
 
     render() {
-        const {data, type} = this.state;
+        const { data, type } = this.state;
         const list = data.detail;
         let btn = '';
         let top;
         if (type === '0') {
             btn = <div className="btn1">
-                <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button>
+               <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button> 
             </div>;
 
             top = (
@@ -163,7 +163,7 @@ class FeeDetail extends React.Component {
                         ))}
 
                     </div>
-                    {btn}
+                    {data.allAmount>0?btn:null}
                 </div>
             </div>
         );

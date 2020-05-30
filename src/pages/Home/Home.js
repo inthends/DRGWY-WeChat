@@ -13,7 +13,7 @@ import {
     loggedUserReducer,
     rooms, saveLogin, saveLogin2, loseLogin
 } from '../../store/actions';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 
 class Home extends React.Component {
@@ -25,7 +25,8 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        api.getData('/api/WeChat/GetCustomerRooms', {
+        // api.getData('/api/WeChat/GetCustomerRooms', {
+        api.getData('/api/WeChat/GetMemberRooms', {
             // mobile: loggedUserReducer().mobile,
         }, false).then(res => {
             if (res.success) {
@@ -55,15 +56,15 @@ class Home extends React.Component {
     }
 
     render() {
-        const footer = <Footer {...this.props}/>;
-        const header = <Header {...this.props}/>;
-        const imgList = <ImgList {...this.props}/>;
-        const carou = <Carou {...this.props}/>; 
+        const footer = <Footer {...this.props} />;
+        const header = <Header {...this.props} />;
+        const imgList = <ImgList {...this.props} />;
+        const carou = <Carou {...this.props} />;
         let shequ;
         let xiangmu;
         if (this.state.rooms === '1') {
-            shequ = <Shequ {...this.props}/>;
-            xiangmu = <Xiangmu {...this.props}/>;
+            shequ = <Shequ {...this.props} />;
+            xiangmu = <Xiangmu {...this.props} />;
         } else {
             shequ = '';
             xiangmu = '';
