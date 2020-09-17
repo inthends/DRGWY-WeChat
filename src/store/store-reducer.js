@@ -17,14 +17,16 @@ const initialState = {
 };
 
 const loggedUserReducer = (state = initialState, action) => {
-    if (action.type === 'LOGIN') {
+    if (action.type == 'LOGIN') {
         return {
             ...state,
             openid: action.info.openid,
             imgurl: action.info.imgurl
         };
     }
-    if (action.type === 'LOGIN2') {
+
+    //保存数据
+    if (action.type == 'SAVE') {
         // console.log(action.info)
         return {
             ...state,
@@ -43,7 +45,8 @@ const loggedUserReducer = (state = initialState, action) => {
             serviceTel: action.info.serviceTel,
         };
     }
-    if (action.type === 'LOSE') {
+    
+    if (action.type == 'LOSE') {
         return {
             ...state,
             openid: '',
@@ -63,14 +66,14 @@ const loggedUserReducer = (state = initialState, action) => {
         };
     }
 
-    if (action.type === 'ROOM') {
+    if (action.type == 'ROOM') {
         return {
             ...state,
             rooms: action.info,
         };
     }
 
-    if (action.type === 'APPID') {
+    if (action.type == 'APPID') {
         return {
             ...state,
             appid: action.info,

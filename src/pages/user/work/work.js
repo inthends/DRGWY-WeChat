@@ -1,7 +1,6 @@
 import React from 'react';
 import './work.css';
-import {SegmentedControl, WingBlank} from 'antd-mobile';
-import {Button, WhiteSpace} from 'antd-mobile';
+import {SegmentedControl } from 'antd-mobile'; 
 import api from "../../../utils/api";
 import {loggedUserReducer} from "../../../store/actions";
 import UDToat from "../../../utils/ud-toast";
@@ -48,7 +47,7 @@ class Work extends React.Component {
                             data: res.data.data,
                         });
 
-                        if (res.data.data.length === 0) {
+                        if (res.data.data.length == 0) {
                             this.setState({
                                 hasMore: false,
                             });
@@ -61,11 +60,11 @@ class Work extends React.Component {
     };
 
     onValueChange = (value) => {
-        if (value === '未完成') {
+        if (value == '未完成') {
             this.info(2)
-        } else if (value === '未评价') {
+        } else if (value == '未评价') {
             this.info(3)
-        } else if (value === '已评价') {
+        } else if (value == '已评价') {
             this.info(4)
         }
     };
@@ -87,7 +86,7 @@ class Work extends React.Component {
                             data: this.state.data.concat(res.data.data),
                         });
 
-                        if (res.data.data.length === 0) {
+                        if (res.data.data.length == 0) {
                             this.setState({
                                 hasMore: false,
                             });
@@ -111,7 +110,7 @@ class Work extends React.Component {
 
     render() {
         let view = '';
-        if (this.state.data === '') {
+        if (this.state.data == '') {
             view = '';
         } else if (this.state.data.length > 0) {
             view = <InfiniteScroll

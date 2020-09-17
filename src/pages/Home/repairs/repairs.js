@@ -1,17 +1,13 @@
 import React from 'react';
 import './repairs.css';
-import { ImagePicker, WingBlank, SegmentedControl, List, Checkbox, Flex, TextareaItem, Radio } from 'antd-mobile';
+import { Picker, Icon, ImagePicker, WingBlank, List, TextareaItem, Radio } from 'antd-mobile';
 import api from "../../../utils/api";
 import { loggedUserReducer } from "../../../store/actions";
 import UDToat from "../../../utils/ud-toast";
-import { getToken, saveLogin2, loseLogin } from '../../../store/actions';
-import axios from 'axios';
-import { Picker, WhiteSpace } from 'antd-mobile';
-import { Icon, Grid } from 'antd-mobile';
+import { getToken  } from '../../../store/actions';
+import axios from 'axios'; 
 
-const data = [];
-const CheckboxItem = Checkbox.CheckboxItem;
-const AgreeItem = Checkbox.AgreeItem;
+const data = []; 
 const RadioItem = Radio.RadioItem;
 const guid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -57,7 +53,7 @@ class Repairs extends React.Component {
         });
 
         // console.log(files[files.length - 1]);
-        if (type === 'add') {
+        if (type == 'add') {
             let fd = new FormData();
             fd.append('keyValue', this.state.guid);
             fd.append('file', files[files.length - 1].file);
@@ -86,7 +82,7 @@ class Repairs extends React.Component {
     };
     ok = (val) => {
         this.state.district.forEach((item, index) => {
-            if (item.value === val[0]) {
+            if (item.value == val[0]) {
                 this.setState({
                     label: item.label,
                     value: val[0]
@@ -138,7 +134,7 @@ class Repairs extends React.Component {
                 </Picker>
                 <List className='list'>
                     {data.map(i => (
-                        <RadioItem key={i.value} checked={value1 === i.value} onChange={() => this.onChange2(i.value)}>
+                        <RadioItem key={i.value} checked={value1 == i.value} onChange={() => this.onChange2(i.value)}>
                             {i.label}
                         </RadioItem>
                     ))}

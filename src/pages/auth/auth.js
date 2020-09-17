@@ -1,11 +1,10 @@
 import React from 'react';
 import common from '../../utils/common';
 import api from '../../utils/api';
-
 import { connect } from 'react-redux';
 import {
     saveLogin,
-    saveLogin2,
+    saveUserInfo,
     saveAppid,
     loggedUserReducer,
 } from '../../store/actions';
@@ -49,7 +48,7 @@ class Auth extends React.Component {
             }, true).then(res2 => {
                 if (res2.data != 'false') {
                     this.props.saveLoginInfo2(res2.data);
-                    if (sessionStorage.getItem('redirect') && sessionStorage.getItem('redirect') != null && sessionStorage.getItem('redirect') !== undefined && sessionStorage.getItem('redirect') !== 'undefined') {
+                    if (sessionStorage.getItem('redirect') && sessionStorage.getItem('redirect') != null && sessionStorage.getItem('redirect') !== undefined && sessionStorage.getItem('redirect') != 'undefined') {
                         this.props.history.replace(sessionStorage.getItem('redirect'));
                     } else {
                         this.props.history.replace('/home');
@@ -63,7 +62,7 @@ class Auth extends React.Component {
         let params = common.urlSearch(decodeURI(window.location.href));
 
         const code = params.code;
-        if (code === undefined) {
+        if (code == undefined) {
             const redirectUri = common.getHost() + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                 //loggedUserReducer().appid +
@@ -105,14 +104,13 @@ class Auth extends React.Component {
     }
 }
 
-const kk = (dispatch, ownProps) => {
+const save = (dispatch, ownProps) => {
     return {
         saveLoginInfo: (info) => {
             dispatch(saveLogin(info));
-        },
-
+        }, 
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
 
         saveAppid: (info) => {
@@ -120,4 +118,4 @@ const kk = (dispatch, ownProps) => {
         },
     };
 };
-export default connect(null, kk)(Auth);
+export default connect(null, save)(Auth);

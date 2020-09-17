@@ -1,15 +1,8 @@
 import React from 'react';
 import './pay.css';
-import api from "../../../utils/api";
-import { loggedUserReducer } from "../../../store/actions";
-import UDToat from "../../../utils/ud-toast";
-import { Modal } from 'antd-mobile';
-import common from '../../../utils/common';
-import UDToast from '../../../utils/ud-toast';
-import wxSign from '../../../utils/wxSign';
-import UDAlert from '../../../utils/ud-alert';
-import PayDetail from "./pay-detail/pay-detail";
-import { SegmentedControl, WingBlank } from 'antd-mobile';
+import api from "../../../utils/api"; 
+import UDToat from "../../../utils/ud-toast";  
+import { SegmentedControl } from 'antd-mobile';
 
 class Pay extends React.Component {
     state = {
@@ -57,9 +50,9 @@ class Pay extends React.Component {
     }
 
     onValueChange = (value) => {
-        if (value === '待支付') {
+        if (value == '待支付') {
             this.info()
-        } else if (value === '已完成') {
+        } else if (value == '已完成') {
             this.info2()
         }
     };
@@ -81,7 +74,7 @@ class Pay extends React.Component {
         } else {
             p = '';
         }
-        if (data === '') {
+        if (data == '') {
             view = '';
         } else if (data.length > 0) {
             view = <div>

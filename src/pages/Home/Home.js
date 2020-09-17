@@ -11,7 +11,7 @@ import api from "../../utils/api";
 import store from '../../store/store';
 import {
     loggedUserReducer,
-    rooms, saveLogin, saveLogin2, loseLogin
+    rooms, saveLogin, saveUserInfo, loseLogin
 } from '../../store/actions';
 import { connect } from "react-redux";
 
@@ -62,7 +62,7 @@ class Home extends React.Component {
         const carou = <Carou {...this.props} />;
         let shequ;
         let xiangmu;
-        if (this.state.rooms === '1') {
+        if (this.state.rooms == '1') {
             shequ = <Shequ {...this.props} />;
             xiangmu = <Xiangmu {...this.props} />;
         } else {

@@ -9,7 +9,7 @@ class App extends React.Component {
         const {token} = this.props;
         const routers = Routers.map((item, index) => {
             return <Route key={index} path={item.path} exact render={props => {
-                if (item.path !== '/auth' && item.path !== '/login') {
+                if (item.path != '/auth' && item.path != '/login') {
                     // alert(JSON.stringify(item))
                     // console.log(12, item);
                     // console.log(333, window.location);
@@ -21,7 +21,7 @@ class App extends React.Component {
                 }
                 document.title = item.title;
                 // return <item.component {...props} />;
-                return ((token || item.path === '/auth' || item.path === '/login') ?
+                return ((token || item.path == '/auth' || item.path == '/login') ?
                     <item.component {...props} /> :
                     <Redirect to='/auth'/>);
             }}/>;

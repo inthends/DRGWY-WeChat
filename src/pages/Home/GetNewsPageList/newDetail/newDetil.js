@@ -5,7 +5,7 @@ import api from "../../../../utils/api";
 import store from '../../../../store/store';
 import {
     loggedUserReducer,
-    rooms, saveLogin, saveLogin2, loseLogin
+    rooms, saveLogin, saveUserInfo, loseLogin
 } from '../../../../store/actions';
 import {connect} from "react-redux";
 import InfiniteScroll from 'react-infinite-scroller';
@@ -21,7 +21,7 @@ class NewDetil extends React.Component {
 
     componentDidMount() {
         document.title = this.props.location.state.type;
-        if (this.props.location.state.type === '活动') {
+        if (this.props.location.state.type == '活动') {
             this.info('/api/WeChat/GetActivityEntity')
         } else {
             this.info('/api/WeChat/GetNewsEntity')
@@ -34,7 +34,7 @@ class NewDetil extends React.Component {
         }, false).then(res => {
             if (res.success) {
 
-                if (this.props.location.state.type === '活动') {
+                if (this.props.location.state.type == '活动') {
                     this.setState({
                         data: res.data.data
                     })
@@ -75,7 +75,7 @@ class NewDetil extends React.Component {
             btn = <p className='p2new' onClick={this.Activity}>我要报名</p>
         }
 
-        if (this.props.location.state.type === '活动') {
+        if (this.props.location.state.type == '活动') {
             GetActivityEntity = <div className='newDetail-btn'>
                 <p className='p1new'>已报名：{this.state.data.participants}人</p>
                 {btn}

@@ -1,15 +1,12 @@
 import React, {Fragment} from 'react';
 import './getNewsPageList.css';
 import UDToat from '../../utils/ud-toast';
-import api from '../../utils/api';
-import store from '../../store/store';
-import {
-    loggedUserReducer,
-    rooms, saveLogin, saveLogin2, loseLogin,
-} from '../../store/actions';
-import {connect} from 'react-redux';
-import {ImagePicker, Text, WingBlank, Flex, TextareaItem} from 'antd-mobile';
-import WhiteSpace from 'antd-mobile/es/white-space';
+import api from '../../utils/api'; 
+// import {
+//     loggedUserReducer,
+//     rooms, saveLogin, saveUserInfo, loseLogin,
+// } from '../../store/actions'; 
+import {ImagePicker, TextareaItem} from 'antd-mobile'; 
 import common from '../../utils/common';
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -225,7 +222,7 @@ class NewsDetail extends React.Component {
                 {
                     files && files.length > 0 && (
                         <Fragment>
-                            {type === '4' && <div style={{paddingTop: '0.3rem'}}>上报情况</div>}
+                            {type == '4' && <div style={{paddingTop: '0.3rem'}}>上报情况</div>}
                             <ImagePicker
                                 files={files}
                                 selectable={false}
@@ -239,7 +236,7 @@ class NewsDetail extends React.Component {
                 }
 
                 {
-                    type === '4' && repairfiles && repairfiles.length > 0 && (
+                    type == '4' && repairfiles && repairfiles.length > 0 && (
                         <Fragment>
                             <div>修复情况</div>
                             <ImagePicker
@@ -259,7 +256,7 @@ class NewsDetail extends React.Component {
                         <div style={styles.div4}>{`${item.author}:${item.content}`}<br/>{item.datetime}</div>
                     ))}
                 </div>
-                {(type === '1' || type === '2') && (
+                {(type == '1' || type == '2') && (
                     <div>
                         <TextareaItem
                             placeholder='请输入'
@@ -270,10 +267,10 @@ class NewsDetail extends React.Component {
                         />
                     </div>
                 )}
-                {type === '1' && <button style={styles.button} onClick={this.communicate}>留言管家</button>}
-                {type === '2' && <button style={styles.button} onClick={this.communicate}>继续留言</button>}
-                {type === '3' && <div style={styles.div2}>最新进展：转维修工单</div>}
-                {type === '4' && (
+                {type == '1' && <button style={styles.button} onClick={this.communicate}>留言管家</button>}
+                {type == '2' && <button style={styles.button} onClick={this.communicate}>继续留言</button>}
+                {type == '3' && <div style={styles.div2}>最新进展：转维修工单</div>}
+                {type == '4' && (
                     <Fragment>
                         <div className='pingjia' style={{padding: 0}}>
                             <p>为更好的服务业主，请您评价本次服务！</p>

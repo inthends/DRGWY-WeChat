@@ -5,7 +5,7 @@ import api from "../../../utils/api";
 import store from '../../../store/store';
 import {
     loggedUserReducer,
-    rooms, saveLogin, saveLogin2, loseLogin
+    rooms, saveLogin, saveUserInfo, loseLogin
 } from '../../../store/actions';
 import {connect} from "react-redux";
 import InfiniteScroll from 'react-infinite-scroller';

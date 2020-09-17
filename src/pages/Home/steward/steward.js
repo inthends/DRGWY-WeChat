@@ -1,11 +1,9 @@
 import React from 'react';
-import './steward.css';
-import {TextareaItem} from 'antd-mobile';
+import './steward.css'; 
 import api from "../../../utils/api";
-import {loggedUserReducer} from "../../../store/actions";
+import { loggedUserReducer } from "../../../store/actions";
 import UDToat from "../../../utils/ud-toast";
-import {Picker, List, WhiteSpace} from 'antd-mobile';
-import {Icon, Grid} from 'antd-mobile';
+import { TextareaItem,Icon, Picker } from 'antd-mobile';
 
 const guid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -42,20 +40,20 @@ class Steward extends React.Component {
         });
     }
 
-    onChange3 = (val) => {
+    setValue = (val) => {
         this.setState({
             textarea: val
         })
     };
 
-    onChange4 = (val) => {
-    };
+    // onChange4 = (val) => {
+    // };
 
     ok = (val) => {
         this.state.district.forEach((item, index) => {
-            console.log(item.value)
-            console.log(val[0])
-            if (item.value === val[0]) {
+            // console.log(item.value)
+            // console.log(val[0])
+            if (item.value == val[0]) {
                 this.setState({
                     label: item.label,
                     value: val[0]
@@ -90,32 +88,34 @@ class Steward extends React.Component {
     render() {
         return (
             <div className='repairs'>
-                <Picker data={this.state.district} cols={1} onChange={this.onChange4} onOk={this.ok}>
+                <Picker data={this.state.district} cols={1}
+                    //onChange={this.onChange4} 
+                    onOk={this.ok}>
                     <div className='title'>
                         {this.state.label}
-                        <Icon type='right'/>
+                        <Icon type='right' />
                     </div>
                 </Picker>
                 <div className='mobile'>
                     <a href={'tel:' + loggedUserReducer().serviceTel}>
                         <div className='mobile-list'>
                             <p>服务热线：{loggedUserReducer().serviceTel}</p>
-                            <img src={require('../../../static/images/home/mobile.png')} alt=""/>
+                            <img src={require('../../../static/images/home/mobile.png')} alt="" />
                         </div>
                     </a>
                     <a href={'tel:' + loggedUserReducer().housekeeperTel}>
                         <div className='mobile-list'>
-                            <p>管家电话：{loggedUserReducer().housekeeperTel}</p>
-                            <img src={require('../../../static/images/home/mobile.png')} alt=""/>
+                            <p>电话：{loggedUserReducer().housekeeperTel}</p>
+                            <img src={require('../../../static/images/home/mobile.png')} alt="" />
                         </div>
                     </a>
                 </div>
                 <div className='TextareaItem'>
                     <TextareaItem
-                        placeholder='请输入'
+                        placeholder='留言管家'
                         rows={5}
                         count={1000}
-                        onChange={this.onChange3}
+                        onChange={this.setValue}
                     />
                 </div>
                 <div className='btn-repa-cint'>

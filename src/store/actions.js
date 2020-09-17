@@ -4,8 +4,8 @@ export function saveLogin(info) {
     return {type: 'LOGIN', info: info};
 }
 
-export function saveLogin2(info) {
-    return {type: 'LOGIN2', info: info};
+export function saveUserInfo(info) {
+    return {type: 'SAVE', info: info};
 }
 
 export function saveAppid(info) {

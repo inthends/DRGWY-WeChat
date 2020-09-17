@@ -1,8 +1,6 @@
 import React from 'react';
-import BasePage from '../../../utils/base-page';
-import {Icon, Grid} from 'antd-mobile';
-import UDToat from "../../../utils/ud-toast";
-import {loggedUserReducer} from "../../../store/actions";
+import BasePage from '../../../utils/base-page'; 
+import UDToat from "../../../utils/ud-toast"; 
 import api from "../../../utils/api";
 
 class Shequ extends BasePage {

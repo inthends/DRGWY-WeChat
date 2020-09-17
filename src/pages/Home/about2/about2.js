@@ -1,9 +1,8 @@
 import React from 'react';
 import './about2.css';
-import api from "../../../utils/api";
-import {loggedUserReducer} from "../../../store/actions";
+import api from "../../../utils/api"; 
 import UDToat from "../../../utils/ud-toast";
-import {SegmentedControl, WingBlank} from 'antd-mobile';
+import {SegmentedControl} from 'antd-mobile';
 
 class About2 extends React.Component {
     state = {

@@ -1,6 +1,5 @@
 import React from 'react';
-import './binding.css';
-import {Icon, Grid} from 'antd-mobile';
+import './binding.css'; 
 import UDToat from "../../utils/ud-toast";
 
 class Binding extends React.Component {

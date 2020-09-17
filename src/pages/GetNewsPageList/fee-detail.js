@@ -1,9 +1,7 @@
 import React from 'react';
 import '../Home/pay/pay-detail/pay-detail.css';
-import api from '../../utils/api';
-import { loggedUserReducer } from '../../store/actions';
-import UDToat from '../../utils/ud-toast';
-import { Modal } from 'antd-mobile';
+import api from '../../utils/api'; 
+import UDToat from '../../utils/ud-toast'; 
 import common from '../../utils/common';
 import UDToast from '../../utils/ud-toast';
 import wxSign from '../../utils/wxSign';
@@ -83,7 +81,7 @@ class FeeDetail extends React.Component {
 
         const { id, type } = this.state;
         let url;
-        if (type === '0') {
+        if (type == '0') {
             document.title = '电子账单';
             url = '/api/WeChat/GetBillById';
         } else {
@@ -110,7 +108,7 @@ class FeeDetail extends React.Component {
         const list = data.detail;
         let btn = '';
         let top;
-        if (type === '0') {
+        if (type == '0') {
             btn = <div className="btn1">
                <button disabled={this.state.canSubmit} onClick={this.showModal}>立即缴费</button> 
             </div>;

@@ -12,7 +12,7 @@ class ImgList extends BasePage {
 
     pay = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/pay')
         } else {
             this.props.history.push('/binding')
@@ -21,7 +21,7 @@ class ImgList extends BasePage {
 
     repairs = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/repairs')
         } else {
             this.props.history.push('/binding')
@@ -31,7 +31,7 @@ class ImgList extends BasePage {
 
     steward = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/steward')
         } else {
             this.props.history.push('/binding')
@@ -40,7 +40,7 @@ class ImgList extends BasePage {
 
     stall = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/stall')
         } else {
             this.props.history.push('/binding')

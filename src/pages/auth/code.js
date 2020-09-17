@@ -1,11 +1,10 @@
 import React from 'react';
 import common from '../../utils/common';
 import api from '../../utils/api';
-
 import { connect } from 'react-redux';
 import {
     saveLogin,
-    saveLogin2,
+    saveUserInfo,
     saveAppid,
     loggedUserReducer,
 } from '../../store/actions';
@@ -70,7 +69,7 @@ class Code extends React.Component {
         let params = common.urlSearch(decodeURI(window.location.href));
         let host = window.location.host;
         const code = params.code;
-        if (code === undefined) {
+        if (code == undefined) {
             const redirectUri = 'http://' + host + '/auth';
             const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                 //loggedUserReducer().appid +
@@ -100,7 +99,7 @@ const kk = (dispatch, ownProps) => {
         },
 
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
 
         saveAppid: (info) => {

@@ -5,7 +5,7 @@ import api from '../../utils/api';
 import common from "../../utils/common";
 import {
     getImgurl,
-    getOpenid, saveLogin, saveLogin2, loggedUserReducer
+    getOpenid, saveLogin, saveUserInfo, loggedUserReducer
 } from '../../store/actions';
 import { connect } from "react-redux";
 
@@ -30,7 +30,7 @@ class Login extends React.Component {
         let params = common.urlSearch(decodeURI(window.location.href));
         const code = params.code;
         let host = window.location.host;
-        if (window.location.host === 'localhost:3000') {
+        if (window.location.host == 'localhost:3000') {
             host = 'http://a6testwechat.jslesoft.com'
         }
 
@@ -47,7 +47,7 @@ class Login extends React.Component {
                 this.props.saveAppid(res.data);
 
 
-                if (code === undefined) {
+                if (code == undefined) {
                     const redirectUri = 'http://' + host + '/login';
                     const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                         res.data +
@@ -68,7 +68,7 @@ class Login extends React.Component {
         }
          else { 
 
-             if (code === undefined) {
+             if (code == undefined) {
                 const redirectUri = 'http://' + host + '/login';
                 const weiXinUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
                 loggedUserReducer().appid +
@@ -84,11 +84,7 @@ class Login extends React.Component {
                     openid: getOpenid()
                 })
             }
-
-
         }
-
-       
     }
 
     login = () => {
@@ -138,7 +134,7 @@ class Login extends React.Component {
             mobile: this.state.mobile
         }, true).then(res => {
             this.state.tid = setInterval(() => {
-                if (this.state.second !== 0) {
+                if (this.state.second != 0) {
                     this.setState({
                         second: this.state.second - 1,
                         codeMsg: '已发送(' + this.state.second + 's)'
@@ -189,7 +185,7 @@ class Login extends React.Component {
 const kk = (dispatch, ownProps) => {
     return {
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
     };
 };

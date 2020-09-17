@@ -1,6 +1,6 @@
 import UDToast from './ud-toast';
 import axios from 'axios';
-import {getToken, saveLogin2, loseLogin} from '../store/actions';
+import {getToken, saveUserInfo, loseLogin} from '../store/actions';
 import store from '../store/store';
 import qs from 'qs';
 

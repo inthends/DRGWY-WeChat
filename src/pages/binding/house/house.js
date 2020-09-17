@@ -1,12 +1,11 @@
 import React from 'react';
-import './house.css';
-import {Icon, Grid} from 'antd-mobile';
+import './house.css'; 
 import api from "../../../utils/api";
 import UDToat from "../../../utils/ud-toast";
 import {
-    loggedUserReducer, saveLogin2,
+    loggedUserReducer, saveUserInfo,
 } from '../../../store/actions';
-import {List, Radio, Flex, WhiteSpace} from 'antd-mobile';
+import {List, Radio } from 'antd-mobile';
 import {connect} from "react-redux";
 
 const RadioItem = Radio.RadioItem;
@@ -85,11 +84,11 @@ class House extends React.Component {
     }
 }
 
-const kk = (dispatch, ownProps) => {
+const save = (dispatch, ownProps) => {
     return {
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
     };
 };
-export default connect(null, kk)(House);
+export default connect(null, save)(House);

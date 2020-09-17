@@ -1,16 +1,16 @@
 import React from 'react';
 import './user.css';
 import Footer from '../../component/footer/footer';
-import {Icon, Grid} from 'antd-mobile';
+import { Icon } from 'antd-mobile';
 import Carou from '../../component/home/carousel/carousel';
 import {
     loggedUserReducer,
-    rooms, saveLogin, saveLogin2, loseLogin
+    rooms, saveUserInfo, loseLogin
 } from '../../store/actions';
 import api from "../../utils/api";
 import UDToat from "../../utils/ud-toast";
 import store from "../../store/store";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 class User extends React.Component {
     constructor(props) {
@@ -46,19 +46,24 @@ class User extends React.Component {
         }, true).then(res => {
             if (res.data == 'false') {
                 store.dispatch(loseLogin());
-            }else {
+            } else {
                 this.setState({
                     billNumber: res.data.billNumber,
                     invoiceNumber: res.data.invoiceNumber,
-                    workSheet: res.data.workSheet
+                    workSheet: res.data.workSheet,
+                    //管家电话和服务热线
+                    // serviceTel: res.data.serviceTel,
+                    // housekeeperTel: res.data.housekeeperTel
                 })
+                //刷新缓存
+                store.dispatch(saveUserInfo(res));
             }
         });
     }
 
     work = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/work');
         } else {
             this.props.history.push('/binding')
@@ -67,7 +72,7 @@ class User extends React.Component {
 
     bill = () => {
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             this.props.history.push('/pay');
         } else {
             this.props.history.push('/binding')
@@ -81,7 +86,7 @@ class User extends React.Component {
     render() {
         let fang = '';
         // 判断是否绑定房屋信息
-        if (loggedUserReducer().rooms === '1') {
+        if (loggedUserReducer().rooms == '1') {
             fang = <div className="shequ">
                 <div className="shequ-title shequ-title-c11">
                     <div className="shequ-title-1">
@@ -100,23 +105,23 @@ class User extends React.Component {
             fang = '';
         }
 
-        const footer = <Footer {...this.props}/>;
-        const carou = <Carou {...this.props}/>;
+        const footer = <Footer {...this.props} />;
+        const carou = <Carou {...this.props} />;
         return (
             <div>
                 <div className="user">
                     <div className="header1" onClick={this.userDetail}>
                         <div className="header-left">
-                            <img src={loggedUserReducer().imgurl} alt=""/>
+                            <img src={loggedUserReducer().imgurl} alt="" />
                             <div className="header-left-cont">
                                 <p className="header-left-cont-p">{loggedUserReducer().mobile}</p>
                                 <div className="header-left-cont-p-cont">
-                                    <img src={require('../../static/images/user/zuanshi.png')} alt=""/>
+                                    <img src={require('../../static/images/user/zuanshi.png')} alt="" />
                                     <p>{loggedUserReducer().scores}</p>
                                 </div>
                             </div>
                         </div>
-                        <Icon type='right' color='#666'/>
+                        <Icon type='right' color='#666' />
                     </div>
                     <div className="swipe">
                         {carou}
@@ -162,7 +167,7 @@ class User extends React.Component {
     }
 }
 
-const kk = (dispatch, ownProps) => {
+const load = (dispatch, ownProps) => {
     return {
         rooms: (info) => {
             dispatch(rooms(info));
@@ -170,4 +175,4 @@ const kk = (dispatch, ownProps) => {
     };
 };
 
-export default connect(null, kk)(User);
+export default connect(null, load)(User);

@@ -3,7 +3,7 @@ import './bound.css';
 import { Button } from 'antd-mobile';
 import api from '../../../utils/api';
 import UDToat from '../../../utils/ud-toast';
-import { loggedUserReducer, rooms, saveLogin2 } from '../../../store/actions';
+import { loggedUserReducer, rooms, saveUserInfo } from '../../../store/actions';
 import { connect } from 'react-redux';
 
 class Bound extends React.Component {
@@ -120,7 +120,7 @@ const kk = (dispatch, ownProps) => {
             dispatch(rooms(info));
         },
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
     };
 };

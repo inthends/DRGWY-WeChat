@@ -1,7 +1,5 @@
 import {Modal} from 'antd-mobile';
-import UDToast from './ud-toast';
-import React from 'react';
-import common from './common';
+import UDToast from './ud-toast'; 
 
 
 export default {
@@ -20,11 +18,11 @@ export default {
      */
     showAlert(title, message, actions) {
         let act = actions;
-        if (!act || act.length === 0) {
+        if (!act || act.length == 0) {
             UDToast.showError('actions数量必须大于0');
             return null;
         }
-        if (act.length === 1) {
+        if (act.length == 1) {
             let aa = [{text: '取消', onPress: () => console.log('cancel')}];
             aa.push(act[0]);
             act = aa;

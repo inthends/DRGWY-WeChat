@@ -1,10 +1,7 @@
 import React from 'react';
 import './pay-detail.css';
-import api from "../../../../utils/api";
-import {loggedUserReducer} from "../../../../store/actions";
-import UDToat from "../../../../utils/ud-toast";
-import {Modal} from 'antd-mobile';
-import common from '../../../../utils/common';
+import api from "../../../../utils/api"; 
+import UDToat from "../../../../utils/ud-toast";  
 import UDToast from '../../../../utils/ud-toast';
 import wxSign from '../../../../utils/wxSign';
 import UDAlert from '../../../../utils/ud-alert';
@@ -47,13 +44,13 @@ class PayDetail extends React.Component {
                         package: configData.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
                         signType: configData.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                         paySign: configData.paySign, // 支付签名
-                        success: (res) => {
+                        success: () => {
                             UDToast.hiddenLoading();
                             this.props.history.replace({
                                 pathname: '/pay',
                             })
                         },
-                        cancel: (res) => {
+                        cancel: () => {
                             UDToast.hiddenLoading();
                             UDToast.showError('支付取消');
                             this.setState({

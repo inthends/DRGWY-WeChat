@@ -1,15 +1,14 @@
 import React from 'react';
 import './personnel.css';
-import {Icon, Grid} from 'antd-mobile';
 import api from "../../../utils/api";
 import UDToat from "../../../utils/ud-toast";
 import {
     loggedUserReducer,
-    getImgurl,
-    getOpenid, saveLogin, saveLogin2
+    //getImgurl, getOpenid, saveLogin,
+    saveUserInfo
 } from '../../../store/actions';
-import {List, Radio, Flex, WhiteSpace} from 'antd-mobile';
-import {connect} from "react-redux";
+import { List, Radio } from 'antd-mobile';
+import { connect } from "react-redux";
 
 const RadioItem = Radio.RadioItem;
 
@@ -52,7 +51,7 @@ class Personnel extends React.Component {
         });
     };
 
-    openId = () =>{
+    openId = () => {
         api.getData('/api/WeChat/GetUserInfo', {
             openid: loggedUserReducer().openid,
         }, true).then(res => {
@@ -66,7 +65,7 @@ class Personnel extends React.Component {
     };
 
     render() {
-        const {value} = this.state;
+        const { value } = this.state;
         const data = this.state.data;
 
         return (
@@ -88,7 +87,7 @@ class Personnel extends React.Component {
 const kk = (dispatch, ownProps) => {
     return {
         saveLoginInfo2: (info) => {
-            dispatch(saveLogin2(info));
+            dispatch(saveUserInfo(info));
         },
     };
 };

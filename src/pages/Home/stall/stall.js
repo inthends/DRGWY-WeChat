@@ -1,7 +1,7 @@
 import React from 'react';
 import './stall.css';
 import {TextareaItem} from 'antd-mobile';
-import { Picker, List, WhiteSpace } from 'antd-mobile';
+import { Picker, List } from 'antd-mobile';
 import { DatePicker } from 'antd-mobile';
 
 const nowTimeStamp = Date.now();

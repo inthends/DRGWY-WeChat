@@ -1,6 +1,6 @@
 import React from 'react';
 import './user-detail.css';
-import {Icon, Grid} from 'antd-mobile';
+import {Icon } from 'antd-mobile';
 import UDAlert from "../../../utils/ud-alert";
 
 class UserDetail extends React.Component {

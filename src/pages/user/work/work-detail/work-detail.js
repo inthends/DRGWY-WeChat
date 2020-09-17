@@ -1,10 +1,8 @@
 import React from 'react';
-import {ImagePicker, WingBlank, SegmentedControl, List, Checkbox, Flex, TextareaItem, Radio} from 'antd-mobile';
+import { TextareaItem } from 'antd-mobile';
 import './work-detail.css';
 import api from "../../../../utils/api";
-import UDToat from "../../../../utils/ud-toast";
-import {loggedUserReducer} from "../../../../store/actions";
-import ReactDOM from 'react-dom';
+import UDToat from "../../../../utils/ud-toast"; 
 import StarRatingComponent from 'react-star-rating-component';
 
 class WorkDetail extends React.Component {
@@ -61,7 +59,7 @@ class WorkDetail extends React.Component {
 
     go = () => {
         console.log(this.state.Content)
-        if (this.props.location.state.start === 2) {
+        if (this.props.location.state.start == 2) {
             this.SendCommunicate();
         } else {
             this.ServiceDeskAppraise();
@@ -110,38 +108,38 @@ class WorkDetail extends React.Component {
     };
 
     onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
+        this.setState({ rating: nextValue });
         console.log(nextValue)
     }
 
     render() {
-        const {Content1, rating, GetCommunicates} = this.state;
+        const { Content1, rating, GetCommunicates } = this.state;
         let status3 = '';
         let status4 = '';
         let status2 = '';
         let data1 = '';
         let data2 = '';
         let textStatus = '';
-        if (this.props.location.state.start === 2) {
+        if (this.props.location.state.start == 2) {
             textStatus = '未完成'
-        } else if (this.props.location.state.start === 3) {
+        } else if (this.props.location.state.start == 3) {
             textStatus = '未评价'
-        } else if (this.props.location.state.start === 4) {
+        } else if (this.props.location.state.start == 4) {
             textStatus = '已评价'
         }
         let ping = '';
-        if (rating === 1) {
+        if (rating == 1) {
             ping = '非常不满意';
-        } else if (rating === 2) {
+        } else if (rating == 2) {
             ping = '不满意';
-        } else if (rating === 3) {
+        } else if (rating == 3) {
             ping = '一般';
-        } else if (rating === 4) {
+        } else if (rating == 4) {
             ping = '满意';
-        } else if (rating === 5) {
+        } else if (rating == 5) {
             ping = '非常满意';
         }
-        if (this.props.location.state.start === 3) {
+        if (this.props.location.state.start == 3) {
             status3 = <div className='pingjia'>
                 <p>评价本次服务</p>
                 <p>
@@ -156,11 +154,11 @@ class WorkDetail extends React.Component {
                 </p>
                 <p>
                     <span>评语：</span>
-                    <input type="text" value={Content1} onChange={this.changeValue} placeholder="请输入"/>
+                    <input type="text" value={Content1} onChange={this.changeValue} placeholder="请输入" />
                 </p>
             </div>
         }
-        if (this.props.location.state.start === 2) {
+        if (this.props.location.state.start == 2) {
             status4 = <div className='TextareaItem2'>
                 <TextareaItem
                     placeholder='请输入'
@@ -171,28 +169,28 @@ class WorkDetail extends React.Component {
             </div>
         }
 
-        if (this.props.location.state.start === 2 || this.props.location.state.start === 3) {
+        if (this.props.location.state.start == 2 || this.props.location.state.start == 3) {
             status2 = <div className='btn-repa-cint'>
                 <button className='btn-repa' onClick={this.go}>提交</button>
             </div>
         }
 
-        if (this.props.location.state.start === 3) {
+        if (this.props.location.state.start == 3) {
             data1 = <p>完成时间: {this.state.data.finishDate}</p>
         }
         let gradeText = '';
-        if (this.state.data.grade === 1) {
+        if (this.state.data.grade == 1) {
             gradeText = '非常不满意';
-        } else if (this.state.data.grade === 2) {
+        } else if (this.state.data.grade == 2) {
             gradeText = '不满意';
-        } else if (this.state.data.grade === 3) {
+        } else if (this.state.data.grade == 3) {
             gradeText = '一般';
-        } else if (this.state.data.grade === 4) {
+        } else if (this.state.data.grade == 4) {
             gradeText = '满意';
-        } else if (this.state.data.grade === 5) {
+        } else if (this.state.data.grade == 5) {
             gradeText = '非常满意';
         }
-        if (this.props.location.state.start === 4) {
+        if (this.props.location.state.start == 4) {
             data2 = <p className='gradeText'>
                 <span>评价时间: {this.state.data.appraiseDate}</span>
                 <span>{gradeText}</span>
@@ -227,7 +225,7 @@ class WorkDetail extends React.Component {
                     </div>
                     {GetCommunicates.map(i => (
                         <div className='work-jilu'>
-                            <img src={i.avatar} alt=""/>
+                            <img src={i.avatar} alt="" />
                             <div className='work-right'>
                                 <div className='work-right-1'>
                                     <p>{i.author}</p>
