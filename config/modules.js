@@ -28,12 +28,12 @@ function getAdditionalModulePaths(options = {}) {
 
   // We don't need to do anything if `baseUrl` is set to `node_modules`. This is
   // the default behavior.
-  if (path.relative(paths.appNodeModules, baseUrlResolved) === '') {
+  if (path.relative(paths.appNodeModules, baseUrlResolved) == '') {
     return null;
   }
 
   // Allow the user set the `baseUrl` to `appSrc`.
-  if (path.relative(paths.appSrc, baseUrlResolved) === '') {
+  if (path.relative(paths.appSrc, baseUrlResolved) == '') {
     return [paths.appSrc];
   }
 

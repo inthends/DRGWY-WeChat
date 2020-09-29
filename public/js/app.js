@@ -68,7 +68,7 @@
         }
     }, false);
 
-    if (doc.readyState === "complete") {
+    if (doc.readyState == "complete") {
         doc.body.style.fontSize = "16px";
     } else {
         doc.addEventListener("DOMContentLoaded", function (e) {

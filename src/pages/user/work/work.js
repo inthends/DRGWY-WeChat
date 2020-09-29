@@ -31,13 +31,13 @@ class Work extends React.Component {
         })
     };
 
-    info = (index) => {
+    load = (index) => {
         this.setState({
             param: {
                 pageIndex: 1,
                 pageSize: 10,
-                status: index,
-                customerId: loggedUserReducer().customerId,
+                status: index
+                //customerId: loggedUserReducer().customerId,
             }
         }, () => {
             api.postData('/api/WeChat/GetServiceDeskPageList', this.state.param, true)
@@ -61,11 +61,11 @@ class Work extends React.Component {
 
     onValueChange = (value) => {
         if (value == '未完成') {
-            this.info(2)
+            this.load(2)
         } else if (value == '未评价') {
-            this.info(3)
+            this.load(3)
         } else if (value == '已评价') {
-            this.info(4)
+            this.load(5)
         }
     };
 
@@ -74,9 +74,9 @@ class Work extends React.Component {
             param: {
                 pageIndex: this.state.param.pageIndex + 1,
                 pageSize: 10,
-                status: this.state.param.status,
+                status: this.state.param.status
                 // customerId: loggedUserReducer().customerId,
-                memberId : loggedUserReducer().id
+                //memberId : loggedUserReducer().id
             }
         }, () => {
             api.postData('/api/WeChat/GetServiceDeskPageList', this.state.param, true)
@@ -118,8 +118,7 @@ class Work extends React.Component {
                 initialLoad={false}
                 pageStart={0}
                 loadMore={() => this.getMore()}
-                hasMore={this.state.hasMore}
-            >
+                hasMore={this.state.hasMore}>
                 <div className='work-cont'>
                     {this.state.data.map(i => (
                         <div className='work-cont-list' onClick={() => this.work1(i)}>

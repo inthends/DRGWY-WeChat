@@ -202,6 +202,7 @@ class WorkDetail extends React.Component {
                 <div className='work-title'>{textStatus}</div>
                 <div className='work-p'>
                     <p>单号: {this.state.data.billCode}</p>
+                    <p>报修地址: {this.state.data.address}</p>
                     <p>报单时间: {this.state.data.billDate}</p>
                     <p>派单时间: {this.state.data.dispatchDate}</p>
                     {data1}

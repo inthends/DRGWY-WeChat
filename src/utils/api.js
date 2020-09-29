@@ -37,7 +37,7 @@ export default {
                 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
                 let complete = host + a;
                 // console.log('complete=' + complete);
-                if (method === 'GET') {
+                if (method == 'GET') {
                     axios.get(complete, {
                         params: params,
                     }).then(res => {
@@ -100,7 +100,7 @@ export default {
      *
      */
     multiFetchData(requests) {
-        if (!requests || requests.length === 0) {
+        if (!requests || requests.length == 0) {
             UDToast.showError('request无效');
         }
         UDToast.showLoading();

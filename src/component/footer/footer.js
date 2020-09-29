@@ -24,10 +24,10 @@ class Footer extends BasePage {
             <div className="footer">
                 {
                     data.map(value => (
-                        <p className={`p1 ${router === value.path ? 'color' : ''}`}
+                        <p className={`p1 ${router == value.path ? 'color' : ''}`}
                            onClick={() => this.props.history.push(value.path)}>
                             <img
-                                src={router === value.path ? value.img1 : value.img2}
+                                src={router == value.path ? value.img1 : value.img2}
                                 alt=""/>
                             <span>{value.text}</span>
                         </p>

@@ -72,7 +72,7 @@ class House extends React.Component {
             <div className='house'>
                 <List>
                     {data.map(i => (
-                        <RadioItem key={i.id} checked={value === i.id} onChange={() => this.onChange(i.id)}>
+                        <RadioItem key={i.id} checked={value == i.id} onChange={() => this.onChange(i.id)}>
                             {i.allName}
                         </RadioItem>
                     ))}
