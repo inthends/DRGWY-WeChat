@@ -58,7 +58,7 @@ class WorkDetail extends React.Component {
     };
 
     go = () => {
-        console.log(this.state.Content)
+        //console.log(this.state.Content)
         if (this.props.location.state.start == 2) {
             this.SendCommunicate();
         } else {

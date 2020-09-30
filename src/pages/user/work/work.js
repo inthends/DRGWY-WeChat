@@ -20,7 +20,7 @@ class Work extends React.Component {
     };
 
     componentDidMount() {
-        this.info(this.state.param.status);
+        this.load(this.state.param.status);
     }
 
     onChange = (e) => {
