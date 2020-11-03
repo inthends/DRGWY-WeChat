@@ -33,8 +33,7 @@ class Auth extends React.Component {
         }
     }
 
-    auth(appid) {
-
+    auth(appid) { 
         if (window.location.href.includes('localhost')) {
             let res = {
                 data: {
