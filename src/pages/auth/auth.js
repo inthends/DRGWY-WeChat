@@ -28,7 +28,6 @@ class Auth extends React.Component {
 
             });
         } else {
-
             this.auth(loggedUserReducer().appid);
         }
     }
