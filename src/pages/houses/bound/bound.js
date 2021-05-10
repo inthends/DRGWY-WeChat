@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 
 class Bound extends React.Component {
 
-
     constructor(props) {
         super(props);
         const { room } = this.props.location.state;
@@ -16,8 +15,7 @@ class Bound extends React.Component {
 
         this.state = {
             room,
-            items: [],
-
+            items: [], 
             value: '',
             phone: '',
         };
@@ -56,8 +54,13 @@ class Bound extends React.Component {
             value: e.target.value,
         });
     };
+
     bindHouse = () => {
         const { value, phone } = this.state;
+        // if (!value) {
+        //     UDToat.showError('请输入手机号码！');
+        //     return false;
+        // }
         api.postData('/api/WeChat/BindCustomerByPhone', {
             unitId: this.state.room.id,
             cellphone: (phone || '') + value,
@@ -78,8 +81,9 @@ class Bound extends React.Component {
             }
         });
     };
+
     submit = () => { 
-        const { value, phone } = this.state;
+        const { value, phone } = this.state; 
         api.postData('/api/WeChat/BindUserApply', {
             unitId: this.state.room.id,
             cellphone: (phone || '') + value,

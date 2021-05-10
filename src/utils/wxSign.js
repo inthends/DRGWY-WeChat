@@ -4,7 +4,7 @@ import api from './api';
 export default {
     getWXSign(showLoading = true) {
         return new Promise((resolve, reject) => {
-            api.postData('/api/WeChat/GetWeChatSign', {
+            api.postData('/api/WeChat/GetWeChatSign', {  
             }, showLoading).then(data => {
                 //console.log('GetWeChatSign:', data.data)
                 wx.config({
@@ -36,7 +36,7 @@ export default {
                     resolve(wx);
                 });
                 wx.error(function (res) {
-                    console.log('error', res);
+                    //console.log('error', res);
                     // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
                 });
             }).catch(e => {

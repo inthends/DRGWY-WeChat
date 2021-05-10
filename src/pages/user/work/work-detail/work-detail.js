@@ -1,8 +1,8 @@
-import React from 'react';
-import { TextareaItem } from 'antd-mobile';
+import React, { Fragment } from 'react';
+import { ImagePicker, TextareaItem } from 'antd-mobile';
 import './work-detail.css';
 import api from "../../../../utils/api";
-import UDToat from "../../../../utils/ud-toast"; 
+import UDToat from "../../../../utils/ud-toast";
 import StarRatingComponent from 'react-star-rating-component';
 
 class WorkDetail extends React.Component {
@@ -19,7 +19,7 @@ class WorkDetail extends React.Component {
 
     componentDidMount() {
         api.getData('/api/WeChat/GetServicedeskEntity', {
-            keyValue: this.props.location.state.id
+            keyvalue: this.props.location.state.id
         }, true)
             .then(res => {
                 if (res.success) {
@@ -32,7 +32,7 @@ class WorkDetail extends React.Component {
             });
 
         api.getData('/api/WeChat/GetCommunicates', {
-            keyValue: this.props.location.state.id
+            keyvalue: this.props.location.state.id
         }, false)
             .then(res => {
                 if (res.success) {
@@ -43,6 +43,23 @@ class WorkDetail extends React.Component {
                     UDToat.showError(res.msg);
                 }
             });
+
+        //附件
+        api.getData('/api/WeChat/GetServiceDeskFiles',
+            { keyvalue: this.props.location.state.id }, false
+        ).then(res => {
+            if (res.success) {
+                let files = res.data || [];
+                this.setState({
+                    files: files.map(item => ({
+                        ...item,
+                        id: item.uid,
+                    })),
+                });
+            } else {
+                UDToat.showError(res.msg);
+            }
+        });
     }
 
     onChange3 = (val) => {
@@ -111,6 +128,11 @@ class WorkDetail extends React.Component {
         this.setState({ rating: nextValue });
         console.log(nextValue)
     }
+    
+
+    lookImages = (index, images) => { 
+    };
+
 
     render() {
         const { Content1, rating, GetCommunicates } = this.state;
@@ -210,20 +232,37 @@ class WorkDetail extends React.Component {
                 </div>
                 <div className='TextareaItem2'>
                     <TextareaItem
-                        placeholder='请输入'
+                        //placeholder='请输入'
                         rows={3}
-                        count={100}
+                        // count={100}
                         disabled
                         value={this.state.data.contents}
                     />
+
+                    {
+                        this.state.files && this.state.files.length > 0 && (
+                            <Fragment> 
+                                <ImagePicker
+                                    files={this.state.files}
+                                    selectable={false}
+                                    disableDelete
+                                    onImageClick={this.lookImages}
+                                    style={{ marginTop: '0.2rem' }}
+                                />
+                            </Fragment>
+                        )
+                    }
                 </div>
+
                 {status3}
                 {status4}
                 {status2}
                 <div className='work-title1'>
+                    
                     <div className='work-jilu-title'>
                         <p>沟通记录</p>
                     </div>
+
                     {GetCommunicates.map(i => (
                         <div className='work-jilu'>
                             <img src={i.avatar} alt="" />

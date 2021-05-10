@@ -1,12 +1,12 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import './getNewsPageList.css';
 import UDToat from '../../utils/ud-toast';
-import api from '../../utils/api'; 
+import api from '../../utils/api';
 // import {
 //     loggedUserReducer,
 //     rooms, saveLogin, saveUserInfo, loseLogin,
 // } from '../../store/actions'; 
-import {ImagePicker, TextareaItem} from 'antd-mobile'; 
+import { ImagePicker, TextareaItem } from 'antd-mobile';
 import common from '../../utils/common';
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -14,9 +14,9 @@ import StarRatingComponent from 'react-star-rating-component';
 class NewsDetail extends React.Component {
     constructor(props) {
         super(props);
-        console.log(112, this.props);
+        //console.log(112, this.props);
         let urlParams = common.getCurrentUrlParams() || {};
-        console.log('urlParams', urlParams);
+        //console.log('urlParams', urlParams);
         this.state = {
             contents: '',
             ...urlParams,
@@ -31,7 +31,7 @@ class NewsDetail extends React.Component {
     }
 
     detail(id) {
-        api.getData('/api/WeChat/GetServiceDeskDetail', {keyValue: id}).then(res => {
+        api.getData('/api/WeChat/GetServiceDeskDetail', { keyvalue: id }).then(res => {
             if (res.success) {
                 this.setState({
                     data: res.data,
@@ -44,7 +44,7 @@ class NewsDetail extends React.Component {
     }
 
     files(id) {
-        api.getData('/api/WeChat/GetServiceDeskFiles', {keyValue: id}, false).then(res => {
+        api.getData('/api/WeChat/GetServiceDeskFiles', { keyvalue: id }, false).then(res => {
             if (res.success) {
                 let files = res.data || [];
                 this.setState({
@@ -56,12 +56,11 @@ class NewsDetail extends React.Component {
             } else {
                 UDToat.showError(res.msg);
             }
-
         });
     }
 
     repairfiles(id) {
-        api.getData('/api/WeChat/GetRepairFiles', {keyValue: id}, false).then(res => {
+        api.getData('/api/WeChat/GetRepairFiles', { keyvalue: id }, false).then(res => {
             if (res.success) {
                 let files = res.data || [];
                 this.setState({
@@ -79,7 +78,7 @@ class NewsDetail extends React.Component {
     }
 
     communicates(id) {
-        api.getData('/api/WeChat/GetCommunicates', {keyValue: id}, false).then(res => {
+        api.getData('/api/WeChat/GetCommunicates', { keyvalue: id }, false).then(res => {
             if (res.success) {
                 this.setState({
                     communicates: res.data,
@@ -95,13 +94,12 @@ class NewsDetail extends React.Component {
     }
 
     componentDidMount() {
-        const {id, type} = this.state;
+        const { id, type } = this.state;
         switch (type) {
             case '1': {
                 document.title = '服务详情';
                 this.detail(id);
                 this.files(id);
-
                 break;
             }
             case '2': {
@@ -139,8 +137,8 @@ class NewsDetail extends React.Component {
             return false;
         }
         api.postData('/api/WeChat/SendCommunicate', {
-            keyValue: this.state.id,
-            Content: this.state.contents,
+            keyvalue: this.state.id,
+            content: this.state.contents,
         }, true)
             .then(res => {
                 if (res.success) {
@@ -181,7 +179,7 @@ class NewsDetail extends React.Component {
             default:
                 break;
         }
-        this.setState({rating: nextValue, ratingText});
+        this.setState({ rating: nextValue, ratingText });
         console.log(nextValue);
     };
 
@@ -192,9 +190,9 @@ class NewsDetail extends React.Component {
             return false;
         }
         api.postData('/api/WeChat/ServiceDeskAppraise', {
-            keyValue: this.state.id,
-            Grade: this.state.rating,
-            Content: this.state.contents,
+            keyvalue: this.state.id,
+            grade: this.state.rating,
+            content: this.state.contents,
         }, true)
             .then(res => {
                 if (res.success) {
@@ -206,29 +204,29 @@ class NewsDetail extends React.Component {
                 }
             });
     };
-    lookImages = (index, images) => {
 
-    };
+
+    // lookImages = (index, images) => { 
+    // };
 
     render() {
 
-        const {data, type, files, communicates, rating, ratingText, repairfiles} = this.state;
-
+        const { data, type, files, communicates, rating, ratingText, repairfiles } = this.state;
 
         return (
-            <div style={{paddingLeft: '0.3rem', paddingRight: '0.3rem', paddingBottom: '0.3rem'}}>
+            <div style={{ paddingLeft: '0.3rem', paddingRight: '0.3rem', paddingBottom: '0.3rem' }}>
                 <div style={styles.div1}>{data.billType}</div>
                 <div style={styles.div2}>{data.contents}</div>
                 {
                     files && files.length > 0 && (
                         <Fragment>
-                            {type == '4' && <div style={{paddingTop: '0.3rem'}}>上报情况</div>}
+                            {type == '4' && <div style={{ paddingTop: '0.3rem' }}>上报情况</div>}
                             <ImagePicker
                                 files={files}
                                 selectable={false}
                                 disableDelete
-                                onImageClick={this.lookImages}
-                                style={{marginTop: '0.2rem'}}
+                                // onImageClick={this.lookImages}
+                                style={{ marginTop: '0.2rem' }}
                             />
 
                         </Fragment>
@@ -243,7 +241,7 @@ class NewsDetail extends React.Component {
                                 files={repairfiles}
                                 selectable={false}
                                 disableDelete
-                                style={{marginTop: '0.2rem'}}
+                                style={{ marginTop: '0.2rem' }}
                             />
                         </Fragment>
                     )
@@ -251,11 +249,34 @@ class NewsDetail extends React.Component {
 
 
                 <div style={styles.div3}>提交时间：{data.billDate}</div>
-                <div style={{paddingBottom: '0.4rem'}}>
+
+                {/* <div style={{paddingBottom: '0.4rem'}}>
                     {communicates.map(item => (
-                        <div style={styles.div4}>{`${item.author}:${item.content}`}<br/>{item.datetime}</div>
+                        <div style={styles.div4}>{`${item.author}：${item.content}`}<br/>{item.datetime}</div>
+                    ))}
+                </div> */}
+
+                <div className='work-title1'> 
+                    <div className='work-jilu-title'>
+                        <p>沟通记录</p>
+                    </div>
+
+                    {communicates.map(i => (
+                        <div className='work-jilu'>
+                            <img src={i.avatar} alt="" />
+                            <div className='work-right'>
+                                <div className='work-right-1'>
+                                    <p>{i.author}</p>
+                                    <p>{i.datetime}</p>
+                                </div>
+                                <div className='work-right-2'>
+                                    <p>{i.content}</p>
+                                </div>
+                            </div>
+                        </div>
                     ))}
                 </div>
+
                 {(type == '1' || type == '2') && (
                     <div>
                         <TextareaItem
@@ -263,18 +284,21 @@ class NewsDetail extends React.Component {
                             rows={3}
                             // count={100}
                             value={this.state.contents}
-                            onChange={contents => this.setState({contents})}
+                            onChange={contents => this.setState({ contents })}
                         />
                     </div>
                 )}
                 {type == '1' && <button style={styles.button} onClick={this.communicate}>留言管家</button>}
+
                 {type == '2' && <button style={styles.button} onClick={this.communicate}>继续留言</button>}
+
                 {type == '3' && <div style={styles.div2}>最新进展：转维修工单</div>}
+
                 {type == '4' && (
                     <Fragment>
-                        <div className='pingjia' style={{padding: 0}}>
+                        <div className='pingjia' style={{ padding: 0 }}>
                             <p>为更好的服务业主，请您评价本次服务！</p>
-                            <p style={{marginTop: '0.1rem'}}>
+                            <p style={{ marginTop: '0.1rem' }}>
                                 <StarRatingComponent
                                     name="rate1"
                                     starCount={5}
@@ -282,8 +306,7 @@ class NewsDetail extends React.Component {
                                     emptyStarColor={'#999'}
                                     onStarClick={this.onStarClick}
                                 />
-                                <span className='ping'
-                                      style={{float: 'right', right: '0.6rem', top: 0}}>{ratingText}</span>
+                                <span className='ping' style={{ float: 'right', right: '0.6rem', top: 0 }}>{ratingText}</span>
                             </p>
 
                             <TextareaItem
@@ -291,7 +314,7 @@ class NewsDetail extends React.Component {
                                 rows={3}
                                 // count={100}
                                 value={this.state.contents}
-                                onChange={contents => this.setState({contents})}
+                                onChange={contents => this.setState({ contents })}
                             />
                             <button style={styles.button} onClick={this.serviceDeskAppraise}>提交</button>
                         </div>

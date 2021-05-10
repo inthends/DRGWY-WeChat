@@ -40,15 +40,19 @@ class Personnel extends React.Component {
     }
 
     go = () => {
-        api.postData('/api/WeChat/BindCustomer', {
-            customerId: this.state.value,
-        }, true).then(res => {
-            if (res.success) {
-                this.openId();
-            } else {
-                UDToat.showError(res.msg);
-            }
-        });
+        if (this.state.value) {
+            api.postData('/api/WeChat/BindCustomer', {
+                customerId: this.state.value,
+            }, true).then(res => {
+                if (res.success) {
+                    this.openId();
+                } else {
+                    UDToat.showError(res.msg);
+                }
+            });
+        }else{
+            UDToat.showError('请选择一个住户');
+        }
     };
 
     openId = () => {

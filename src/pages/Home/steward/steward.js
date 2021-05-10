@@ -64,11 +64,11 @@ class Steward extends React.Component {
 
     go = () => {
         if (!this.state.textarea) {
-            UDToat.showError('请输入留言！');
+            UDToat.showError('请输入留言');
             return false;
         }
         if (!this.state.value) {
-            UDToat.showError('请选择！');
+            UDToat.showError('请选择');
             return false;
         }
         api.postData('/api/WeChat/SaveServiceDeskForm', {

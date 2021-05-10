@@ -37,12 +37,11 @@ class FeeDetail extends React.Component {
             canSubmit: true,
         });
         wxSign.getWXSign().then(jssdk => {
-            api.postData('/api/WeChat/GetWeChatPaySign', {
+            api.postData('/api/WeChat/JJGetWeChatPaySign', {
                 billId: this.state.id,
             }).then(res => {
                 if (res.success) {
-                    const configData = res.data;
-                    // console.log('GetWeChatPaySign:', configData);
+                    const configData = res.data; 
                     jssdk.chooseWXPay({
                         appId: configData.appId,
                         timestamp: configData.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
